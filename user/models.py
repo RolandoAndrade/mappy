@@ -7,7 +7,7 @@ from collection_address.models import CollectionAddress
 
 class User(models.Model):
     user_id = models.AutoField(primary_key = True)
-    collection_address = models.ForeignKey(CollectionAddress, null = False, blank = False, on_delete = models.CASCADE)
+    collection_address = models.ForeignKey(CollectionAddress, null = True, blank = False, on_delete = models.CASCADE)
     email = models.EmailField(max_length = 254, unique = True)
     password = models.CharField(validators = [validate_Symbol, validate_legnth, validate_number, validate_Uppercase, ],
                                 max_length = 35)
