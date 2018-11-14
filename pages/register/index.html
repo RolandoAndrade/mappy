@@ -11,54 +11,52 @@
 
   
 </head>
-
 <body>
-<form>
-  <ul class="items"></ul>
-  
-  <fieldset class="email enable">
-    <div class="icon left"><i class="letter"></i></div>
-    <input type="mail" name="email" placeholder="Email"/>
-    <div class="icon right button"><i class="arrow"></i></div>
-  </fieldset>
-  <fieldset class="password">
-    <div class="icon left"><i class="lock"></i></div>
-    <input type="password" name="password" placeholder="Password"/>
-    <div class="icon right button"><i class="arrow"></i></div>
-  </fieldset>
-  <fieldset class="username">
-    <div class="icon left"><i class="user"></i></div>
-    <input type="text" name="username" placeholder="Primer nombre"/>
-    <div class="icon right button"><i class="arrow"></i></div>
-  </fieldset>
+  <form method="POST" action="api/register">
+    <ul class="items"></ul>
+    <fieldset class="email enable">
+      <div class="icon left"><i class="letter"></i></div>
+      <input type="email" name="email" placeholder="Email"/>
+      <div class="icon right button"><i class="arrow"></i></div>
+    </fieldset>
+    <fieldset class="password">
+      <div class="icon left"><i class="lock"></i></div>
+      <input type="password" name="password" placeholder="Password"/>
+      <div class="icon right button"><i class="arrow"></i></div>
+    </fieldset>
     <fieldset class="username">
-    <div class="icon left"><i class="user"></i></div>
-    <input type="text" name="username" placeholder="Segundo nombre"/>
-    <div class="icon right button"><i class="arrow"></i></div>
-  </fieldset>
+      <div class="icon left"><i class="user"></i></div>
+      <input type="text" name="username" placeholder="Primer nombre"/>
+      <div class="icon right button"><i class="arrow"></i></div>
+    </fieldset>
+      <fieldset class="username">
+      <div class="icon left"><i class="user"></i></div>
+      <input type="text" name="username" placeholder="Segundo nombre"/>
+      <div class="icon right button"><i class="arrow"></i></div>
+    </fieldset>
+      <fieldset class="username">
+      <div class="icon left"><i class="user"></i></div>
+      <input type="text" name="username" placeholder="Primer apellido"/>
+      <div class="icon right button"><i class="arrow"></i></div>
+    </fieldset>
     <fieldset class="username">
-    <div class="icon left"><i class="user"></i></div>
-    <input type="text" name="username" placeholder="Primer apellido"/>
-    <div class="icon right button"><i class="arrow"></i></div>
-  </fieldset>
-  <fieldset class="username">
-    <div class="icon left"><i class="user"></i></div>
-    <input type="text" name="username" placeholder="Segundo apellido"/>
-    <div class="icon right button"><i class="arrow"></i></div>
-  </fieldset>
-  <fieldset class="username">
-    <div class="icon left"><i class="user"></i></div>
-    <input type="date" name="username" required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" placeholder="Fecha de nacimiento"/>
-    <div class="icon right button"><i class="arrow"></i></div>
-  </fieldset>
-  <fieldset class="thanks">
-    <div class="icon left"><i class="heart"></i></div>
-    <p>Thanks for your time</p>
-    <div class="icon right"><i class="heart"></i></div>
-  </fieldset>
-</form>
+      <div class="icon left"><i class="user"></i></div>
+      <input type="text" name="username" placeholder="Segundo apellido"/>
+      <div class="icon right button"><i class="arrow"></i></div>
+    </fieldset>
+    <fieldset class="username">
+      <div class="icon left"><i class="user"></i></div>
+      <input type="date" name="birthdate" required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" 
+      placeholder="Fecha de nacimiento"/>
+      <div class="icon right button"><i class="arrow"></i></div>
+    </fieldset>
+    <fieldset class="thanks">
+      <div class="icon left"><i class="heart"></i></div>
+      <p>Thanks for your time</p>
+      <div class="icon right"><i class="heart"></i></div>
+    </fieldset>
+  </form>
   <h1><a href="">¿Ya tienes una cuenta? Inicia sesión</a></h1>
-    <script src="js/index.js"></script>
-
+  <script src="js/index.js"></script>
 </body>
 </html>
