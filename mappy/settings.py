@@ -64,7 +64,10 @@ ROOT_URLCONF = 'mappy.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'pages'),
+
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -137,3 +140,8 @@ STATIC_URL = '/static/'
 # https://github.com/philippbosch/django-geoposition
 
 GEOPOSITION_GOOGLE_MAPS_API_KEY = 'AIzaSyAyMn7siHMk2mTSEcVJj5GW6-PI74VmeWI'
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+    )
+}
