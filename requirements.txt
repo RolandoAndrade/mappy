@@ -18,3 +18,5 @@ pytz==2018.7
 six==1.11.0
 sympy==1.3
 wrapt==1.10.11
+django-rest-auth==0.9.3
+django-allauth==0.38.0
