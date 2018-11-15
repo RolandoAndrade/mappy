@@ -20,7 +20,7 @@
                         Register
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="api/register" class="form-signin" name="register-form">
+                        <form method="POST" action="" class="form-signin" name="register-form">
                             <div class="row">
                                 <div class="col">
                                     <label for="firstName">First Name</label>
@@ -169,7 +169,7 @@
             for (var i = 0; i < cookies.length; i++) {
 
                 var cookie = cookies[i];
-                console.log(cookie);
+                cookie=cookie.trim();
                 // Does this cookie string begin with the name we want?
                 if (cookie.substring(0, name.length + 1) == (name + '=')) {
                     cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
@@ -181,10 +181,10 @@
     }
 
     function goTo () {
-        const url = 'http://localhost:8000/api/user/';
+        const url = 'http://localhost:8000/api/login/';
         // The data we are going to send in our request
         var dat = {
-            email: "sghfsh@p.com", password: "Pies3.14",
+            email: "abc@def.com", password: "12345678abc",
             birthDate:"1998-12-10", firstName:"A",
             secondName:"A",
             firstSurname:"A",

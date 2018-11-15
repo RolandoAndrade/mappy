@@ -13,11 +13,11 @@ from rest_framework import serializers
 class RegisterSerializer(RegisterSerializer):
     password2 = None
     username = None
-    birthDate = serializers.DateField(required = True,write_only = True)
-    firstName = serializers.CharField(required=True, write_only=True)
-    secondName = serializers.CharField(required=False, write_only=True)
-    firstSurname = serializers.CharField(required=True, write_only=True)
-    secondSurname = serializers.CharField(required=False, write_only=True)
+    birthDate = serializers.DateField(required = True, write_only = True)
+    firstName = serializers.CharField(required = True, write_only = True)
+    secondName = serializers.CharField(required = False, write_only = True)
+    firstSurname = serializers.CharField(required = True, write_only = True)
+    secondSurname = serializers.CharField(required = False, write_only = True)
 
     def validate(self, data):
         return data
@@ -29,7 +29,7 @@ class RegisterSerializer(RegisterSerializer):
 
         }
 
-    def custom_signup(self,request,user):
+    def custom_signup(self, request, user):
         user.firstName = self.validated_data.get('firstName', '')
         user.secondName = self.validated_data.get('secondName', '')
         user.firstSurname = self.validated_data.get('firstSurname', '')
@@ -41,9 +41,7 @@ class RegisterSerializer(RegisterSerializer):
         adapter = get_adapter()
         user = adapter.new_user(request)
         self.cleaned_data = self.get_cleaned_data()
-
         adapter.save_user(request, user, self)
         self.custom_signup(request, user)
-
         setup_user_email(request, user, [])
         return user
