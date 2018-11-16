@@ -25,7 +25,7 @@ $(document).ready(function(){
       }
     },
     highlight: function(element) {
-      $(element).closest('.form-group').removeClass('has-success').addClass('has-error')
+      $(element).closest('.form-group').removeClass('has-success').addClass('has-error');
       $(element).closest('.form-group').removeClass('has-success').addClass('has-error');
     },
     unhighlight: function(element) {

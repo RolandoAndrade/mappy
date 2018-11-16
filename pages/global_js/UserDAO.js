@@ -1,0 +1,5 @@
+class UserDAO {
+    constructor() {
+
+    }
+}
