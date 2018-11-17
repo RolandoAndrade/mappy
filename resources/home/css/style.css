@@ -730,7 +730,6 @@ i:before {
 /* Project Area css
 ============================================================================================ */
 .project_area {
-  background: url(../img/project-bg.jpg) no-repeat fixed center center;
   background-size: cover;
   position: relative;
   z-index: 3;
