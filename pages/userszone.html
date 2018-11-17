@@ -23,7 +23,7 @@
 							<h4 class="card-title">Esta es la zona de usuarios, si puedes ver esto es que iniciaste sesión</h4>
 						</div>
 						<div class="form-group m-0">
-									<input type="button" class="btn btn-primary btn-block" value="Cerrar sesión" onclick="">
+									<input type="button" class="btn btn-primary btn-block" value="Cerrar sesión" onclick="logout()">
 										
 								</div>
 					</div>
@@ -39,5 +39,7 @@
 	<script src="{% static 'js/jquery.min.js' %}"></script>
 	<script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
 	<script src="{% static 'js/my-login.js' %}"></script>
+	<script src="{% static 'dao/UserDao.js' %}"></script>
+	<script src="{% static 'js/logout.js' %}"></script>
 </body>
 </html>

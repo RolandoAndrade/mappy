@@ -40,7 +40,7 @@ class Validator {
         return false;
     }
   
-    isOver18(dateString) {
+    isAdult(dateString) {
         var currentDate = new Date();
         var currentYear = currentDate.getFullYear();
         var birthdate = new Date(dateString);
@@ -53,7 +53,7 @@ class Validator {
         );
         
         if(REGEXP.test(birthdate)) {
-            if(!isOver18(birthdate)) {
+            if(!isAdult(birthdate)) {
                 console.error('User must be +18 to register. ');
                 return false;
             }
