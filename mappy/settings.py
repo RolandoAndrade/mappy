@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'collection_order',
     'user',
     'api',
+    'corsheaders',
     # 'user.apps.UserConfig',
     # 'collection_order.apps.OrderConfig',
 
@@ -62,7 +63,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
+
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
 
 ROOT_URLCONF = 'mappy.urls'
 
@@ -120,7 +126,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = '/resources/'
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'resources'),)
 
 # Django Geoposition 
 # https://github.com/philippbosch/django-geoposition
