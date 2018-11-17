@@ -6,20 +6,26 @@ $(document).ready(function(){
           depends:function(){
               $(this).val($.trim($(this).val()));
               return true;
-          }   
+        }   
         },
         emailValidate: true
       },
       password: {
-        minlength: 5,
-        required: true
+        minlength: 8,
+        required: {
+          depends:function(){
+            $(this).val($.trim($(this).val()));
+            return true;
+        }   
+        },
+        passwordValidate: true
       },
       payment: {
         required: true
       }
     },
     highlight: function(element) {
-      $(element).closest('.form-group').removeClass('has-success').addClass('has-error')
+      $(element).closest('.form-group').removeClass('has-success').addClass('has-error');
       $(element).closest('.form-group').removeClass('has-success').addClass('has-error');
     },
     unhighlight: function(element) {
@@ -35,6 +41,16 @@ $(document).ready(function(){
     }, 
     "Ingrese una dirección de correo valida"
   );
+
+  $.validator.addMethod("passwordValidate", 
+  function(value, element) {
+      return /[A-Z]/.test(value) 
+      && /[a-z]/.test(value) // has a lowercase letter
+      && /\W/.test(value)
+      && /\d/.test(value);
+  }, 
+  "Compruebe su contraseña"
+  ); 
 
   // $('#form1').on('invalid-form.validate', function(e) {
   //   $(this).addClass('animated jello');
