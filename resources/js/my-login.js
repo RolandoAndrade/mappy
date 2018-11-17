@@ -66,16 +66,18 @@ $(function() {
 				$(this).removeClass("btn-outline-primary");
 			}else{
 				$this.attr('type', 'text');
-				$this.val($("#passeye-"+i).val());				
+				$this.val($("#passeye-"+i).val());
 				$this.addClass("show");
 				$(this).addClass("btn-outline-primary");
 			}
 		});
 	});
 
-	$(".my-login-validation").submit(function() {
+	$(".my-login-validation").submit(function()
+	 {
 		var form = $(this);
-        if (form[0].checkValidity() === false) {
+        if (form[0].checkValidity() === false)
+        {
           event.preventDefault();
           event.stopPropagation();
         }

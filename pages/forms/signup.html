@@ -44,6 +44,13 @@
 									<input id="secondSurname" type="text" class="form-control" name="name" autofocus>
 								</div>
 								<div class="form-group">
+									<label for="name">Fecha de nacimiento</label>
+									<input id="birthDate" type="date" class="form-control" name="name" autofocus>
+									<div class="invalid-feedback">
+										Tienes que ser mayor de edad
+									</div>
+								</div>
+								<div class="form-group">
 									<label for="email">Correo electrónico</label>
 									<input id="email" type="email" class="form-control" name="email" required>
 									<div class="invalid-feedback">
@@ -70,7 +77,7 @@
 								</div>
 
 								<div class="form-group m-0">
-									<button type="submit" class="btn btn-primary btn-block">
+									<button type="button" class="btn btn-primary btn-block" onclick="signup()">
 										Registrarse
 									</button>
 								</div>
@@ -90,6 +97,9 @@
 
 	<script src="{% static 'js/jquery.min.js' %}"></script>
 	<script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'js/Validator.js' %}"></script>
 	<script src="{% static 'js/my-login.js' %}"></script>
+	<script src="{% static 'dao/UserDao.js' %}"></script>
+	<script src="{% static 'js/signup.js' %}"></script>
 </body>
 </html>
