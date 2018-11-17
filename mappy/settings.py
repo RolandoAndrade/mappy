@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -95,7 +96,7 @@ WSGI_APPLICATION = 'mappy.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
-
+"""""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -106,7 +107,18 @@ DATABASES = {
         'PORT': 5432,
     }
 }
+"""
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'd29f09thqo96sa',
+        'USER': 'ihtmdptyiiakln',
+        'PASSWORD': '84b51c78b59a1b38c03c356e8c71f3ebc4373eecbd7f632637fd419b8953a5a5',
+        'HOST': 'ec2-204-236-230-19.compute-1.amazonaws.com',
+        'PORT': 5432,
+    }
+}
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
 
@@ -172,3 +184,4 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
     ),
 }
+django_heroku.settings(locals())
