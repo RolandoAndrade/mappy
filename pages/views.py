@@ -8,7 +8,7 @@ from django.shortcuts import redirect
 def signup(request):
     if isinstance(request.user, AnonymousUser):
         # signup
-        return render(request, 'signup.html')
+        return render(request, 'forms/signup.html')
     else:
         # already logged
         return redirect("../")
@@ -17,7 +17,7 @@ def signup(request):
 def login(request):
     if isinstance(request.user, AnonymousUser):
         # login
-        return render(request, 'login.html')
+        return render(request, 'forms/login.html')
     else:
         # already logged
         return redirect("../")
@@ -28,5 +28,5 @@ def index(request):
         # already logged
         return render_to_response('userszone.html')
     else:
-        # login
-        return redirect("login/")
+        # home
+        return render_to_response("home/index.html")
