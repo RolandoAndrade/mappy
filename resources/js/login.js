@@ -1,19 +1,15 @@
+var attempts = [];
 
-function done()
-{
-    console.log("done");
-}
-function fail()
-{
-    console.log("fail");
-}
 async function login ()
 {
 	var email=document.getElementById('email');
 	var password=document.getElementById('password');
 	var dao=new UserDAO();
-	var key=await dao.login(new Guess(email.value,password.value));
 	var error=document.getElementById("invalid-feedback");
+	error.style.display="none";
+	email.style.borderColor="#28a745";
+	password.style.borderColor="#28a745";
+	var key=await dao.login(new Guess(email.value,password.value));
 	if(key.key===undefined)
 	{
 	    if(key.non_field_errors!=undefined)
@@ -21,10 +17,23 @@ async function login ()
 	        error.style.display="inline";
 	        email.style.borderColor="#dc3545";
 	        password.style.borderColor="#dc3545";
+	        attempts.push(email.value);
 	    }
 	}
 	else
-        window.location="../";
+	{
+	    var count=0;
+	    for(var i=0;i<attempts.length;i++)
+	        if(attempts[i]==email.value)
+	            count++;
+	    console.log(count);
+	    if(count<5)
+	        window.location="../"
+	    else
+	        window.location="../api/disable"
+	}
+	console.log(attempts);
+
 
 
 }
