@@ -15,9 +15,9 @@ class RegisterSerializer(RegisterSerializer):
     username = None
     birthDate = serializers.DateField(required = True, write_only = True)
     firstName = serializers.CharField(required = True, write_only = True)
-    secondName = serializers.CharField(required = False, write_only = True)
+    secondName = serializers.CharField(required = False, write_only = True, allow_blank = True)
     firstSurname = serializers.CharField(required = True, write_only = True)
-    secondSurname = serializers.CharField(required = False, write_only = True)
+    secondSurname = serializers.CharField(required = False, write_only = True, allow_blank = True)
 
     def validate(self, data):
         return data

@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<title>Crea una cuenta</title>
-	<link href="{% static 'img/logo.jpg' %}" rel="shortcut icon">
+	<link href="{% static 'img/favicon.png' %}" rel="shortcut icon">
 	<link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'css/my-login.css' %}">
 </head>
@@ -46,23 +46,26 @@
 								<div class="form-group">
 									<label for="name">Fecha de nacimiento</label>
 									<input id="birthDate" type="date" class="form-control" name="name" autofocus>
-									<div class="invalid-feedback">
+									<div class="invalid-feedback" id="invalid-birthdate">
 										Tienes que ser mayor de edad
 									</div>
 								</div>
 								<div class="form-group">
 									<label for="email">Correo electrónico</label>
 									<input id="email" type="email" class="form-control" name="email" required>
-									<div class="invalid-feedback">
+									<div class="invalid-feedback" id="invalid-email">
 										Este correo electrónico no es válido
 									</div>
-								</div>
 
+								</div>
+								<div class="invalid-feedback" id="invalid-feedback1">
+									El correo electrónico ya está registrado
+								</div>
 								<div class="form-group">
 									<label for="password">Contraseña</label>
 									<input id="password" type="password" class="form-control" name="password" required data-eye>
-									<div class="invalid-feedback">
-										Necesitas una contraseña
+									<div class="invalid-feedback" id="invalid-password">
+										Contraseña inválida. Debe tener por lo menos 8 caracteres, con al menos una mayúscula, una minúscula y un número
 									</div>
 								</div>
 
@@ -77,7 +80,7 @@
 								</div>
 
 								<div class="form-group m-0">
-									<button type="button" class="btn btn-primary btn-block" onclick="signup()">
+									<button type="submit" class="btn btn-primary btn-block" >
 										Registrarse
 									</button>
 								</div>
@@ -99,7 +102,7 @@
 	<script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
 	<script src="{% static 'js/Validator.js' %}"></script>
 	<script src="{% static 'js/my-login.js' %}"></script>
-	<script src="{% static 'dao/UserDao.js' %}"></script>
+	<script src="{% static 'js/userdao.js' %}"></script>
 	<script src="{% static 'js/signup.js' %}"></script>
 </body>
 </html>

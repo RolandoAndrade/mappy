@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<title>Iniciar sesión</title>
-	<link href="{% static 'img/logo.jpg' %}" rel="shortcut icon">
+	<link href="{% static 'img/favicon.png' %}" rel="shortcut icon">
 	<link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'css/my-login.css' %}">
 </head>
@@ -22,6 +22,9 @@
 						<div class="card-body">
 							<h4 class="card-title">Iniciar sesión</h4>
 							<form method="POST" class="my-login-validation" novalidate="">
+								<div class="invalid-feedback" id="invalid-feedback">
+									Correo o contraseña incorrectos
+								</div>
 								<div class="form-group">
 									<label for="email">Correo electrónico</label>
 									<input id="email" type="email" class="form-control" name="email" value="" required autofocus>
@@ -43,7 +46,7 @@
 								</div>
 
 								<div class="form-group m-0">
-									<button type="button" onclick="login()" class="btn btn-primary btn-block">
+									<button type="submit" class="btn btn-primary btn-block">
 										Iniciar sesión
 									</button>
 								</div>
@@ -64,7 +67,7 @@
 	<script src="{% static 'js/jquery.min.js' %}"></script>
 	<script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
 	<script src="{% static 'js/my-login.js' %}"></script>
-	<script src="{% static 'dao/UserDao.js' %}"></script>
+	<script src="{% static 'js/userdao.js' %}"></script>
 	<script src="{% static 'js/login.js' %}"></script>
 </body>
 </html>

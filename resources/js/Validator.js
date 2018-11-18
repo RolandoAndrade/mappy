@@ -12,8 +12,8 @@ class Validator {
     }
   
     validateEmail(email) {
-        const REGEXP = new RegExp('[a-zA-Z0-9]+[@]{1}[a-zA-Z]+[.]{1}[a-zA-Z]{2,3}');
-        
+        const REGEXP = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+
         email = email.trim();
         if(REGEXP.test(email)) {
             return true;         
@@ -29,22 +29,22 @@ class Validator {
             console.error('Password must be at least 8 characters long. ');
             return false;
         }
-    
-        if(password.match(/\W/) != null &&
-            password.match(/\d/) != null && 
-            password.match(new RegExp('[A-Z]+')) != null) {
+        const REGEXP =new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/);
+        if(REGEXP.test(password))
             return true;
-        }
     
         console.error('Password does not match the criteria. ');
         return false;
     }
   
     isAdult(dateString) {
-        var currentDate = new Date();
-        var currentYear = currentDate.getFullYear();
-        var birthdate = new Date(dateString);
-        return currentDate.getMonth() - birthdate.getMonth() > 0 && currentYear - birthdate.getFullYear() >= 18;
+        var today = new Date();
+        var birthDate = new Date(dateString);
+        var age = today.getFullYear() - birthDate.getFullYear();
+        var m = today.getMonth() - birthDate.getMonth();
+        if (m < 0 || (m === 0 && today.getDate() <= birthDate.getDate()))
+            age--;
+        return age>=18;
     }
   
     validateBirthdate(birthdate) {
@@ -53,7 +53,7 @@ class Validator {
         );
         
         if(REGEXP.test(birthdate)) {
-            if(!isAdult(birthdate)) {
+            if(!this.isAdult(birthdate)) {
                 console.error('User must be +18 to register. ');
                 return false;
             }

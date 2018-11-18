@@ -18,8 +18,8 @@ class RegistrationSerializer(ModelSerializer):
     def save(self, request):
         return self.Meta.model
 
-class LoginSerializer(ModelSerializer):
+class DisableSerializer(ModelSerializer):
     class Meta:
         model = User
-        fields = ('email', 'password')
+        fields = ('email',)
 
