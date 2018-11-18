@@ -14,3 +14,12 @@ class RegistrationSerializer(ModelSerializer):
         model = User
         fields = (
             'user_id', 'email', 'password', 'birthDate', 'firstName', 'secondName', 'firstSurname', 'secondSurname')
+
+    def save(self, request):
+        return self.Meta.model
+
+class DisableSerializer(ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('email',)
+
