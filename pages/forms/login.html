@@ -22,6 +22,9 @@
 						<div class="card-body">
 							<h4 class="card-title">Iniciar sesión</h4>
 							<form method="POST" class="my-login-validation" novalidate="">
+								<div class="invalid-feedback" id="invalid-feedback">
+									Correo o contraseña incorrectos
+								</div>
 								<div class="form-group">
 									<label for="email">Correo electrónico</label>
 									<input id="email" type="email" class="form-control" name="email" value="" required autofocus>
@@ -43,7 +46,7 @@
 								</div>
 
 								<div class="form-group m-0">
-									<button type="button" onclick="login()" class="btn btn-primary btn-block">
+									<button type="submit" class="btn btn-primary btn-block">
 										Iniciar sesión
 									</button>
 								</div>
