@@ -1,0 +1,58 @@
+body {
+    background: #f2f2f2;
+    font-size: 16;
+    font-family: 'Open Sans', sans-serif;
+}
+
+/*Barra lateral*/
+.sidebar {
+    background: #424242;
+    color: #fff;
+    min-width: 300px;
+    min-height: 100vh;
+    padding: 0;
+}
+
+.sidebar a {
+    color: #fff;
+}
+
+/*Logo - Barralateral*/
+
+.sidebar .logo {
+    background: #212121;
+    margin-bottom: 1px;
+}
+
+.sidebar .logo h2 {
+    font-size: 30px;
+    font-family: 'Roboto', sans-serif;
+    padding: 20px 0;
+    text-align: center;
+    font-weight: 300;
+    margin: 0;
+}
+
+/*Barralateral - Menu*/
+
+.sidebar .menu a {
+    display: block;
+    padding: 20px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    border-bottom: 1px solid rgba(255, 255, 255, .1)
+}
+
+.sidebar .menu a:hover {
+    background: #FF9800;
+    text-decoration: none;
+}
+
+.sidebar .menu a:active {
+    background: #F57C00;
+}
+
+.sidebar .menu a i {
+    margin-right: 20px;
+    font-weight: normal;
+}

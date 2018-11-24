@@ -1,0 +1,55 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dashboard | Mappy</title>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Roboto:300,400,500" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'dashboard/css/fontello.css' %}">
+    <link rel="stylesheet" href="{% static 'dashboard/css/style.css' %}">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="sidebar col-12 col-sm-auto">
+                <div class="logo">
+                    <h2>Menu</h2>
+                </div>
+                <nav class="menu d-flex d-sm-block justify-content-center flex-wrap">
+                    <a href="#"><i class="icon-home"></i><span>Main</span></a>
+                    <a href="#"><i class="icon-user"></i><span>Profile</span></a>
+                    <a href="#"><i class="icon-location"></i><span>Order</span></a>
+                    <a href="#"><i class="icon-cog"></i><span>Settings</span></a>
+                    <a href="#"><i class="icon-logout"></i><span>Exit</span></a>    
+                </nav>
+            </div>
+            <main class="main col">
+                <div class="row">
+                    <div class="columna col-lg-7">
+                        <div class="widget form">
+                            <h3 class="tittle"> Agregar nueva orden de recolección </h3>
+                            <form action="">
+                                <input type="text" placeholder="Línea 1">
+                                <input type="text" placeholder="Línea 2">
+                                <input type="text" placeholder="Código postal">
+                                <input type="text" placeholder="Ciudad">
+                                <input type="text" placeholder="País">
+                                <textarea placeholder="Descripción"></textarea>
+                                <input type="text" placeholder="Latitud">
+                                <input type="text" placeholder="Longitud">
+                                <div class="d-flex justify-content-end">
+                                    <button><i class="icon icon-ok">Registrar</i></button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>    
+    </div>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+</body>
+</html>
