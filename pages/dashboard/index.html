@@ -1,4 +1,4 @@
-
+{%load staticfiles%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,11 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Dashboard | Mappy</title>
-    <link rel="stylesheet" href="../../resources/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Roboto:300,400,500" rel="stylesheet">
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyMn7siHMk2mTSEcVJj5GW6-PI74VmeWI&callback=initMap"async defer></script>
-    <link rel="stylesheet" href="../../resources/dashboard/css/fontello.css">
-    <link rel="stylesheet" href="../../resources/dashboard/css/style.css">
+    <link rel="stylesheet" href="{% static 'dashboard/css/fontello.css' %}">
+    <link rel="stylesheet" href="{% static 'dashboard/css/style.css' %}">
 </head>
 <body>
     <div class="container-fluid">
@@ -73,8 +72,10 @@
             </main>
         </div>    
     </div>
-    <script src="../../resources/bootstrap/js/bootstrap.min.js"></script>
-    <script src="../../resources/dashboard/js/jquery-3.3.1.min.js"></script>
-    <script src="../../resources/dashboard/js/scripts.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyMn7siHMk2mTSEcVJj5GW6-PI74VmeWI&callback=initMap"
+    defer></script>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'dashboard/js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'dashboard/js/scripts.js' %}"></script>
 </body>
 </html>
