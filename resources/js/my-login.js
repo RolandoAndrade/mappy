@@ -33,7 +33,7 @@ $(function() {
 			paddingRight: 60
 		});
 		$this.after($("<div/>", {
-			html: 'Show',
+			html: 'Mostrar',
 			class: 'btn btn-primary btn-sm',
 			id: 'passeye-toggle-'+i,
 		}).css({

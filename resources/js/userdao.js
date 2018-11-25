@@ -40,6 +40,7 @@ class UserDAO
                         'Content-Type': 'application/json',
                     }
                 };
+                console.log(settings);
                 const data = await fetch(url, settings)
                     .then(response => response.json())
                     .then(json => {
