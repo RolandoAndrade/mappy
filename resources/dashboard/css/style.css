@@ -56,3 +56,71 @@ body {
     margin-right: 20px;
     font-weight: normal;
 }
+
+/*Main - Form*/
+
+.main {
+    padding-top: 40px;
+}
+
+.main .columna {
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.main .tittle {
+    color: #262A34;
+    font-size: 25px;
+    font-weight: 500;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 20px;
+}
+
+.main .widget form input[type="text"],
+.main .widget form textarea{
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    font-family: 'Open Sans', sans-serif;
+    border: none;
+    box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.2);
+}
+
+.main .widget form input[type="text"]{
+    font-weight: 400;
+}
+
+.main .widget form textarea{
+    height: 150px;
+    min-height: 100px;
+    max-width: 100%;
+    min-width: 100%;
+}
+
+.main .widget form button {
+    background: #0275D8;
+    cursor: pointer;
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    border: none;
+    display: inline-block;
+    padding: 10px;
+    width: 200px;
+    border-radius: 3px;
+    transition: all .3s ease;
+
+}
+
+.main .widget form button:hover{
+    background: #025AA5;
+}
+
+.main .widget .mapa{
+    height: 500px;
+    margin: 0 auto;
+    border: none;
+    box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.2);
+    margin-bottom: 20px;
+}

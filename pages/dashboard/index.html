@@ -1,4 +1,4 @@
-{% load staticfiles %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,10 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Dashboard | Mappy</title>
-    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="../../resources/bootstrap/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Roboto:300,400,500" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'dashboard/css/fontello.css' %}">
-    <link rel="stylesheet" href="{% static 'dashboard/css/style.css' %}">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyMn7siHMk2mTSEcVJj5GW6-PI74VmeWI&callback=initMap"async defer></script>
+    <link rel="stylesheet" href="../../resources/dashboard/css/fontello.css">
+    <link rel="stylesheet" href="../../resources/dashboard/css/style.css">
 </head>
 <body>
     <div class="container-fluid">
@@ -32,16 +33,35 @@
                         <div class="widget form">
                             <h3 class="tittle"> Agregar nueva orden de recolección </h3>
                             <form action="">
-                                <input type="text" placeholder="Línea 1">
-                                <input type="text" placeholder="Línea 2">
-                                <input type="text" placeholder="Código postal">
-                                <input type="text" placeholder="Ciudad">
-                                <input type="text" placeholder="País">
-                                <textarea placeholder="Descripción"></textarea>
-                                <input type="text" placeholder="Latitud">
-                                <input type="text" placeholder="Longitud">
+                                <div class="form-group">
+                                    <input type="text" placeholder="Línea 1">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" placeholder="Línea 2">
+                                </div>
+                                <div class="form-group">    
+                                    <input type="text" placeholder="Código postal">
+                                </div>
+                                <div class="form-group">    
+                                    <input type="text" placeholder="Ciudad">
+                                </div>
+                                <div class="form-group">    
+                                    <input type="text" placeholder="País">
+                                </div>
+                                <div class="form-group">
+                                    <textarea placeholder="Descripción"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <input id= "lat" type="text" placeholder="Latitud">
+                                </div>
+                                <div class="form-group">    
+                                    <input id= "lng" type="text" placeholder="Longitud">
+                                </div>
+                                <div id= "map" class="mapa d-flex justify-content-center">
+
+                                </div>
                                 <div class="d-flex justify-content-end">
-                                    <button><i class="icon icon-ok">Registrar</i></button>
+                                <button><i class="icon icon-ok">Agregar</i></button>
                                 </div>
                             </form>
                         </div>
@@ -50,6 +70,8 @@
             </main>
         </div>    
     </div>
-    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="../../resources/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../resources/dashboard/js/jquery-3.3.1.min.js"></script>
+    <script src="../../resources/dashboard/js/scripts.js"></script>
 </body>
 </html>
