@@ -11,6 +11,10 @@ body {
     min-width: 300px;
     min-height: 100vh;
     padding: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
 }
 
 .sidebar a {
@@ -61,6 +65,7 @@ body {
 
 .main {
     padding-top: 40px;
+    margin-left: 300px;
 }
 
 .main .columna {
@@ -123,4 +128,49 @@ body {
     border: none;
     box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.2);
     margin-bottom: 20px;
+}
+
+/*Mediaqueries - Menu*/
+
+@media screen and (max-width: 900px){
+    .sidebar {
+        min-width: auto;
+    }
+
+    .sidebar .logo {
+        display: none;
+    }
+
+    .sidebar .menu a span {
+        display: none;
+    }
+
+    .sidebar .menu a i {
+        margin: 0;
+    }
+
+    .main {
+        margin-left: 60px;
+    }
+}
+
+@media screen and (max-width: 575px){
+    .sidebar {
+        min-height: auto;
+
+    }
+
+    .sidebar menu a {
+        display: inline-block;
+        border-bottom: none;
+    }
+
+    .main .widget form button {
+        width: 100%;
+    }
+
+    .main {
+        padding-top: 100px;
+        margin-left: 0px;
+    }
 }
