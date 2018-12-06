@@ -1,0 +1,65 @@
+{%load staticfiles%}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>Datos del Paquete</title>
+	<link href="{% static 'img/favicon.png' %}" rel="shortcut icon">
+	<link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/add-package.css' %}">
+</head>
+<body>
+	<section class="h-100">
+		<div class="container h-100">
+			<div class="row justify-content-md-center h-100">
+				<div class="card-wrapper">
+					<div class="brand">
+						<img src="{% static 'img/mappy2.jpg' %}" alt="logo">
+					</div>
+					<div class="card fat">
+						<div class="card-body">
+							<h4 class="card-title">Registrar Paquete</h4>
+							<form method="POST" novalidate="">
+								<div class="invalid-feedback" id="invalid-feedback">
+									Peso o Descripción Incorrectos.
+								</div>
+								<div class="form-row">
+                                    <div class="form-group col-10">
+                                        <label for="weight">Peso</label>
+                                        <input id="weight" type="number" class="form-control col-10" name="weight" value="" required autofocus>
+                                        <div class="invalid-feedback">
+                                            El Peso es incorrecto.
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-2 form-control-plaintext">
+                                        <br><h4>Kgs</h4>
+                                    </div>
+								</div>
+								<div class="form-group">
+									<label for="description">Descripción</label>
+									<input id="description" type="text" class="form-control" name="description" max="35" required>
+								    <div class="invalid-feedback">
+								    	La Descripción es inválida.
+							    	</div>
+								</div>
+								<div class="form-group m-0">
+									<button type="submit" class="btn btn-primary btn-block">
+										Registrar Paquete
+									</button>
+								</div>
+							</form>
+						</div>
+					</div>
+					<div class="footer">
+						Mappy
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<script src="{% static 'js/jquery.min.js' %}"></script>
+	<script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+</body>
+</html>

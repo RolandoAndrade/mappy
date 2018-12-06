@@ -26,7 +26,7 @@ class User
 
 class UserDAO
 {
-    makeARequest(request,url)
+    async makeARequest(request,url)
     {
         var dat=JSON.stringify(request);
         console.log(request)
@@ -40,36 +40,36 @@ class UserDAO
                         'Content-Type': 'application/json',
                     }
                 };
+                console.log(settings);
                 const data = await fetch(url, settings)
                     .then(response => response.json())
                     .then(json => {
                     console.log(json);
-                        return json;
+                     return json;
                     })
                     .catch(e => {
                     console.log(e);
                         return e
                     });
-                console.log(data);
                 return data;
         }
-        getDevices();
+        return await getDevices();
     }
 
-    login(user)
+    async login(user)
     {
         var data ={
             email: user.email,
             password: user.password,
         };
-        return this.makeARequest(data,'../api/login/');
+        return await this.makeARequest(data,'../api/login/');
     }
 
     logout()
     {
         window.location="api/v/logout"
     }
-    create(user)
+    async create(user)
     {
         var data ={
             email: user.email,
@@ -80,7 +80,7 @@ class UserDAO
             firstSurname: user.firstSurname,
             secondSurname: user.secondSurname
         };
-        return this.makeARequest(data,'../api/registration/');
+        return await this.makeARequest(data,'../api/registration/');
     }
     delete(user)
     {
