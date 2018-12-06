@@ -9,6 +9,10 @@ class CollectionAddressCreate(generics.ListCreateAPIView):
     queryset = models.CollectionAddress.objects.all()
     serializer_class = serializers.CollectionAddressSerializer
 
+    def create(self, request, *args, **kwargs):
+        request.data["user_id"] = request.user.user_id
+        return super(generics.ListCreateAPIView, self).create(request, *args, **kwargs)
+
 
 class CollectionAddressAdd(generics.UpdateAPIView):
     queryset = User.objects.all()

@@ -23,6 +23,12 @@ def login(request):
         return redirect("../")
 
 
+def addAddress(request):
+    if isinstance(request.user, AnonymousUser):
+        return redirect( '../login')
+    else:
+        return render(request, 'forms/addAddress.html')
+
 def index(request):
     if not isinstance(request.user, AnonymousUser):
         # already logged
