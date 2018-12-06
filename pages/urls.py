@@ -8,5 +8,6 @@ urlpatterns = [
     path('dashboard/', dashboard, name = "dashboard"),
     path('add_address/', addAddress, name = "addAddress"),
     path('', index, name="index"),
+
     path('add_package/', add_package, name="add_package"),
 ]
