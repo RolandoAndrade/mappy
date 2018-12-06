@@ -37,3 +37,11 @@ class EnableUser(generics.UpdateAPIView):
         self.perform_update(serializer)
 
         return Response(serializer.data)
+
+
+class RetrieveCollectionAddresses(generics.ListAPIView):
+    serializer_class = serializers.CollectionAddressesOfUserSerializer
+
+    def get_queryset(self):
+        user = self.request.user
+        return models.User.objects.filter(user_id = user.user_id)

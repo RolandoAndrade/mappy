@@ -14,3 +14,4 @@ class UpdateCollectionAddress(ModelSerializer):
         fields = ('user_id',)
 
 
+
