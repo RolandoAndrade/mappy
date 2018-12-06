@@ -5,9 +5,9 @@ from . import serializers
 
 class PackageCreate(generics.CreateAPIView):
     queryset = models.Package.objects.all()
-    serializer_class = serializers.Package
+    serializer_class = serializers.PackageSerializer
 
 
 class PackageViewAll(generics.ListAPIView):
     queryset = models.Package.objects.all()
-    serializer_class = serializers.Package
+    serializer_class = serializers.PackageSerializer
