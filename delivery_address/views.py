@@ -6,6 +6,7 @@ from rest_framework.response import Response
 from django.shortcuts import render
 
 # Create your views here.
+
 class DeliveryAddressCreate(generics.ListCreateAPIView):
     queryset = models.DeliveryAddress.objects.all()
     serializer_class = serializers.DeliveryAddressSerializer
@@ -28,7 +29,6 @@ class DeliveryAddressAdd(generics.UpdateAPIView):
         self.perform_update(serializer)
 
         return Response(serializer.data)
-
 
 class DeliveryAddressRetrieve(generics.ListAPIView):
     queryset = models.DeliveryAddress.objects.all()

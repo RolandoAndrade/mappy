@@ -2,6 +2,7 @@ from django.shortcuts import render, render_to_response
 from django.contrib.auth.models import AnonymousUser
 from django.shortcuts import redirect
 
+
 # Create your views here.
 
 def signup(request):
@@ -12,6 +13,7 @@ def signup(request):
         # already logged
         return redirect("../")
 
+
 def login(request):
     if isinstance(request.user, AnonymousUser):
         # login
@@ -20,14 +22,17 @@ def login(request):
         # already logged
         return redirect("../")
 
+
 def dashboard(request):
     return render(request, 'dashboard/index.html')
 
+
 def addAddress(request):
     if isinstance(request.user, AnonymousUser):
-        return redirect( '../login')
+        return redirect('../login')
     else:
         return render(request, 'forms/addAddress.html')
+
 
 def index(request):
     if not isinstance(request.user, AnonymousUser):
@@ -37,9 +42,11 @@ def index(request):
         # home
         return render_to_response("home/index.html")
 
-def add_package(request):
+
+def addPackage(request):
     if not isinstance(request.user, AnonymousUser):
         # already logged
+
         return render_to_response('forms/package_details.html')
     else:
         return render_to_response("forms/login.html")
