@@ -37,7 +37,7 @@ def addAddress(request):
 def index(request):
     if not isinstance(request.user, AnonymousUser):
         # already logged
-        return render_to_response('userszone.html')
+        return render_to_response('mappy_board/home.html')
     else:
         # home
         return render_to_response("home/index.html")
