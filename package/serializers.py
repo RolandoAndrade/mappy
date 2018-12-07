@@ -5,5 +5,5 @@ from .models import Package
 class PackageSerializer(ModelSerializer):
     class Meta:
         model = Package
-        fields = ('package_id', 'weight', 'description',)
+        fields = ('package_id', 'weight', 'description', 'order')
 
