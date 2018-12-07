@@ -46,6 +46,7 @@ def index(request):
 def addPackage(request):
     if not isinstance(request.user, AnonymousUser):
         # already logged
+
         return render_to_response('forms/package_details.html')
     else:
         return render_to_response("forms/login.html")
