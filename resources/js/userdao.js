@@ -9,7 +9,6 @@ class Guess
 
 class User
 {
-
     constructor(email, password, birthDate, firstName, secondName,firstSurname, secondSurname)
     {
         this.email=email;
@@ -22,47 +21,16 @@ class User
     }
 }
 
-
-
 class UserDAO
 {
-    async makeARequest(request,url)
-    {
-        var dat=JSON.stringify(request);
-        console.log(request)
-        var getDevices = async () => {
-                const location = window.location.hostname;
-                const settings = {
-                    method: 'POST',
-                    body: dat,
-                    headers: {
-                        Accept: 'application/json',
-                        'Content-Type': 'application/json',
-                    }
-                };
-                console.log(settings);
-                const data = await fetch(url, settings)
-                    .then(response => response.json())
-                    .then(json => {
-                    console.log(json);
-                     return json;
-                    })
-                    .catch(e => {
-                    console.log(e);
-                        return e
-                    });
-                return data;
-        }
-        return await getDevices();
-    }
-
     async login(user)
     {
         var data ={
             email: user.email,
             password: user.password,
         };
-        return await this.makeARequest(data,'../api/login/');
+        var request = new PostRequest(data,'../api/login/')
+        return await request.execute();
     }
 
     logout()
@@ -80,7 +48,8 @@ class UserDAO
             firstSurname: user.firstSurname,
             secondSurname: user.secondSurname
         };
-        return await this.makeARequest(data,'../api/registration/');
+        var request = new PostRequest(data,'../api/registration/')
+        return await request.execute();
     }
     delete(user)
     {
