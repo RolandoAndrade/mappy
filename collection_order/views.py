@@ -1,4 +1,6 @@
 from rest_framework import generics
+from rest_framework.response import Response
+
 from . import models
 from . import serializers
 
@@ -22,3 +24,16 @@ class RetrieveCollectionOrdersOfUser(generics.ListAPIView):
     def get_queryset(self):
         user = self.request.user
         return models.CollectionOrder.objects.filter(user_id = user.user_id)
+
+
+class RemoveCollectionOrder(generics.DestroyAPIView):
+    serializer_class = serializers.CollectionOrderSerializer
+    queryset = models.CollectionOrder.objects.all()
+
+    def delete(self, request, *args, **kwargs):
+        instance = self.get_object()
+        # just the user can delete his own collection order
+        if instance.user_id == request.user.user_id:
+            return self.destroy(request, *args, **kwargs)
+        else:
+            return Response(data = "Error")
