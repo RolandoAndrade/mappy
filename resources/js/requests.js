@@ -1,3 +1,29 @@
+class Cookie
+{
+	constructor(name)
+	{
+		this.name=name;
+	}
+	getCookie()
+	{
+        let cookieValue = null;
+        if (document.cookie && document.cookie != '') {
+            let cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+
+                let cookie = cookies[i];
+                cookie=cookie.trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, this.name.length + 1) == (this.name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(this.name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+	}
+}
+
 class GetRequest
 {
     constructor(url)
@@ -23,6 +49,8 @@ class PostRequest
 
     async execute()
     {
+        const cookie = new Cookie("csrftoken");
+        const token = cookie.getCookie();
         const location = window.location.hostname;
         const settings = {
             method: 'POST',
@@ -30,6 +58,7 @@ class PostRequest
             headers: {
                     Accept: 'application/json',
                     'Content-Type': 'application/json',
+                    "X-CSRFToken": token,
                 }
             };
         return await fetch(this.url, settings)

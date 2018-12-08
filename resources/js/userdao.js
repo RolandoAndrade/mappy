@@ -25,11 +25,11 @@ class UserDAO
 {
     async login(user)
     {
-        var data ={
+        const data ={
             email: user.email,
             password: user.password,
         };
-        var request = new PostRequest(data,'../api/login/')
+        const request = new PostRequest(data,'../api/login/')
         return await request.execute();
     }
 
@@ -39,7 +39,7 @@ class UserDAO
     }
     async create(user)
     {
-        var data ={
+        const data ={
             email: user.email,
             password1: user.password,
             birthDate: user.birthDate,
@@ -48,7 +48,7 @@ class UserDAO
             firstSurname: user.firstSurname,
             secondSurname: user.secondSurname
         };
-        var request = new PostRequest(data,'../api/registration/')
+        const request = new PostRequest(data,'../api/registration/')
         return await request.execute();
     }
     delete(user)
