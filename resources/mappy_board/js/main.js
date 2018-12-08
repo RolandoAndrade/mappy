@@ -10,7 +10,7 @@ function exitWindow()
 		  	confirmButtonText: 'Sí, ¡quiero salir!',
 		  	cancelButtonText: 'No, cancelar!'
 		}).then(function () {
-			window.location.href="index.html";
+			window.location="api/v/logout";
 	});
 }
 
