@@ -96,8 +96,8 @@ body, html{
 }
 
 .mapa{
-	background: #000;
-    width: 100%;
+	height: 100%;
+    width: auto;
     position: absolute;
 	top: 90px;
 	bottom: 0;
@@ -176,7 +176,6 @@ body, html{
 .dashboard-sideBar-ct{
 	position: relative;
 	height: 100%;
-
 	background: rgba(220, 133, 2, .55);
 	padding: 0 10px;
 	padding-bottom: 30px;
