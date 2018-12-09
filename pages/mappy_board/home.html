@@ -2,11 +2,12 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<title>Inicio</title>
+	<title>Mappy</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<link href="{% static 'img/logo.jpg' %}" rel="shortcut icon">
+	<link href="{% static 'img/favicon.png' %}" rel="shortcut icon">
 	<link rel="stylesheet" href="{% static 'mappy_board/css/main.css' %}">
+	<link rel="stylesheet" href="{% static 'css/loading.css' %}">
 	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" >
 </head>
 <body>
@@ -72,16 +73,20 @@
 	<section class="full-box dashboard-contentPage">
 		<!-- NavBar -->
 		<nav class="full-box dashboard-Navbar">
+
 			<ul class="full-box list-unstyled text-right">
 				<li class="pull-left">
 					<a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
 				</li>
+
+				<p class="navbar-text">ÓRDENES DE RECOLECCIÓN</p>
 				<li>
 					<a href="#!" class="btn-Notifications-area">
 						<i class="zmdi zmdi-notifications-none"></i>
 						<span class="badge">7</span>
 					</a>
 				</li>
+
 				<li>
 					<a href="#!" class="btn-search">
 						<i class="zmdi zmdi-search"></i>
@@ -95,9 +100,8 @@
 			</ul>
 			
 		</nav>
-		<div class="nameofsection">
-					ÓRDENES DE RECOLECCIÓN
-		</div>
+
+		<!--Here-->
 		<div class="makeACollectionOrder">
 			<div class="container-fluid">
 				<div class="row">
@@ -350,7 +354,7 @@
 	</section>
 <!-- Content page -->
 
-		<div id="map" class="mapa d-flex justify-content-center">
+		<div id="mapMain" class="mapMain d-flex justify-content-center">
 
         </div>
 	<!-- Notifications area -->
@@ -428,6 +432,16 @@
 		      	</div>
 		    </div>
 	  	</div>
+	</div>
+
+
+	<div class="loading">
+		<div id="loading27">
+      	      <div class="colorBalls"></div>
+		</div>
+		<div class="loadingText">
+			Espere un momento por favor...
+		</div>
 	</div>
 
 	<script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>

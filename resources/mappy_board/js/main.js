@@ -77,15 +77,15 @@ $(document).ready(function(){
 
 	$('.viewSideBar').on('click', function() 
 	{
-		$('.nameofsection').text("ÓRDENES DE RECOLECCIÓN");
+		$('.navbar-text').text("ÓRDENES DE RECOLECCIÓN");
 		$('.makeACollectionOrder').hide(300);
-		$('#map').show(300);
+		$('#mapMain').show(300);
 	});
 
 	$('.collectionOrderSideBar').on('click', function() 
 	{
-		$('.nameofsection').text("CREAR ORDEN DE RECOLECCIÓN");
-		$('#map').hide(300);
+		$('.navbar-text').text("CREAR ORDEN DE RECOLECCIÓN");
+		$('#mapMain').hide(300);
 		$('.makeACollectionOrder').show(300);
 	});
 

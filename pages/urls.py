@@ -7,6 +7,6 @@ urlpatterns = [
     path('login/', login, name = "login"),
     path('dashboard/', dashboard, name = "dashboard"),
     path('add_address/', addAddress, name = "addAddress"),
-    path('', index, name="index"),
-    path('add_package/', addPackage, name="addPackage"),
+    path('', index, name = "index"),
+    path('add_package/', addPackage, name = "addPackage"),
 ]
