@@ -88,10 +88,9 @@ $(document).ready(function(){
 		$('#mapMain').hide(300);
 		$('.makeACollectionOrder').show(300);
 	});
-
 });
 (function($){
-    $(window).on("load",function(){
+    $(window).on("load",async function(){
         $(".dashboard-sideBar-ct").mCustomScrollbar({
         	theme:"light-thin",
         	scrollbarPosition: "inside",
@@ -104,5 +103,10 @@ $(document).ready(function(){
         	autoHideScrollbar: true,
         	scrollButtons: {enable: true}
         });
+		$('.loading').show();
+        await setEmail();
+		await getAllCollectionOrders();
+		$('.loading').hide();
+
     });
 })(jQuery);

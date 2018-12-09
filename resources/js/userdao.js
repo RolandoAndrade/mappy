@@ -48,7 +48,12 @@ class UserDAO
             firstSurname: user.firstSurname,
             secondSurname: user.secondSurname
         };
-        const request = new PostRequest(data,'../api/registration/')
+        const request = new PostRequest(data,'../api/registration/');
+        return await request.execute();
+    }
+    async getUser()
+    {
+        const request=new GetRequest('api/users/get/me');
         return await request.execute();
     }
     delete(user)
