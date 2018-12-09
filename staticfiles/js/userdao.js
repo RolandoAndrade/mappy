@@ -9,7 +9,6 @@ class Guess
 
 class User
 {
-
     constructor(email, password, birthDate, firstName, secondName,firstSurname, secondSurname)
     {
         this.email=email;
@@ -22,56 +21,25 @@ class User
     }
 }
 
-
-
 class UserDAO
 {
-    makeARequest(request,url)
+    async login(user)
     {
-        var dat=JSON.stringify(request);
-        console.log(request)
-        var getDevices = async () => {
-                const location = window.location.hostname;
-                const settings = {
-                    method: 'POST',
-                    body: dat,
-                    headers: {
-                        Accept: 'application/json',
-                        'Content-Type': 'application/json',
-                    }
-                };
-                const data = await fetch(url, settings)
-                    .then(response => response.json())
-                    .then(json => {
-                    console.log(json);
-                        return json;
-                    })
-                    .catch(e => {
-                    console.log(e);
-                        return e
-                    });
-                console.log(data);
-                return data;
-        }
-        getDevices();
-    }
-
-    login(user)
-    {
-        var data ={
+        const data ={
             email: user.email,
             password: user.password,
         };
-        return this.makeARequest(data,'../api/login/');
+        const request = new PostRequest(data,'../api/login/')
+        return await request.execute();
     }
 
     logout()
     {
         window.location="api/v/logout"
     }
-    create(user)
+    async create(user)
     {
-        var data ={
+        const data ={
             email: user.email,
             password1: user.password,
             birthDate: user.birthDate,
@@ -80,7 +48,8 @@ class UserDAO
             firstSurname: user.firstSurname,
             secondSurname: user.secondSurname
         };
-        return this.makeARequest(data,'../api/registration/');
+        const request = new PostRequest(data,'../api/registration/')
+        return await request.execute();
     }
     delete(user)
     {

@@ -10,42 +10,43 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'css/my-login.css' %}">
 </head>
 <body class="my-login-page">
+<div class="bg"></div>
 	<section class="h-100">
 		<div class="container h-100">
 			<div class="row justify-content-md-center h-100">
 				<div class="card-wrapper">
 					<div class="brand">
-						<img src="{% static 'img/mappy2.jpg' %}" alt="bootstrap 4 login page">
+						<img src="{% static 'img/mappy3.png' %}" alt="bootstrap 4 login page">
 					</div>
 					<div class="card fat">
 						<div class="card-body">
 							<h4 class="card-title">Crea una cuenta</h4>
 							<form method="POST" class="my-login-validation" novalidate="">
 								<div class="form-group">
-									<label class="abc" for="name">Primer nombre</label>
+									<label class="abc" for="firstName">Primer nombre</label>
 									<input id="firstName" type="text" class="form-control" name="name" required autofocus>
 									<div class="invalid-feedback">
 										¿Cuál es tu nombre?
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="name">Segundo nombre</label>
+									<label for="secondName">Segundo nombre</label>
 									<input id="secondName" type="text" class="form-control" name="name" autofocus>
 								</div>
 								<div class="form-group">
-									<label class="abc" for="name">Primer Apellido</label>
+									<label class="abc" for="firstSurname">Primer Apellido</label>
 									<input id="firstSurname" type="text" class="form-control" name="name" required autofocus>
 									<div class="invalid-feedback">
 										¿Cuál es tu Apellido?
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="name">Segundo apellido</label>
+									<label for="secondSurname">Segundo apellido</label>
 									<input id="secondSurname" type="text" class="form-control" name="name" autofocus>
 								</div>
 								<div class="form-group">
-									<label for="name">Fecha de nacimiento</label>
-									<input id="birthDate" type="date" class="form-control" name="name" autofocus>
+									<label for="birthDate">Fecha de nacimiento</label>
+									<input id="birthDate" type="date" class="form-control" name="birthDate" autofocus>
 									<div class="invalid-feedback" id="invalid-birthdate">
 										Tienes que ser mayor de edad
 									</div>
@@ -102,6 +103,7 @@
 	<script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
 	<script src="{% static 'js/Validator.js' %}"></script>
 	<script src="{% static 'js/my-login.js' %}"></script>
+	<script src="{% static 'js/requests.js' %}"></script>
 	<script src="{% static 'js/userdao.js' %}"></script>
 	<script src="{% static 'js/signup.js' %}"></script>
 </body>
