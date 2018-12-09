@@ -19,7 +19,7 @@ class ViewAllCollectionOrders(generics.ListAPIView):
 
 
 class RetrieveCollectionOrdersOfUser(generics.ListAPIView):
-    serializer_class = serializers.CollectionOrderSerializer
+    serializer_class = serializers.CollectionOrderSerializerExtended
 
     def get_queryset(self):
         user = self.request.user

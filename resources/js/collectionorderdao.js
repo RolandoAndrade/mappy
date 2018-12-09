@@ -1,13 +1,18 @@
 class CollectionOrder
 {
-	constructor(collectionAddress, deliveryAddress, recipientsName, recipientsSurname, zipCode)
+	constructor(collectionAddress, deliveryAddress, recipientsName, recipientsSurname)
 	{
-	    this.APackage=null;
+	    this.packages=[];
 		this.collectionAddress=collectionAddress;
-		this.delivery_address=deliveryAddress;
+		this.deliveryAddress=deliveryAddress;
 		this.recipientsName=recipientsName;
 		this.recipientsSurname=recipientsSurname;
 	}
+
+	addPackages(packages)
+    {
+        this.packages.push(packages);
+    }
 }
 
 class CollectionOrderDAO
@@ -17,15 +22,19 @@ class CollectionOrderDAO
         const data = {
             user_id: null,
             collection_address: collectionOrder.collectionAddress,
-            delivery_address: collectionOrder.delivery_address,
-            zipCode: collectionOrder.zipCode,
-            city: collectionOrder.city,
-            country: collectionOrder.country,
-
+            delivery_address: collectionOrder.deliveryAddress,
+            recipientsName: collectionOrder.recipientsName,
+            recipientsSurname: collectionOrder.recipientsSurname,
         };
-        const request=new PostRequest(data,'../api/collection_address/create/');
+        const request=new PostRequest(data,'api/collection_order/create/');
         return await request.execute();
     }
+    async getAll()
+    {
+        const request=new GetRequest('api/collection_order/getAll');
+        return request.execute();
+    }
+
     delete(collectionAddress)
     {
     }

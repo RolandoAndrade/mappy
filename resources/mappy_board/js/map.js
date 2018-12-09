@@ -1,11 +1,11 @@
-var mymap = L.map('map').setView([10.4642, -66.9758], 15);
+var mymap = L.map('mapMain').setView([10.4642, -66.9758], 15);
 
 L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 }).addTo(mymap);
+/*
+//mymap.on('click', onMapClick);
 
-mymap.on('click', onMapClick);
-
-map.invalidateSize();
+//map.invalidateSize();
 
 var marker;
 
@@ -14,7 +14,7 @@ function onMapClick(e) {
     var latitude = latlng.lat;
     var longitude = latlng.lng;
 
-    alert("You clicked the map at " + latitude + '   ' + longitude);
+    console.log("You clicked the map at " + latitude + '   ' + longitude);
 
     if(marker){
         mymap.removeLayer(marker);
@@ -45,6 +45,6 @@ var setMarkerWithInput = function () {
         marker = L.marker([latitude, longitude]).addTo(mymap);
     }
     else{
-        alert("Se necesitan los campos Latitud y longitud"); 
+        console.log("Se necesitan los campos Latitud y longitud");
     }
-};
+};*/

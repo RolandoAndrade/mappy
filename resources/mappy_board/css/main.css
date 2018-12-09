@@ -76,15 +76,21 @@ body, html{
 .container{
 	position: absolute;
 	padding: 0;
-	top: 50;
-    left: 270;
+	top: 50px;
+    left: 270px;
     right: 0;
     bottom: 0;
     width: 100%;
     height: 100%;
 }
-
-.nameofsection{
+.navbar-text
+{
+	color: white;
+	margin: 0 auto 0 50%;
+	padding-right: 50px;
+	transform: translate(-50%,0);
+}
+.nameOfSection{
 	background: #FF9638;
     width: 100%;
     text-align: center;
@@ -95,11 +101,11 @@ body, html{
     z-index: 16;
 }
 
-.mapa{
-	height: 100%;
+.mapMain{
+	height: auto;
     width: auto;
     position: absolute;
-	top: 90px;
+	top: 50px;
 	bottom: 0;
 	left: 0;
 	right: 0;

@@ -1,13 +1,17 @@
+class Coordinates
+{
+    constructor(latitude, longitude)
+    {
+        this.latitude=latitude;
+        this.longitude=longitude;
+    }
+}
+
 class DeliveryAddress extends CollectionAddress
 {
 	constructor(country, city, line1, line2, zipCode, description)
 	{
         super(country, city, line1, line2, zipCode);
-        this.country=country;
-		this.city=city;
-		this.line1=line1;
-		this.line2=line2;
-		this.zipCode=zipCode;
 		this.description=description;
 		this.coordinates=null;
 	}
