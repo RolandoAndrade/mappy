@@ -1,7 +1,8 @@
 class CollectionOrder
 {
-	constructor(collectionAddress, deliveryAddress, recipientsName, recipientsSurname)
+	constructor(id, collectionAddress, deliveryAddress, recipientsName, recipientsSurname)
 	{
+	    this.id=id;
 	    this.packages=[];
 		this.collectionAddress=collectionAddress;
 		this.deliveryAddress=deliveryAddress;
@@ -32,11 +33,13 @@ class CollectionOrderDAO
     async getAll()
     {
         const request=new GetRequest('api/collection_order/getAll');
-        return request.execute();
+        return await request.execute();
     }
 
-    delete(collectionAddress)
+    async delete(collectionOrder)
     {
+        const request=new GetRequest('DELETE api/collection_order/remove/'+collectionOrder.id)
+        return await request.execute();
     }
     findById(id)
     {

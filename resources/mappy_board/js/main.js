@@ -1,20 +1,4 @@
-function exitWindow()
-{
-	swal({
-		  	title: '¿Estás seguro?',
-		  	text: "La sesión actual será cerrada",
-		  	type: 'warning',
-		  	showCancelButton: true,
-		  	confirmButtonColor: '#DC8502',
-		  	cancelButtonColor: '#F44336',
-		  	confirmButtonText: 'Sí, ¡quiero salir!',
-		  	cancelButtonText: 'No, cancelar!'
-		}).then(function () {
-			window.location="api/v/logout";
-	});
-}
-
-
+var emptyCollectionOrder;
 
 $(document).ready(function(){
 	$('.btn-sideBar-SubMenu').on('click', function(){
@@ -28,9 +12,9 @@ $(document).ready(function(){
 			SubMenu.addClass('show-sideBar-SubMenu');
 		}
 	});
-	$('.btn-exit-system').on('click', exitWindow);
+	$('.btn-exit-system').on('click', function(){exitWindow.show()});
 
-	$('.exitSideBar').on('click', exitWindow);
+	$('.exitSideBar').on('click', function(){exitWindow.show()});
 
 	$('.btn-menu-dashboard').on('click', function(){
 		var body=$('.dashboard-contentPage');
@@ -71,14 +55,14 @@ $(document).ready(function(){
 		  )
 		});
 	});
-	$('.btn-modal-help').on('click', function(){
-		$('#Dialog-Help').modal('show');
-	});
+
+	emptyCollectionOrder=new Dialog($('#Dialog-Help'));
 
 	$('.viewSideBar').on('click', function() 
 	{
 		$('.navbar-text').text("ÓRDENES DE RECOLECCIÓN");
 		$('.makeACollectionOrder').hide(300);
+		$('.historyOfCollectionOrders').hide(300);
 		$('#mapMain').show(300);
 	});
 
@@ -86,8 +70,18 @@ $(document).ready(function(){
 	{
 		$('.navbar-text').text("CREAR ORDEN DE RECOLECCIÓN");
 		$('#mapMain').hide(300);
+		$('.historyOfCollectionOrders').hide(300);
 		$('.makeACollectionOrder').show(300);
 	});
+
+	$('.historySideBar').on('click', function()
+	{
+		$('.navbar-text').text("ÓRDENES EN CURSO");
+		$('#mapMain').hide(300);
+		$('.makeACollectionOrder').hide(300);
+		$('.historyOfCollectionOrders').show(300);
+	});
+
 });
 (function($){
     $(window).on("load",async function(){

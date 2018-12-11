@@ -1,6 +1,6 @@
 {%load staticfiles%}
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns="http://www.w3.org/1999/html">
 <head>
 	<title>Mappy</title>
 	<meta charset="UTF-8">
@@ -8,6 +8,7 @@
 	<link href="{% static 'img/favicon.png' %}" rel="shortcut icon">
 	<link rel="stylesheet" href="{% static 'mappy_board/css/main.css' %}">
 	<link rel="stylesheet" href="{% static 'css/loading.css' %}">
+	<link rel="stylesheet" href="{% static 'css/panels.css' %}">
 	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" >
 </head>
 <body>
@@ -52,7 +53,7 @@
 				</li>
 				<li>
 					<a href="#!" class="historySideBar">
-						<i class="zmdi zmdi-book zmdi-hc-fw"></i> Historial
+						<i class="zmdi zmdi-book zmdi-hc-fw"></i> Órdenes en curso
 					</a>
 				</li>
 				<li>
@@ -98,11 +99,12 @@
 					</a>
 				</li>
 			</ul>
-			
+
 		</nav>
 
-		<!--Here-->
-		<div class="makeACollectionOrder">
+	<!----------------------------Make a collection order form------------------------------->
+
+	<div class="makeACollectionOrder">
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-xs-12">
@@ -351,14 +353,66 @@
 				</div>
 			</div>
 		</div>
+
+	<!----------------------------History------------------------------->
+
+	<div class="historyOfCollectionOrders">
+			<section id="cd-timeline" class="collectionHistory cd-container">
+				<div class="noHistory">
+					No hay órdenes de recolección en curso<br>
+					<button type="button" class="btn btn-primary btn-raised">¡Realiza una!</button>
+				</div>
+			</section>
+		</div>
+
 	</section>
-<!-- Content page -->
 
-		<div id="mapMain" class="mapMain d-flex justify-content-center">
 
-        </div>
-	<!-- Notifications area -->
-	<section class="full-box Notifications-area">
+	<!----------------------------Main map------------------------------->
+
+	<div id="mapMain" class="mapMain d-flex justify-content-center">
+
+	</div>
+
+
+
+
+
+	<!-- Without collection orders dialog-->
+
+	<div class="modal fade" tabindex="-1" role="dialog" id="Dialog-Help">
+	  	<div class="modal-dialog" role="document">
+		    <div class="modal-content">
+			    <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			    	<h4 class="modal-title">No tienes órdenes de recolección</h4>
+			    </div>
+			    <div class="modal-body">
+			        <p>
+			        	Hasta el momento no tienes órdenes de recolección pendientes.<br>
+
+			        </p>
+			    </div>
+		      	<div class="modal-footer">
+		        	<button type="button" class="btn btn-primary btn-raised" data-dismiss="modal">¡Realiza una!</button>
+		      	</div>
+		    </div>
+	  	</div>
+	</div>
+
+
+	<!----------------------------Loading------------------------------->
+
+	<div class="loading">
+		<div id="loading27">
+      	      <div class="colorBalls"></div>
+		</div>
+		<div class="loadingText">
+			Espere un momento por favor...
+		</div>
+	</div>
+
+<section class="full-box Notifications-area">
 		<div class="full-box Notifications-bg btn-Notifications-area"></div>
 		<div class="full-box Notifications-body">
 			<div class="Notifications-body-title text-titles text-center">
@@ -413,39 +467,7 @@
 		</div>
 	</section>
 
-	<!-- Dialog help -->
-	<div class="modal fade" tabindex="-1" role="dialog" id="Dialog-Help">
-	  	<div class="modal-dialog" role="document">
-		    <div class="modal-content">
-			    <div class="modal-header">
-			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			    	<h4 class="modal-title">No tienes órdenes de recolección</h4>
-			    </div>
-			    <div class="modal-body">
-			        <p>
-			        	En este momento no tienes órdenes de recolección.<br>
-			        	
-			        </p>
-			    </div>
-		      	<div class="modal-footer">
-		        	<button type="button" class="btn btn-primary btn-raised" data-dismiss="modal">¡Realiza una!</button>
-		      	</div>
-		    </div>
-	  	</div>
-	</div>
-
-
-	<div class="loading">
-		<div id="loading27">
-      	      <div class="colorBalls"></div>
-		</div>
-		<div class="loadingText">
-			Espere un momento por favor...
-		</div>
-	</div>
-
 	<script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
-
 	<script src="{% static 'mappy_board/js/jquery-3.1.1.min.js' %}"></script>
 	<script src="{% static 'mappy_board/js/sweetalert2.min.js' %}"></script>
 	<script src="{% static 'mappy_board/js/bootstrap.min.js' %}"></script>
@@ -456,11 +478,13 @@
 	<script src="{% static 'mappy_board/js/map.js' %}"></script>
 	<script src="{% static 'js/requests.js' %}"></script>
 	<script src="{% static 'js/userdao.js' %}"></script>
+	<script src="{% static 'js/packagedao.js' %}"></script>
 	<script src="{% static 'js/collectionaddressdao.js' %}"></script>
 	<script src="{% static 'js/deliveryaddressdao.js' %}"></script>
 	<script src="{% static 'js/collectionorderdao.js' %}"></script>
-
+	<script src="{% static 'mappy_board/js/dialogs.js' %}"></script>
 	<script src="{% static 'mappy_board/js/queries.js' %}"></script>
+	<script src="{% static 'mappy_board/js/card.js' %}"></script>
 	<script>
 		$.material.init();
 	</script>

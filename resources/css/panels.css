@@ -1,0 +1,19 @@
+.historyOfCollectionOrders{
+    display: none;
+}
+.deleteOrderInfo{
+    background: #ff9d3a;
+    border-radius: 5px;
+    width: 100%;
+    padding: 5px;
+    margin: 5px;
+    border: none;
+    transition: all .3s ease-in-out;
+}
+.deleteOrderInfo:hover{
+    background: #ff5847;
+}
+.noHistory{
+    text-align: center;
+    color: #DC8502;
+}
