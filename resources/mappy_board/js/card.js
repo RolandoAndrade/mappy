@@ -4,7 +4,7 @@ class CollectionOrderCard
     {
         const img="\"/static/mappy_board/assets/img/user.png\"";
         const description=this.getPackages(collectionOrder);
-        $(".collectionHistory").remove(".noHistory");
+        $(".noHistory").remove();
         $(".collectionHistory").append('<div class="cd-timeline-block">' +
             '<div class="cd-timeline-img">\n' +
             '<img src='+img+' alt="user-picture">' +
@@ -25,12 +25,22 @@ class CollectionOrderCard
             '</button>' +
             '</p>\n' +
             '<span class="deliveryAddress cd-date"><i class="zmdi zmdi-pin zmdi-hc-fw"></i>' +
-            collectionOrder.deliveryAddress.line1 +', '+collectionOrder.deliveryAddress.line2+
+            this.getText(collectionOrder.deliveryAddress.line1)+
+            this.getText(", "+collectionOrder.deliveryAddress.line2)+
             '. '+ collectionOrder.deliveryAddress.city+', '+collectionOrder.deliveryAddress.country+
             '</span>\n' +
             '</div>\n' +
             '</div>');
     }
+
+    getText(text)
+    {
+        if(text==", null")
+            return "";
+        else
+            return text;
+    }
+
     getPackages(collectionOrder)
     {
         let description="";
@@ -43,6 +53,7 @@ class CollectionOrderCard
         }
         return description;
     }
+
     clear()
     {
         $(".collectionHistory").clean();

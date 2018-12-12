@@ -1,8 +1,45 @@
-var mymap = L.map('mapMain').setView([10.4642, -66.9758], 15);
+class Map
+{
+    constructor(container)
+    {
+        this.map = L.map(container).setView([10.4642, -66.9758], 15);
+        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+}).addTo(this.map);
+    }
+
+    addMarker(order)
+    {
+        console.log(order);
+        let marker = L.marker([order.deliveryAddress.coordinates.latitude, order.deliveryAddress.coordinates.longitude]).addTo(this.map);
+        marker.on('click',function()
+        {
+            new SwalModal(
+                "Maleta",
+                "Para: "+order.recipientsName+" "+order.recipientsSurname+"<br>" +
+                "Dirección de recoleción: "+order.collectionAddress.line1+"<br>"+
+                "Dirección de envío: "+order.deliveryAddress.line1+"<br>",
+                "info",
+                false,
+                "#DC8502",
+                null,
+                "Ok",
+                null,
+                null
+
+            ).show();
+		});
+    }
+}
+
+
+
+var myMap=new Map('mapMain');
+
+/*var mymap = L.map('mapMain').setView([10.4642, -66.9758], 15);
 
 L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 }).addTo(mymap);
-/*
+
 //mymap.on('click', onMapClick);
 
 //map.invalidateSize();

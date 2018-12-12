@@ -43,16 +43,6 @@ async function getAllCollectionOrders()
     {
         const coord=myOrders[i].deliveryAddress.coordinates;
         new CollectionOrderCard(myOrders[i]);
-        mainMap.addMarker(coord);
+        myMap.addMarker(myOrders[i]);
     }
 }
-
-
-class Map
-{
-    addMarker(coordinates)
-    {
-        L.marker([coordinates.latitude, coordinates.longitude]).addTo(mymap);
-    }
-}
-var mainMap=new Map();

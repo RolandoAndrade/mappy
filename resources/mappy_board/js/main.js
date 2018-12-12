@@ -1,5 +1,5 @@
 var emptyCollectionOrder;
-
+var aMark;
 $(document).ready(function(){
 	$('.btn-sideBar-SubMenu').on('click', function(){
 		var SubMenu=$(this).next('ul');
