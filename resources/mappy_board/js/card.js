@@ -4,7 +4,7 @@ class CollectionOrderCard
     {
         const img="\"/static/mappy_board/assets/img/user.png\"";
         const description=this.getPackages(collectionOrder);
-        $(".collectionHistory").remove(".noCollectionOrder");
+        $(".collectionHistory").remove(".noHistory");
         $(".collectionHistory").append('<div class="cd-timeline-block">' +
             '<div class="cd-timeline-img">\n' +
             '<img src='+img+' alt="user-picture">' +
@@ -29,7 +29,7 @@ class CollectionOrderCard
             '. '+ collectionOrder.deliveryAddress.city+', '+collectionOrder.deliveryAddress.country+
             '</span>\n' +
             '</div>\n' +
-            '</div>')
+            '</div>');
     }
     getPackages(collectionOrder)
     {
@@ -42,5 +42,9 @@ class CollectionOrderCard
             '</h4>';
         }
         return description;
+    }
+    clear()
+    {
+        $(".collectionHistory").clean();
     }
 }

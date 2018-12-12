@@ -58,32 +58,17 @@ $(document).ready(function(){
 
 	emptyCollectionOrder=new Dialog($('#Dialog-Help'));
 
-	$('.viewSideBar').on('click', function() 
-	{
-		$('.navbar-text').text("ÓRDENES DE RECOLECCIÓN");
-		$('.makeACollectionOrder').hide(300);
-		$('.historyOfCollectionOrders').hide(300);
-		$('#mapMain').show(300);
-	});
+	$('.viewSideBar').on('click', changeToMap);
 
-	$('.collectionOrderSideBar').on('click', function() 
-	{
-		$('.navbar-text').text("CREAR ORDEN DE RECOLECCIÓN");
-		$('#mapMain').hide(300);
-		$('.historyOfCollectionOrders').hide(300);
-		$('.makeACollectionOrder').show(300);
-	});
+	$('.collectionOrderSideBar').on('click', changeToCollectionOrder);
 
-	$('.historySideBar').on('click', function()
-	{
-		$('.navbar-text').text("ÓRDENES EN CURSO");
-		$('#mapMain').hide(300);
-		$('.makeACollectionOrder').hide(300);
-		$('.historyOfCollectionOrders').show(300);
-	});
+	$('.historySideBar').on('click', changeToHistory);
+
+	$('.doOne').on('click', changeToCollectionOrder);
 
 });
 (function($){
+	$('.loading').show();
     $(window).on("load",async function(){
         $(".dashboard-sideBar-ct").mCustomScrollbar({
         	theme:"light-thin",
@@ -97,10 +82,33 @@ $(document).ready(function(){
         	autoHideScrollbar: true,
         	scrollButtons: {enable: true}
         });
-		$('.loading').show();
+
         await setEmail();
 		await getAllCollectionOrders();
 		$('.loading').hide();
 
     });
 })(jQuery);
+
+function changeToMap()
+{
+	$('.navbar-text').text("ÓRDENES DE RECOLECCIÓN");
+	$('.makeACollectionOrder').hide(300);
+	$('.historyOfCollectionOrders').hide(300);
+	$('#mapMain').show(300);
+}
+
+function changeToCollectionOrder()
+{
+	$('.navbar-text').text("CREAR ORDEN DE RECOLECCIÓN");
+	$('#mapMain').hide(300);
+	$('.historyOfCollectionOrders').hide(300);
+	$('.makeACollectionOrder').show(300);
+}
+function changeToHistory()
+{
+	$('.navbar-text').text("ÓRDENES EN CURSO");
+	$('#mapMain').hide(300);
+	$('.makeACollectionOrder').hide(300);
+	$('.historyOfCollectionOrders').show(300);
+}
