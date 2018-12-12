@@ -9,24 +9,10 @@ class Map
 
     addMarker(order)
     {
-        console.log(order);
         let marker = L.marker([order.deliveryAddress.coordinates.latitude, order.deliveryAddress.coordinates.longitude]).addTo(this.map);
         marker.on('click',function()
         {
-            new SwalModal(
-                "Maleta",
-                "Para: "+order.recipientsName+" "+order.recipientsSurname+"<br>" +
-                "Dirección de recoleción: "+order.collectionAddress.line1+"<br>"+
-                "Dirección de envío: "+order.deliveryAddress.line1+"<br>",
-                "info",
-                false,
-                "#DC8502",
-                null,
-                "Ok",
-                null,
-                null
-
-            ).show();
+            new InfoOfMarker(order).show();
 		});
     }
 }

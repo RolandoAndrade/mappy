@@ -14,6 +14,16 @@ class CollectionOrder
     {
         this.packages.push(packages);
     }
+
+    getPackagesResume()
+    {
+        let ret="";
+        for(let i=0;i<this.packages.length;i++)
+        {
+            ret+=this.packages[i].description+", ";
+        }
+        return ret.substr(0,ret.length-2);
+    }
 }
 
 class CollectionOrderDAO

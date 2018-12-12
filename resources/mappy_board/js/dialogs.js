@@ -82,3 +82,26 @@ var informationWindow=new SwalModal(
 			window.location="api/v/logout";
 	}
 );
+
+class InfoOfMarker extends SwalModal
+{
+    constructor(order)
+    {
+        super(
+                order.getPackagesResume(),
+                "<b>Para:</b> <em>"+order.recipientsName+" "+order.recipientsSurname+"</em><br>" +
+                "<b>Dirección de recoleción: </b><em>"+order.collectionAddress.line1+"<br></em>"+
+                "<b>Dirección de envío: </b><em>"+order.deliveryAddress.line1+"</em><br>"+
+                order.deliveryAddress.zipCode+" "+
+                order.deliveryAddress.city+", "+order.deliveryAddress.country+"<br>",
+                "info",
+                false,
+                "#DC8502",
+                null,
+                "Ok",
+                null,
+                null
+
+            );
+    }
+}
