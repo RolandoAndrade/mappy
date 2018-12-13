@@ -16,7 +16,8 @@ class CollectionOrderCard
              this.theRecipientsText(collectionOrder)+
             '<i class="zmdi zmdi-pin zmdi-hc-fw"></i>\n' +
              this.theCollectionAddressText(collectionOrder)+
-            '<button type="button" class="deleteOrderInfo">' +
+            '<button type="button" class="deleteOrderInfo" id="deleteOrderInfo'+
+            collectionOrder.id+'">' +
             '<i class="zmdi zmdi-delete zmdi-hc-fw"></i>' +
             'Eliminar' +
             '</button>' +
@@ -26,6 +27,11 @@ class CollectionOrderCard
             '</span>\n' +
             '</div>\n' +
             '</div>');
+        
+            $("#deleteOrderInfo"+collectionOrder.id).on("click",async function ()
+            {
+                console.log(await collectionOrder.delete());
+            })
     }
 
     getText(text)
@@ -43,7 +49,8 @@ class CollectionOrderCard
         {
             description+='<h4 class="packageDescription text-center text-titles">' +
             '<i class="zmdi zmdi-money-box zmdi-hc-fw"></i>' +
-            collectionOrder.packages[i].description+
+            collectionOrder.packages[i].description+" ("+
+                collectionOrder.packages[i].weight.substr(0, collectionOrder.packages[i].weight.indexOf(".")+2)+" kg)"+
             '</h4>';
         }
         return description;

@@ -24,6 +24,22 @@ class CollectionOrder
         }
         return ret.substr(0,ret.length-2);
     }
+
+    getWeight()
+    {
+        let ret=0;
+        for(let i=0;i<this.packages.length;i++)
+        {
+            ret+=parseFloat(this.packages[i].weight);
+        }
+        return ret;
+    }
+
+    async delete()
+    {
+        let dao=new CollectionOrderDAO();
+        return await dao.delete(this);
+    }
 }
 
 class CollectionOrderDAO
@@ -48,7 +64,7 @@ class CollectionOrderDAO
 
     async delete(collectionOrder)
     {
-        const request=new GetRequest('DELETE api/collection_order/remove/'+collectionOrder.id)
+        const request=new DeleteRequest('api/collection_order/remove',collectionOrder.id)
         return await request.execute();
     }
     findById(id)

@@ -71,3 +71,29 @@ class PostRequest
                     });
     }
 }
+
+class DeleteRequest
+{
+    constructor(url, item)
+    {
+        this.url=url;
+        this.item=item;
+    }
+
+    async execute()
+    {
+        const cookie = new Cookie("csrftoken");
+        const token = cookie.getCookie();
+        const settings={
+            method: 'DELETE',
+            headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                    "X-CSRFToken": token,
+                }
+        }
+        return await fetch(this.url+"/"+this.item,settings).then(response =>
+            response.json()).then(json => {
+                return json;}).catch(e => {return e});
+    }
+}

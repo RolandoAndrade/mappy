@@ -92,6 +92,7 @@ class InfoOfMarker extends SwalModal
                 "<b>Para:</b> <em>"+order.recipientsName+" "+order.recipientsSurname+"</em><br>" +
                 "<b>Dirección de recoleción: </b><em>"+order.collectionAddress.line1+"<br></em>"+
                 "<b>Dirección de envío: </b><em>"+order.deliveryAddress.line1+"</em><br>"+
+                "<b>Peso total: </b><em>"+order.getWeight()+" kg</em><br>"+
                 order.deliveryAddress.zipCode+" "+
                 order.deliveryAddress.city+", "+order.deliveryAddress.country+"<br>",
                 "info",
