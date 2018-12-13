@@ -75,3 +75,36 @@ class CollectionOrderDAO
 
     }
 }
+
+async function deleteOrder(collectionOrder)
+{
+    const swal=new SwalModal(
+        '¿Estás seguro?',
+	    'La orden de recolección será eliminada',
+	    'warning',
+	    true,
+        '#F44336',
+	    '#DC8502',
+
+	    'Sí, ¡quiero eliminarla!',
+	    'No, cancelar!',
+        async function () {
+	    		await continueDeleteOrder(collectionOrder);
+	    }
+    );
+    swal.show();
+
+}
+async function continueDeleteOrder(collectionOrder)
+{
+    const dao=new CollectionOrderDAO();
+    const response= await dao.delete(collectionOrder);
+    if(response=="Deleted")
+    {
+        orderManager.delete(collectionOrder);
+    }
+
+}
+
+
+
