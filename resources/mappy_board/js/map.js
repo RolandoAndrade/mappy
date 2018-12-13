@@ -1,8 +1,31 @@
-var mymap = L.map('mapMain').setView([10.4642, -66.9758], 15);
+class Map
+{
+    constructor(container)
+    {
+        this.map = L.map(container).setView([10.4642, -66.9758], 15);
+        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+}).addTo(this.map);
+    }
+
+    addMarker(order)
+    {
+        let marker = L.marker([order.deliveryAddress.coordinates.latitude, order.deliveryAddress.coordinates.longitude]).addTo(this.map);
+        marker.on('click',function()
+        {
+            new InfoOfMarker(order).show();
+		});
+    }
+}
+
+
+
+var myMap=new Map('mapMain');
+
+/*var mymap = L.map('mapMain').setView([10.4642, -66.9758], 15);
 
 L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 }).addTo(mymap);
-/*
+
 //mymap.on('click', onMapClick);
 
 //map.invalidateSize();

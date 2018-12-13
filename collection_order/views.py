@@ -33,7 +33,8 @@ class RemoveCollectionOrder(generics.DestroyAPIView):
     def delete(self, request, *args, **kwargs):
         instance = self.get_object()
         # just the user can delete his own collection order
-        if instance.user_id == request.user.user_id:
-            return self.destroy(request, *args, **kwargs)
+        if instance.user_id == request.user:
+            self.destroy(request, *args, **kwargs)
+            return Response(data = "Deleted")
         else:
             return Response(data = "Error")
