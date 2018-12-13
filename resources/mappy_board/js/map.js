@@ -1,25 +1,44 @@
+class CollectionOrderStrategy
+{
+    addMarker(data, map)
+    {
+        let marker = L.marker([data.deliveryAddress.coordinates.latitude, data.deliveryAddress.coordinates.longitude]).addTo(map);
+        marker.on('click',function()
+        {
+            new InfoOfMarker(data).show();
+        });
+    }
+
+}
+
+class CoordinatesStrategy
+{
+    addMarker(data, map)
+    {
+        let marker = L.marker([data.latitude, data.longitude]).addTo(map);
+    }
+
+}
+
 class Map
 {
-    constructor(container)
+    constructor(container, strategy)
     {
         this.map = L.map(container).setView([10.4642, -66.9758], 15);
+        this.strategy=strategy;
         L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 }).addTo(this.map);
     }
 
-    addMarker(order)
+    addMarker(data)
     {
-        let marker = L.marker([order.deliveryAddress.coordinates.latitude, order.deliveryAddress.coordinates.longitude]).addTo(this.map);
-        marker.on('click',function()
-        {
-            new InfoOfMarker(order).show();
-		});
+        this.strategy.addMarker(data,this.map);
     }
 }
 
 
 
-var myMap=new Map('mapMain');
+var myMap=new Map('mapMain', new CollectionOrderStrategy());
 
 /*var mymap = L.map('mapMain').setView([10.4642, -66.9758], 15);
 

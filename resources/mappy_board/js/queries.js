@@ -4,45 +4,94 @@ async function setEmail()
     const user = await dao.getUser();
     $('.email-me').text(user.email);
 }
-var myOrders=[];
 
-function addOrder(order)
+class ParserFromJsonToObject
 {
-    const ca=order.collection_address_id;
-    const collectionAddress= new CollectionAddress(ca.country, ca.city,
-            ca.line1, ca.line2, ca.zipCode);
-    const da=order.delivery_address_id;
-    const deliveryAddress= new DeliveryAddress(da.country, da.city, da.line1,
-            da.line2, da.zipCode, da.description);
-    deliveryAddress.addCoordinates(new Coordinates(da.latitude, da.longitude));
-    let newOrder=new CollectionOrder(order.collection_order_id, collectionAddress,deliveryAddress,
-        order.recipientsName, order.recipientsSurname);
-    for (let i=0;i<order.order.length;i++)
+    parseCollectionAddress(json)
     {
-        const APackage=order.order[i];
-        const p=new Package(APackage.weight, APackage.description,APackage.order);
-        newOrder.addPackages(p);
+        const field=json.collection_address_id;
+        return new CollectionAddress(field.country, field.city,
+            field.line1, field.line2, field.zipCode);
     }
 
-    myOrders.push(newOrder);
+    parseDeliveryAddress(json)
+    {
+        const field=json.delivery_address_id;
+        const deliveryAddress=new DeliveryAddress(field.country, field.city, field.line1,
+                field.line2, field.zipCode, field.description);
+        deliveryAddress.addCoordinates(new Coordinates(json.delivery_address_id.latitude,
+            json.delivery_address_id.longitude));
+        return deliveryAddress;
+    }
+
+    parseUser(json)
+    {
+
+    }
+
+    parsePackage(json)
+    {
+        return new Package(json.weight, json.description,json.order);
+    }
 }
+
+class OrderManager
+{
+    constructor()
+    {
+        this.myOrders=[];
+    }
+
+    addOrder(order)
+    {
+        const parser=new ParserFromJsonToObject();
+        let newOrder=new CollectionOrder(
+            order.collection_order_id,
+            parser.parseCollectionAddress(order),
+            parser.parseDeliveryAddress(order),
+            order.recipientsName, order.recipientsSurname);
+        this.setPackagesTo(newOrder, order);
+        this.myOrders.push(newOrder);
+    }
+
+    setPackagesTo(order,json)
+    {
+        const parser=new ParserFromJsonToObject();
+        for (let i=0;i<json.order.length;i++)
+        {
+            const p=parser.parsePackage(json.order[i]);
+            order.addPackages(p);
+        }
+    }
+
+    hasOrders()
+    {
+        return this.myOrders.length>0;
+    }
+
+    addMarkersToMap()
+    {
+        for(let i=0;i<this.myOrders.length;i++)
+        {
+            new CollectionOrderCard(this.myOrders[i]);
+            myMap.addMarker(this.myOrders[i]);
+        }
+    }
+}
+
 
 async function getAllCollectionOrders()
 {
     const dao = new CollectionOrderDAO();
     const collectionOrders=await dao.getAll();
+    const orderManager=new OrderManager();
     for(let i=0;i<collectionOrders.length;i++)
     {
-        addOrder(collectionOrders[i]);
+        orderManager.addOrder(collectionOrders[i]);
     }
-    if(myOrders.length===0)
+    if(!orderManager.hasOrders())
     {
         emptyCollectionOrder.show();
     }
-    for(let i=0;i<myOrders.length;i++)
-    {
-        const coord=myOrders[i].deliveryAddress.coordinates;
-        new CollectionOrderCard(myOrders[i]);
-        myMap.addMarker(myOrders[i]);
-    }
+    orderManager.addMarkersToMap();
 }
