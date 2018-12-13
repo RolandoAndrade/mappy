@@ -15,8 +15,16 @@ function addOrder(order)
     const deliveryAddress= new DeliveryAddress(da.country, da.city, da.line1,
             da.line2, da.zipCode, da.description);
     deliveryAddress.addCoordinates(new Coordinates(da.latitude, da.longitude));
-    myOrders.push(new CollectionOrder(collectionAddress,deliveryAddress,
-        order.recipientsName, order.recipientsSurname));
+    let newOrder=new CollectionOrder(order.collection_order_id, collectionAddress,deliveryAddress,
+        order.recipientsName, order.recipientsSurname);
+    for (let i=0;i<order.order.length;i++)
+    {
+        const APackage=order.order[i];
+        const p=new Package(APackage.weight, APackage.description,APackage.order);
+        newOrder.addPackages(p);
+    }
+
+    myOrders.push(newOrder);
 }
 
 async function getAllCollectionOrders()
@@ -27,19 +35,14 @@ async function getAllCollectionOrders()
     {
         addOrder(collectionOrders[i]);
     }
+    if(myOrders.length===0)
+    {
+        emptyCollectionOrder.show();
+    }
     for(let i=0;i<myOrders.length;i++)
     {
         const coord=myOrders[i].deliveryAddress.coordinates;
-        mainMap.addMarker(coord);
+        new CollectionOrderCard(myOrders[i]);
+        myMap.addMarker(myOrders[i]);
     }
 }
-
-
-class Map
-{
-    addMarker(coordinates)
-    {
-        L.marker([coordinates.latitude, coordinates.longitude]).addTo(mymap);
-    }
-}
-var mainMap=new Map();

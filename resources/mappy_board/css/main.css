@@ -514,7 +514,7 @@ body, html{
   margin-left: 60px;
   border-radius: 0.25em;
   padding: 1em;
-  background-color: #01579B;
+  background-color: #DC8502;
   color: #fff;
 }
 .cd-timeline-content::after {
@@ -541,7 +541,7 @@ body, html{
   height: 0;
   width: 0;
   border: 7px solid transparent;
-  border-right: 7px solid #01579B;
+  border-right: 7px solid #DC8502;
 }
 @media (min-width: 1200px) {
     #cd-timeline {
@@ -574,7 +574,7 @@ body, html{
         height: 60px;
     }
     .cd-timeline-content .cd-date {
-        color: #01579B;
+        color: #DC8502;
     }
     .cd-timeline-content {
         margin-left: 0;
@@ -584,7 +584,7 @@ body, html{
     top: 24px;
     left: 100%;
     border-color: transparent;
-    border-left-color: #01579B;
+    border-left-color: #DC8502;
   }
   .cd-timeline-content .cd-date {
     position: absolute;
@@ -602,7 +602,7 @@ body, html{
     left: auto;
     right: 100%;
     border-color: transparent;
-    border-right-color: #01579B;
+    border-right-color: #DC8502;
   }
   .cd-timeline-block:nth-child(even) .cd-timeline-content .cd-date {
     left: auto;
