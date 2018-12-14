@@ -117,6 +117,18 @@ $(".formCollection").submit(async function()
 	event.stopPropagation();
 	if (form[0].checkValidity() === false)
 	{
+		$("input[required]").each(function() {
+			console.log("a");
+            if(this.value=="")
+			{
+				this.style.border="solid";
+			}
+            else
+			{
+				this.style.border="none";
+			}
+        });
+
 		const s=new SwalModal(
 			"Error",
 			"Debes completar algunos campos para continuar",
@@ -129,7 +141,7 @@ $(".formCollection").submit(async function()
 			null
 		);
 		s.show();
-window.location="../"
+
 	}
 	else {
 		await newCollectionOrder();

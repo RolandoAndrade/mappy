@@ -40,3 +40,7 @@
 {
     display: none;
 }
+.invalid-feedback{
+    display: none;
+    color: #a00500;
+}
