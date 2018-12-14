@@ -184,6 +184,7 @@ async function findLocation()
                 $("#latitude").val(dir.lat);
                 $("#longitude").val(dir.lon);
                 const c=new Coordinates(dir.lat,dir.lon);
+                miniMap.clearMarkers();
                 miniMap.addMarker(c);
                 miniMap.setView(c);
                 const swal=new SwalModal(
