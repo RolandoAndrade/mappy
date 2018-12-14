@@ -66,12 +66,3 @@ function onMapClick(e) {
     $('#latitude').val(latitude);
     $('#longitude').val(longitude);
 }
-
-async function prueba()
-{
- $.get(location.protocol + '//nominatim.openstreetmap.org/search?format=json&q='+"Universidad Católica Andrés Bello", function(data){
-       console.log(data);
-    });
-}
-
-prueba();
