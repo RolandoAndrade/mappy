@@ -69,20 +69,6 @@ var exitWindow=new SwalModal(
 	}
 );
 
-var informationWindow=new SwalModal(
-    'Maleta',
-	'02:23 PM\tNo R interpreter defined: Many R related features like completion, code checking and help won\'t be available. You can set an interpreter under Preferences->Languages->R\n ',
-	'info',
-	true,
-	'#DC8502',
-	'#F44336',
-	'Sí, ¡quiero salir!',
-	'No, cancelar!',
-    function () {
-			window.location="api/v/logout";
-	}
-);
-
 class InfoOfMarker extends SwalModal
 {
     constructor(order)
@@ -96,12 +82,14 @@ class InfoOfMarker extends SwalModal
                 order.deliveryAddress.zipCode+" "+
                 order.deliveryAddress.city+", "+order.deliveryAddress.country+"<br>",
                 "info",
-                false,
+                true,
+                "#ff4837",
                 "#DC8502",
-                null,
+                "Borrar",
                 "Ok",
-                null,
-                null
+                async function () {
+                    await deleteOrder(order);
+                }
 
             );
     }

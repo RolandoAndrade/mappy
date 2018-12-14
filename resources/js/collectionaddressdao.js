@@ -16,15 +16,13 @@ class CollectionAddressDAO
     async create(collectionAddress)
     {
         const data = {
-            user_id: null,
             line1: collectionAddress.line1,
             line2: collectionAddress.line2,
             zipCode: collectionAddress.zipCode,
             city: collectionAddress.city,
             country: collectionAddress.country,
-
         };
-        const request=new PostRequest(data,'../api/collection_address/create/');
+        const request=new PostRequest(data,'api/collection_address/create/');
         return await request.execute();
     }
     delete(collectionAddress)
