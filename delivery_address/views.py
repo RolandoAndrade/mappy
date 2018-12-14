@@ -13,3 +13,8 @@ class DeliveryAddressCreate(generics.ListCreateAPIView):
 class DeliveryAddressRetrieve(generics.ListAPIView):
     queryset = models.DeliveryAddress.objects.all()
     serializer_class = serializers.DeliveryAddressSerializer
+
+
+class DeliveryAddressRemove(generics.DestroyAPIView):
+    queryset = models.DeliveryAddress.objects.all()
+    serializer_class = serializers.DeliveryAddressSerializer

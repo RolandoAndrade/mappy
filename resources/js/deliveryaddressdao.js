@@ -33,9 +33,10 @@ class DeliveryAddressDAO
             city: deliveryAddress.city,
             country: deliveryAddress.country,
             description: deliveryAddress.description,
-            coordinates: deliveryAddress.coordinates,
+            latitude: deliveryAddress.coordinates.latitude,
+            longitude: deliveryAddress.coordinates.longitude,
         };
-        const request=new PostRequest(data,'../api/delivery_address/create');
+        const request=new PostRequest(data,'api/delivery_address/create');
         return await request.execute();
     }
     delete(collectionAddress)

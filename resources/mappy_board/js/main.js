@@ -63,9 +63,6 @@ $(document).ready(function(){
 	$('.collectionOrderSideBar').on('click', changeToCollectionOrder);
 
 	$('.historySideBar').on('click', changeToHistory);
-
-	$('.doOne').on('click', changeToCollectionOrder);
-
 });
 (function($){
 	$('.loading').show();
@@ -112,3 +109,89 @@ function changeToHistory()
 	$('.makeACollectionOrder').hide(300);
 	$('.historyOfCollectionOrders').show(300);
 }
+
+$(".formCollection").submit(async function()
+{
+	var form = $(this);
+	event.preventDefault();
+	event.stopPropagation();
+	if (form[0].checkValidity() === false)
+	{
+		$("input[required]").each(function() {
+			console.log("a");
+            if(this.value=="")
+			{
+				this.style.border="solid";
+			}
+            else
+			{
+				this.style.border="none";
+			}
+        });
+
+		const s=new SwalModal(
+			"Error",
+			"Debes completar algunos campos para continuar",
+			"error",
+			false,
+			"#DC8502",
+			null,
+			"Ok",
+			null,
+			null
+		);
+		s.show();
+
+	}
+	else {
+		await newCollectionOrder();
+		window.location="../"
+	}
+	form.addClass('was-validated');
+});
+
+async function findLocation()
+{
+	$(".mapCoords").show();
+	const line1=$("#d_general").val();
+	const line2=$("#d_zoom").val();
+        await $.get(location.protocol + '//nominatim.openstreetmap.org/search?format=json&q='+line1+", "+line2, function(data){
+            if(data.length>0)
+            {
+                const dir=data[0];
+                $("#latitude").val(dir.lat);
+                $("#longitude").val(dir.lon);
+                const c=new Coordinates(dir.lat,dir.lon);
+                miniMap.addMarker(c);
+                miniMap.setView(c);
+                const swal=new SwalModal(
+                'Confirma las coordenadas',
+	            'Revisa la ubicación en el mapa',
+	            'warning',
+	            false,
+                '#DC8502',
+	            null,
+	            'Ok',
+	            null,
+                null
+                );
+                swal.show();
+            }
+            else
+            {
+                const swal=new SwalModal(
+                'No fue encontrada la dirección',
+	            'Ubica la dirección manualmente en el mapa',
+	            'error',
+	            false,
+                '#DC8502',
+	            null,
+	            'Ok',
+	            null,
+                null
+                );
+                swal.show();
+            }
+        });
+}
+
