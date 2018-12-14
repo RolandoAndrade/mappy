@@ -110,7 +110,7 @@ function changeToHistory()
 	$('.historyOfCollectionOrders').show(300);
 }
 
-$(".formCollection").submit(function()
+$(".formCollection").submit(async function()
 {
 	var form = $(this);
 	event.preventDefault();
@@ -129,10 +129,11 @@ $(".formCollection").submit(function()
 			null
 		);
 		s.show();
-
+window.location="../"
 	}
 	else {
-		newCollectionOrder();
+		await newCollectionOrder();
+		window.location="../"
 	}
 	form.addClass('was-validated');
 });

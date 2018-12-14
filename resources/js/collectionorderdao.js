@@ -48,12 +48,12 @@ class CollectionOrderDAO
     {
         const data = {
             user_id: null,
-            collection_address: collectionOrder.collectionAddress,
-            delivery_address: collectionOrder.deliveryAddress,
+            collection_address_id: collectionOrder.collectionAddress,
+            delivery_address_id: collectionOrder.deliveryAddress,
             recipientsName: collectionOrder.recipientsName,
             recipientsSurname: collectionOrder.recipientsSurname,
         };
-        const request=new PostRequest(data,'api/collection_order/create/');
+        const request=new PostRequest(data,'api/collection_order/create');
         return await request.execute();
     }
     async getAll()
@@ -120,19 +120,26 @@ async function newCollectionOrder()
 
     let dao=new CollectionAddressDAO();
     const cA=await dao.create(collectionAddress);
+    console.log(cA);
+
+
     dao=new DeliveryAddressDAO();
     const dA=await dao.create(deliveryAddress);
+    console.log(dA);
+
 
     const rName=$("#r_name").val();
     const rSurname=$("#r_surname").val();
 
+
+    console.log("entro");
     const collectionOrder=new CollectionOrder(0,cA.collection_address_id,
         dA.delivery_address_id,rName,rSurname);
-
+    console.log(collectionOrder)
     dao=new CollectionOrderDAO();
     const dO=await dao.create(collectionOrder);
-
-    packages.id=dO.collection_order_id;
+    console.log(dO);
+    packages.order=dO.collection_order_id;
 
     dao=new PackageDAO();
     dao.create(packages);
@@ -159,8 +166,10 @@ async function getDeliveryAddress()
     const dLine2=$("#d_zoom").val();
     const dZip=$("#d_zip").val();
     const dDescription=$("#d_description").val();
-    const latitude=$("#latitude").val();
-    const longitude=$("#longitude").val();
+    let latitude=$("#latitude").val();
+    let longitude=$("#longitude").val();
+    latitude=latitude.substr(0,7);
+    longitude=longitude.substr(0,7);
     if (latitude===""&&longitude==="")
     {
         await findLocation(dLine1,dLine2);
