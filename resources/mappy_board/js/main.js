@@ -1,5 +1,7 @@
 var emptyCollectionOrder;
 var aMark;
+var viewsManager;
+
 $(document).ready(function(){
 	$('.btn-sideBar-SubMenu').on('click', function(){
 		var SubMenu=$(this).next('ul');
@@ -58,11 +60,17 @@ $(document).ready(function(){
 
 	emptyCollectionOrder=new Dialog($('#Dialog-Help'));
 
-	$('.viewSideBar').on('click', changeToMap);
+	viewsManager=new ViewsManager($('.navbar-text'), $('#mapMain'),$('.makeACollectionOrder'),$('.historyOfCollectionOrders'));
 
-	$('.collectionOrderSideBar').on('click', changeToCollectionOrder);
 
-	$('.historySideBar').on('click', changeToHistory);
+	$('.viewSideBar').on('click', function(){viewsManager.changeToMap()});
+
+	$('.collectionOrderSideBar').on('click', function(){viewsManager.changeToCollectionOrder()});
+
+	$('.historySideBar').on('click', function(){viewsManager.changeToHistory()});
+
+	$('.doOne').on('click', function(){viewsManager.changeToCollectionOrder()});
+
 });
 (function($){
 	$('.loading').show();
@@ -87,28 +95,42 @@ $(document).ready(function(){
     });
 })(jQuery);
 
-function changeToMap()
+class ViewsManager
 {
-	$('.navbar-text').text("ÓRDENES DE RECOLECCIÓN");
-	$('.makeACollectionOrder').hide(300);
-	$('.historyOfCollectionOrders').hide(300);
-	$('#mapMain').show(300);
+	constructor(navbar, map, createOrderForm, history)
+	{
+		this.map=map;
+		this.createOrderForm=createOrderForm;
+		this.history=history;
+		this.navbar=navbar;
+	}
+
+	changeToMap()
+	{
+		this.navbar.text("ÓRDENES DE RECOLECCIÓN");
+		this.createOrderForm.hide(300);
+		this.history.hide(300);
+		this.map.show(300);
+	}
+
+	changeToCollectionOrder()
+	{
+		this.navbar.text("CREAR ORDEN DE RECOLECCIÓN");
+		this.map.hide(300);
+		this.history.hide(300);
+		this.createOrderForm.show(300);
+	}
+
+	changeToHistory()
+	{
+		this.navbar.text("ÓRDENES EN CURSO");
+		this.map.hide(300);
+		this.createOrderForm.hide(300);
+		this.history.show(300);
+	}
+
 }
 
-function changeToCollectionOrder()
-{
-	$('.navbar-text').text("CREAR ORDEN DE RECOLECCIÓN");
-	$('#mapMain').hide(300);
-	$('.historyOfCollectionOrders').hide(300);
-	$('.makeACollectionOrder').show(300);
-}
-function changeToHistory()
-{
-	$('.navbar-text').text("ÓRDENES EN CURSO");
-	$('#mapMain').hide(300);
-	$('.makeACollectionOrder').hide(300);
-	$('.historyOfCollectionOrders').show(300);
-}
 
 $(".formCollection").submit(async function()
 {
