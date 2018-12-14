@@ -19,3 +19,24 @@
     padding: 20px;
     margin-top: 10px;
 }
+
+.makeACollectionOrder h4
+{
+    color: #DC8502;
+}
+
+.mapMini
+{
+    width: 400px;
+    height: 400px;
+    margin: 0 auto;
+}
+
+.mapCoords
+{
+    display: none;
+}
+.ordersBefore
+{
+    display: none;
+}

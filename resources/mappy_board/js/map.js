@@ -45,59 +45,33 @@ class Map
             this.map.removeLayer(this.markers[i]);
         }
     }
+
+    setView(coordinates)
+    {
+        this.map.setView([coordinates.latitude, coordinates.longitude], 15);
+    }
 }
 
 
-
+var miniMap=new Map('mapMini', new CoordinatesStrategy());
 var myMap=new Map('mapMain', new CollectionOrderStrategy());
-
-/*var mymap = L.map('mapMain').setView([10.4642, -66.9758], 15);
-
-L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-}).addTo(mymap);
-
-//mymap.on('click', onMapClick);
-
-//map.invalidateSize();
-
-var marker;
+miniMap.map.on('click', onMapClick);
 
 function onMapClick(e) {
-    var latlng = e.latlng;
-    var latitude = latlng.lat;
-    var longitude = latlng.lng;
-
-    console.log("You clicked the map at " + latitude + '   ' + longitude);
-
-    if(marker){
-        mymap.removeLayer(marker);
-    }
-
-    marker = L.marker(e.latlng).addTo(mymap);
-
-    document.querySelector('#lat').value = latitude;
-    document.querySelector('#lng').value = longitude;
+    let latlng = e.latlng;
+    let latitude = latlng.lat;
+    let longitude = latlng.lng;
+    miniMap.clearMarkers();
+    miniMap.addMarker(new Coordinates(latitude, longitude));
+    $('#latitude').val(latitude);
+    $('#longitude').val(longitude);
 }
 
-
-window.onload=function(){
-    
-    var submit = document.getElementById('submit');
-    submit.addEventListener('click', setMarkerWithInput);
+async function prueba()
+{
+ $.get(location.protocol + '//nominatim.openstreetmap.org/search?format=json&q='+"Universidad Católica Andrés Bello", function(data){
+       console.log(data);
+    });
 }
 
-var setMarkerWithInput = function () {
-    var latitude = document.getElementById('lat').value;
-    var longitude = document.getElementById('lng').value;
-
-    if(marker){
-        mymap.removeLayer(marker);
-    }
-
-    if (latitude && longitude){
-        marker = L.marker([latitude, longitude]).addTo(mymap);
-    }
-    else{
-        console.log("Se necesitan los campos Latitud y longitud");
-    }
-};*/
+prueba();

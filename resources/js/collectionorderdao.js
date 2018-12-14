@@ -106,5 +106,74 @@ async function continueDeleteOrder(collectionOrder)
 
 }
 
+async function newCollectionOrder()
+{
+
+    const collectionAddress= getCollectionAddress();
+    const deliveryAddress=await getDeliveryAddress();
+    if(deliveryAddress==null)
+    {
+        return;
+    }
+    const packages=getPackage();
+    $(".loading").show();
+
+    let dao=new CollectionAddressDAO();
+    const cA=await dao.create(collectionAddress);
+    dao=new DeliveryAddressDAO();
+    const dA=await dao.create(deliveryAddress);
+
+    const rName=$("#r_name").val();
+    const rSurname=$("#r_surname").val();
+
+    const collectionOrder=new CollectionOrder(0,cA.collection_address_id,
+        dA.delivery_address_id,rName,rSurname);
+
+    dao=new CollectionOrderDAO();
+    const dO=await dao.create(collectionOrder);
+
+    packages.id=dO.collection_order_id;
+
+    dao=new PackageDAO();
+    dao.create(packages);
+    $(".loading").hide();
+}
 
 
+function getCollectionAddress()
+{
+    const combo=document.getElementById("c_country");
+    const cCountry=combo.options[combo.selectedIndex].text;
+    const cCity=$("#c_city").val();
+    const cLine1=$("#c_general").val();
+    const cLine2=$("#c_zoom").val();
+    const cZip=$("#c_zip").val();
+    return new CollectionAddress(cCountry,cCity,cLine1,cLine2,cZip);
+}
+async function getDeliveryAddress()
+{
+    const combod=document.getElementById("d_country");
+    const dCountry=combod.options[combod.selectedIndex].text;
+    const dCity=$("#d_city").val();
+    const dLine1=$("#d_general").val();
+    const dLine2=$("#d_zoom").val();
+    const dZip=$("#d_zip").val();
+    const dDescription=$("#d_description").val();
+    const latitude=$("#latitude").val();
+    const longitude=$("#longitude").val();
+    if (latitude===""&&longitude==="")
+    {
+        await findLocation(dLine1,dLine2);
+        return null;
+    }
+    const da= new DeliveryAddress(dCountry,dCity,dLine1,dLine2,dZip,dDescription);
+    da.addCoordinates(new Coordinates(latitude,longitude));
+    return da;
+}
+
+function getPackage()
+{
+    const pDescription=$("#p_description").val();
+    const pWeight=$("#p_weight").val();
+    return new Package(pWeight, pDescription,-1);
+}
