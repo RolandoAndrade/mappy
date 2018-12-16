@@ -82,12 +82,14 @@ class InfoOfMarker extends SwalModal
                 order.deliveryAddress.zipCode+" "+
                 order.deliveryAddress.city+", "+order.deliveryAddress.country+"<br>",
                 "info",
-                false,
+                true,
+                "#ff4837",
                 "#DC8502",
-                null,
+                "Borrar",
                 "Ok",
-                null,
-                null
+                async function () {
+                    await deleteOrder(order);
+                }
 
             );
     }
