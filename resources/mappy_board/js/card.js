@@ -4,7 +4,7 @@ class CollectionOrderCard
     {
         const img="\"/static/mappy_board/assets/img/user.png\"";
 
-        $(".noHistory").remove();
+        $(".noHistory").hide();
         $(".collectionHistory").append('<div class="cd-timeline-block">' +
             '<div class="cd-timeline-img">\n' +
             '<img src='+img+' alt="user-picture">' +
@@ -30,7 +30,7 @@ class CollectionOrderCard
         
             $("#deleteOrderInfo"+collectionOrder.id).on("click",async function ()
             {
-                console.log(await collectionOrder.delete());
+                await deleteOrder(collectionOrder);
             })
     }
 
@@ -80,8 +80,9 @@ class CollectionOrderCard
             '.<br>'+ order.deliveryAddress.zipCode+" "+order.deliveryAddress.city+
             ', '+order.deliveryAddress.country;
     }
-    clear()
+    static clear()
     {
-        $(".collectionHistory").clean();
+        $(".collectionHistory").empty();
+        $(".noHistory").show();
     }
 }
