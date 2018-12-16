@@ -1,0 +1,176 @@
+body {
+    background: #f2f2f2;
+    font-size: 16;
+    font-family: 'Open Sans', sans-serif;
+}
+
+/*Barra lateral*/
+.sidebar {
+    background: #424242;
+    color: #fff;
+    min-width: 300px;
+    min-height: 100vh;
+    padding: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+}
+
+.sidebar a {
+    color: #fff;
+}
+
+/*Logo - Barralateral*/
+
+.sidebar .logo {
+    background: #212121;
+    margin-bottom: 1px;
+}
+
+.sidebar .logo h2 {
+    font-size: 30px;
+    font-family: 'Roboto', sans-serif;
+    padding: 20px 0;
+    text-align: center;
+    font-weight: 300;
+    margin: 0;
+}
+
+/*Barralateral - Menu*/
+
+.sidebar .menu a {
+    display: block;
+    padding: 20px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    border-bottom: 1px solid rgba(255, 255, 255, .1)
+}
+
+.sidebar .menu a:hover {
+    background: #FF9800;
+    text-decoration: none;
+}
+
+.sidebar .menu a:active {
+    background: #F57C00;
+}
+
+.sidebar .menu a i {
+    margin-right: 20px;
+    font-weight: normal;
+}
+
+/*Main - Form*/
+
+.main {
+    padding-top: 40px;
+    margin-left: 300px;
+}
+
+.main .columna {
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.main .tittle {
+    color: #262A34;
+    font-size: 25px;
+    font-weight: 500;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 20px;
+}
+
+.main .widget form input[type="text"],
+.main .widget form textarea{
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    font-family: 'Open Sans', sans-serif;
+    border: none;
+    box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.2);
+}
+
+.main .widget form input[type="text"]{
+    font-weight: 400;
+}
+
+.main .widget form textarea{
+    height: 150px;
+    min-height: 100px;
+    max-width: 100%;
+    min-width: 100%;
+}
+
+.main .widget form button {
+    background: #0275D8;
+    cursor: pointer;
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    border: none;
+    display: inline-block;
+    padding: 10px;
+    width: 200px;
+    border-radius: 3px;
+    transition: all .3s ease;
+    margin-bottom: 20px;
+}
+
+.main .widget form button:hover{
+    background: #025AA5;
+}
+
+.main .widget .mapa{
+    height: 500px;
+    margin: 0 auto;
+    border: none;
+    box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.2);
+    margin-bottom: 20px;
+}
+
+/*Mediaqueries - Menu*/
+
+@media screen and (max-width: 900px){
+    .sidebar {
+        min-width: auto;
+    }
+
+    .sidebar .logo {
+        display: none;
+    }
+
+    .sidebar .menu a span {
+        display: none;
+    }
+
+    .sidebar .menu a i {
+        margin: 0;
+    }
+
+    .main {
+        margin-left: 60px;
+    }
+}
+
+@media screen and (max-width: 575px){
+    .sidebar {
+        min-height: auto;
+
+    }
+
+    .sidebar menu a {
+        display: inline-block;
+        border-bottom: none;
+    }
+
+    .main .widget form button {
+        width: 100%;
+    }
+
+    .main {
+        padding-top: 100px;
+        margin-left: 0px;
+    }
+}
