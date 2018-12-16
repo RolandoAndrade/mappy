@@ -7,7 +7,6 @@ class CollectionOrderStrategy
         {
             new InfoOfMarker(data).show();
         });
-        return marker;
     }
 
 }
@@ -16,8 +15,7 @@ class CoordinatesStrategy
 {
     addMarker(data, map)
     {
-        let marker = L.marker([data.latitude, data.longitude]).addTo(map)
-        return marker;
+        let marker = L.marker([data.latitude, data.longitude]).addTo(map);
     }
 
 }
@@ -28,22 +26,13 @@ class Map
     {
         this.map = L.map(container).setView([10.4642, -66.9758], 15);
         this.strategy=strategy;
-        this.markers = [];
         L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 }).addTo(this.map);
     }
 
     addMarker(data)
     {
-        this.markers.push(this.strategy.addMarker(data,this.map));
-    }
-
-    clearMarkers()
-    {
-        for (let i=0;i<this.markers.length;i++)
-        {
-            this.map.removeLayer(this.markers[i]);
-        }
+        this.strategy.addMarker(data,this.map);
     }
 
     setView(coordinates)

@@ -69,7 +69,7 @@ class OrderManager
         return this.myOrders.length>0;
     }
 
-    showCollectionOrders()
+    addMarkersToMap()
     {
         for(let i=0;i<this.myOrders.length;i++)
         {
@@ -77,36 +77,14 @@ class OrderManager
             myMap.addMarker(this.myOrders[i]);
         }
     }
-
-    delete(order)
-    {
-
-        for(let i=0;i<this.myOrders.length;i++)
-        {
-
-            if(this.myOrders[i].id==order.id)
-            {
-                this.myOrders.splice(i, 1);
-                break;
-            }
-        }
-        this.reset();
-    }
-
-    reset()
-    {
-        myMap.clearMarkers();
-        CollectionOrderCard.clear()
-        this.showCollectionOrders();
-    }
 }
 
-const orderManager=new OrderManager();
 
 async function getAllCollectionOrders()
 {
     const dao = new CollectionOrderDAO();
     const collectionOrders=await dao.getAll();
+    const orderManager=new OrderManager();
     for(let i=0;i<collectionOrders.length;i++)
     {
         orderManager.addOrder(collectionOrders[i]);
@@ -115,5 +93,5 @@ async function getAllCollectionOrders()
     {
         emptyCollectionOrder.show();
     }
-    orderManager.showCollectionOrders();
+    orderManager.addMarkersToMap();
 }
