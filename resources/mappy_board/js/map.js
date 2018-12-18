@@ -58,12 +58,6 @@ var myMap=new Map('mapMain', new CollectionOrderStrategy());
 miniMap.map.on('click', onMapClick);
 myMap.map.on('dblclick',doubleClick)
 
-function doubleClick(e)
-{
-    console.log("entro vale");
-
-}
-
 function onMapClick(e) {
     let latlng = e.latlng;
     let latitude = latlng.lat;
