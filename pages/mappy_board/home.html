@@ -805,11 +805,15 @@
 
 		</div>
 	</section>
+
+
+
 	<div class="modal-screen">
-	<div class="modal-card">
+		<div class="modal-card">
 		<div class="close-modal">
 			<span aria-hidden="true"><b>×</b></span>
 		</div>
+
 		<div class="form-container">
 			<div class="title-section">
 				Dirección de recolección<br>
@@ -817,14 +821,16 @@
 			</div>
 			<div class="label-modal">Escoger ya existente</div>
 			<select class="combo-box" name="" id="">
-				<option value="">Colinas de Santa Mónica</option>
+				<option value="">Universidad Católica Andrés Bello</option>
 				<option value="">B</option>
 				<option value="">C</option>
 				<option value="">D</option>
 				<option value="">E</option>
 			</select>
-			<div class="label-modal">País</div>
-			<select class="combo-box" id="modal_c_country">
+			<div class="label-modal">Crear nueva</div>
+			<div class="expandible a">
+				<div class="label-modal">País</div>
+				<select class="combo-box" id="modal_c_country">
 				<option value="AF">Afghanistan</option>
 				<option value="AL">Albania</option>
 				<option value="DZ">Algeria</option>
@@ -1057,7 +1063,12 @@
 				<option value="ZM">Zambia</option>
 				<option value="ZW">Zimbabwe</option>
 </select>
-			<div class="label-modal">Ciudad</div><input class="boxes"type="text"><div class="label-modal">Dirección general</div><input class="boxes" type="text"><div class="label-modal">Dirección específica</div><input class="boxes" type="text"><div class="label-modal">Código postal</div><input class="boxes" type="text" maxlength="10">
+				<div class="label-modal">Ciudad</div><input class="boxes"type="text"><div class="label-modal">Dirección general</div>
+				<input class="boxes" type="text"><div class="label-modal">Dirección específica</div>
+				<input class="boxes" type="text"><div class="label-modal">Código postal</div>
+				<input class="boxes" type="text" maxlength="10">
+			</div>
+			<div class="more-modal a" onclick="newForm('a')">+</div>
 		</div>
 		<div class="form-container">
 			<div class="title-section">
@@ -1072,8 +1083,11 @@
 				<option value="">D</option>
 				<option value="">E</option>
 			</select>
-			<div class="label-modal">País</div>
-			<select class="combo-box" id="modal_d_country">
+			<div class="label-modal">Crear nueva</div>
+			<div class="expandible b">
+
+				<div class="label-modal">País</div>
+				<select class="combo-box" id="modal_d_country">
 				<option value="AF">Afghanistan</option>
 				<option value="AL">Albania</option>
 				<option value="DZ">Algeria</option>
@@ -1306,7 +1320,15 @@
 				<option value="ZM">Zambia</option>
 				<option value="ZW">Zimbabwe</option>
 </select>
-			<div class="label-modal">Ciudad</div><input class="boxes"type="text"><div class="label-modal">Dirección general</div><input class="boxes" type="text"><div class="label-modal">Dirección específica</div><input class="boxes" type="text"><div class="label-modal">Código postal</div><input class="boxes" type="text" maxlength="10"><div class="label-modal">Descripción del lugar</div><input class="boxes" type="text" maxlength="10">
+				<div class="label-modal">Ciudad</div>
+				<input class="boxes"type="text"><div class="label-modal">Dirección general</div>
+				<input class="boxes" type="text"><div class="label-modal">Dirección específica</div>
+				<input class="boxes" type="text"><div class="label-modal">Código postal</div>
+				<input class="boxes" type="text" maxlength="10"><div class="label-modal">Descripción del lugar</div>
+				<input class="boxes" type="text" maxlength="10">
+
+			</div>
+			<div class="more-modal b" onclick="newForm('b')">+</div>
 		</div>
 		<div class="form-container-package">
 			<div class="title-section">
@@ -1321,17 +1343,23 @@
 			<input class="boxes" type="text">
 			<div class="label-modal">Apellido del destinatario</div>
 			<input class="boxes" type="text">
+			<div class="more-modal">+</div>
 		</div>
+			<button type="button" class=" btn btn-primary btn-raised">
+										Enviar
+			</button>
 	</div>
 	</div>
+
+
 	<script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
 	<script src="{% static 'mappy_board/js/jquery-3.1.1.min.js' %}"></script>
 	<script src="{% static 'mappy_board/js/sweetalert2.min.js' %}"></script>
 	<script src="{% static 'mappy_board/js/bootstrap.min.js' %}"></script>
 	<script src="{% static 'mappy_board/js/jquery.mCustomScrollbar.concat.min.js' %}"></script>
 	<script src="{% static 'mappy_board/js/main.js' %}"></script>
-	<script src="{% static 'mappy_board/js/map.js' %}"></script>
 	<script src="{% static 'js/modal.js' %}"></script>
+	<script src="{% static 'mappy_board/js/map.js' %}"></script>
 	<script src="{% static 'js/requests.js' %}"></script>
 	<script src="{% static 'js/userdao.js' %}"></script>
 	<script src="{% static 'js/packagedao.js' %}"></script>

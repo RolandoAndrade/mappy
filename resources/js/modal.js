@@ -11,3 +11,14 @@ $(".modal-screen").click(function (event)
     $(".modal-screen").hide(100);
    }
 });
+
+$(".close-modal").click(function () {
+    $(".modal-card").hide(100);
+    $(".modal-screen").hide(100);
+});
+
+function newForm(form)
+{
+    $('.expandible.'+form).show(300);
+    $('.more-modal.'+form).hide(300);
+}
