@@ -1,7 +1,7 @@
 function doubleClick(e)
 {
-    $(".modal-screen").show();
-    $(".modal-card").show();
+    $(".modal-screen").fadeIn(300);
+    $(".modal-card").fadeIn(300);
     $('.expandible.a').hide();
     $('.more-modal.a i').removeClass("zmdi-plus");
     $('.more-modal.a i').removeClass("zmdi-minus");
@@ -11,15 +11,17 @@ $(".modal-screen").click(function (event)
 {
    if(!$(event.target).closest(".modal-card").length && !$(event.target).is(".modal-card"))
    {
-     $(".modal-card").hide(100);
-    $(".modal-screen").hide(100);
+       exitModal()
    }
 });
 
-$(".close-modal").click(function () {
-    $(".modal-card").hide(100);
-    $(".modal-screen").hide(100);
-});
+function exitModal()
+{
+    $(".modal-card").fadeOut(300);
+    $(".modal-screen").fadeOut(300);
+}
+
+$(".close-modal").click(exitModal);
 
 function newForm(form)
 {
