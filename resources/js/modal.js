@@ -1,7 +1,11 @@
 function doubleClick(e)
 {
-    $(".modal-screen").show(100);
-    $(".modal-card").show(100);
+    $(".modal-screen").show();
+    $(".modal-card").show();
+    $('.expandible.a').hide();
+    $('.more-modal.a i').removeClass("zmdi-plus");
+    $('.more-modal.a i').removeClass("zmdi-minus");
+    $('.more-modal.a i').addClass("zmdi-plus");
 }
 $(".modal-screen").click(function (event)
 {
@@ -19,6 +23,23 @@ $(".close-modal").click(function () {
 
 function newForm(form)
 {
-    $('.expandible.'+form).show(300);
-    $('.more-modal.'+form).hide(300);
+    if(!$('.expandible.'+form).is(":visible"))
+    {
+        $('.expandible.'+form).show(300);
+        $('.more-modal.'+form+" i").removeClass("zmdi-plus");
+        $('.more-modal.'+form+ " i").addClass("zmdi-minus");
+    }
+    else
+    {
+        $('.expandible.'+form).hide(300);
+        $('.more-modal.'+form+" i").removeClass("zmdi-minus");
+        $('.more-modal.'+form+ " i").addClass("zmdi-plus");
+    }
+
+}
+
+function hideForm(form)
+{
+    $('.expandible.'+form).hide(300);
+    $('.more-modal.'+form).show();
 }

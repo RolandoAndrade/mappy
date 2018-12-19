@@ -117,3 +117,39 @@ async function getAllCollectionOrders()
     }
     orderManager.showCollectionOrders();
 }
+
+const collectionAddresses=[];
+async function getAllCollectionAddresses()
+{
+    const dao=new CollectionAddressDAO();
+    const response=await dao.getAll();
+    const addresses=response[0].collection_address;
+    for(let i=0;i<addresses.length;i++)
+    {
+        let t=addresses[i];
+        let collectionAddress=new CollectionAddress(t.country,t.city,t.line1,t.line2, t.zipCode);
+        if(!isRepeatedCollectionAddress(collectionAddress))
+        {
+            putInSelect(collectionAddress);
+            collectionAddresses.push(collectionAddress);
+        }
+    }
+}
+
+function isRepeatedCollectionAddress(collectionAddress)
+{
+    for(let i=0;i<collectionAddresses.length;i++)
+    {
+        let address=collectionAddresses[i];
+        if(address.equals(collectionAddress))
+            return true;
+    }
+    return false;
+}
+
+function putInSelect(collectionAddress)
+{
+    $("#select-modal-c").append(
+        "<option value='"+collectionAddresses.length+"'>"+
+        collectionAddress.line1+"</option>");
+}

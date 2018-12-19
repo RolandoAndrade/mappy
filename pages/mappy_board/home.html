@@ -820,14 +820,10 @@
 				<i class="zmdi zmdi-map"></i>
 			</div>
 			<div class="label-modal">Escoger ya existente</div>
-			<select class="combo-box" name="" id="">
-				<option value="">Universidad Católica Andrés Bello</option>
-				<option value="">B</option>
-				<option value="">C</option>
-				<option value="">D</option>
-				<option value="">E</option>
+			<select class="combo-box" name="" id="select-modal-c">
+				<option value="null">Selecciona una dirección</option>
 			</select>
-			<div class="label-modal">Crear nueva</div>
+			<div class="label-modal">O crear una nueva</div>
 			<div class="expandible a">
 				<div class="label-modal">País</div>
 				<select class="combo-box" id="modal_c_country">
@@ -1063,28 +1059,24 @@
 				<option value="ZM">Zambia</option>
 				<option value="ZW">Zimbabwe</option>
 </select>
-				<div class="label-modal">Ciudad</div><input class="boxes"type="text"><div class="label-modal">Dirección general</div>
-				<input class="boxes" type="text"><div class="label-modal">Dirección específica</div>
-				<input class="boxes" type="text"><div class="label-modal">Código postal</div>
-				<input class="boxes" type="text" maxlength="10">
+				<div class="label-modal">Ciudad</div>
+				<input class="boxes" type="text" maxlength="35">
+				<div class="label-modal">Dirección general</div>
+				<input class="boxes" type="text" maxlength="35">
+				<div class="label-modal">Dirección específica</div>
+				<input class="boxes" type="text" maxlength="35">
+				<div class="label-modal">Código postal</div>
+				<input class="boxes" type="text" maxlength="35">
 			</div>
-			<div class="more-modal a" onclick="newForm('a')">+</div>
+			<div class="more-modal a" onclick="newForm('a')"><i class="zmdi zmdi-plus"></i></div>
 		</div>
 		<div class="form-container">
 			<div class="title-section">
 				Dirección de envío<br>
 				<i class="zmdi zmdi-pin"></i>
 			</div>
-			<div class="label-modal">Escoger ya existente</div>
-			<select class="combo-box" name="" id="">
-				<option value="">Universidad Católica Andrés Bello</option>
-				<option value="">B</option>
-				<option value="">C</option>
-				<option value="">D</option>
-				<option value="">E</option>
-			</select>
-			<div class="label-modal">Crear nueva</div>
-			<div class="expandible b">
+			<div class="label-modal">Crear una nueva</div>
+			<div class="expand b">
 
 				<div class="label-modal">País</div>
 				<select class="combo-box" id="modal_d_country">
@@ -1321,14 +1313,15 @@
 				<option value="ZW">Zimbabwe</option>
 </select>
 				<div class="label-modal">Ciudad</div>
-				<input class="boxes"type="text"><div class="label-modal">Dirección general</div>
-				<input class="boxes" type="text"><div class="label-modal">Dirección específica</div>
-				<input class="boxes" type="text"><div class="label-modal">Código postal</div>
-				<input class="boxes" type="text" maxlength="10"><div class="label-modal">Descripción del lugar</div>
-				<input class="boxes" type="text" maxlength="10">
-
+				<input class="boxes" type="text" maxlength="35">
+				<div class="label-modal">Dirección general</div>
+				<input class="boxes" type="text" maxlength="35">
+				<div class="label-modal">Dirección específica</div>
+				<input class="boxes" type="text" maxlength="35">
+				<div class="label-modal">Código postal</div>
+				<input class="boxes" type="text" maxlength="35"><div class="label-modal">Descripción del lugar</div>
+				<input class="boxes" type="text" maxlength="150">
 			</div>
-			<div class="more-modal b" onclick="newForm('b')">+</div>
 		</div>
 		<div class="form-container-package">
 			<div class="title-section">
@@ -1343,7 +1336,7 @@
 			<input class="boxes" type="text">
 			<div class="label-modal">Apellido del destinatario</div>
 			<input class="boxes" type="text">
-			<div class="more-modal">+</div>
+			<div class="more-modal"><i class="zmdi zmdi-plus"></i></div>
 		</div>
 			<button type="button" class=" btn btn-primary btn-raised">
 										Enviar

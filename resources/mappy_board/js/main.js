@@ -89,6 +89,7 @@ $(document).ready(function(){
         });
 
         await setEmail();
+		await getAllCollectionAddresses();
 		await getAllCollectionOrders();
 		$('.loading').hide();
 
