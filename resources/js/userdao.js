@@ -54,7 +54,10 @@ class UserDAO
     async getUser()
     {
         const request=new GetRequest('api/users/get/me');
-        return await request.execute();
+        const response = await request.execute();
+        if(response.image!=null)
+            response.image=response.image.substr(response.image.lastIndexOf("/"),response.image.length);
+        return response;
     }
     delete(user)
     {

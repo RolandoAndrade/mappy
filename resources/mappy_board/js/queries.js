@@ -3,6 +3,11 @@ async function setEmail()
     const dao=new UserDAO();
     const user = await dao.getUser();
     $('.email-me').text(user.email);
+    if(user.image!=null)
+    {
+        $('#user-image').attr("src","/static/accounts/images"+user.image);
+    }
+
 }
 
 class ParserFromJsonToObject
