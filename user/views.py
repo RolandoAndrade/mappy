@@ -1,6 +1,5 @@
 from rest_framework import generics
 from rest_framework.request import Request
-
 from . import models
 from . import serializers
 from rest_framework.response import Response
@@ -13,7 +12,7 @@ class UserListView(generics.ListCreateAPIView):
 
 class DisableUser(generics.UpdateAPIView):
     queryset = models.User.objects.all()
-    serializer_class = serializers.DisableSerializer
+    serializer_class = serializers.UserDataSerializer
 
     def update(self, request, *args, **kwargs):
         instance = self.get_object()
@@ -28,7 +27,7 @@ class DisableUser(generics.UpdateAPIView):
 
 class EnableUser(generics.UpdateAPIView):
     queryset = models.User.objects.all()
-    serializer_class = serializers.DisableSerializer
+    serializer_class = serializers.UserDataSerializer
 
     def update(self, request, *args, **kwargs):
         instance = self.get_object()
@@ -51,7 +50,7 @@ class RetrieveCollectionAddresses(generics.ListAPIView):
 
 class RetrieveAUser(generics.RetrieveAPIView):
     queryset = models.User.objects.all()
-    serializer_class = serializers.DisableSerializer
+    serializer_class = serializers.UserDataSerializer
 
     def get(self, request, *args, **kwargs):
         if kwargs.get('pk') == 'me':
@@ -59,3 +58,6 @@ class RetrieveAUser(generics.RetrieveAPIView):
         return Response("Error")
 
 
+class ProfileView(generics.UpdateAPIView):
+    serializer_class = serializers.ProfileSerializer
+    queryset = models.User.objects.all()

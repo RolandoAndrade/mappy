@@ -56,6 +56,7 @@ class Map
 var miniMap=new Map('mapMini', new CoordinatesStrategy());
 var myMap=new Map('mapMain', new CollectionOrderStrategy());
 miniMap.map.on('click', onMapClick);
+myMap.map.on('click',doubleClick)
 
 function onMapClick(e) {
     let latlng = e.latlng;

@@ -8,6 +8,13 @@ class CollectionAddress
 		this.line2=line2;
 		this.zipCode=zipCode;
 	}
+
+	equals(collectionAddress)
+    {
+        return this.country===collectionAddress.country &&
+        this.city===collectionAddress.city&&this.line1===collectionAddress.line1&&
+        this.line2===collectionAddress.line2&&this.zipCode===collectionAddress.zipCode;
+    }
 }
 
 
@@ -34,5 +41,10 @@ class CollectionAddressDAO
     constructor() 
     {
 
+    }
+    async getAll()
+    {
+        const request=new GetRequest('api/collection_address/getAll');
+        return await request.execute();
     }
 }
