@@ -820,7 +820,7 @@
 				<i class="zmdi zmdi-map"></i>
 			</div>
 			<div class="label-modal">Escoger ya existente</div>
-			<select class="combo-box" name="" id="select-modal-c">
+			<select class="combo-box" name="" id="select-modal-c" onchange="fillBoxes()">
 				<option value="null">Selecciona una dirección</option>
 			</select>
 			<div class="label-modal">O crear una nueva</div>
@@ -1060,13 +1060,13 @@
 				<option value="ZW">Zimbabwe</option>
 </select>
 				<div class="label-modal">Ciudad</div>
-				<input class="boxes" type="text" maxlength="35">
+				<input class="boxes" type="text" maxlength="35" id="modal_c_city">
 				<div class="label-modal">Dirección general</div>
-				<input class="boxes" type="text" maxlength="35">
+				<input class="boxes" type="text" maxlength="35" id="modal_c_line1">
 				<div class="label-modal">Dirección específica</div>
-				<input class="boxes" type="text" maxlength="35">
+				<input class="boxes" type="text" maxlength="35" id="modal_c_line2">
 				<div class="label-modal">Código postal</div>
-				<input class="boxes" type="text" maxlength="35">
+				<input class="boxes" type="text" maxlength="35" id="modal_c_zipCode">
 			</div>
 			<div class="more-modal a" onclick="newForm('a')"><i class="zmdi zmdi-plus"></i></div>
 		</div>

@@ -153,3 +153,23 @@ function putInSelect(collectionAddress)
         "<option value='"+collectionAddresses.length+"'>"+
         collectionAddress.line1+"</option>");
 }
+
+function fillBoxes()
+{
+    let index= $("#select-modal-c").val();
+    if(index!="null")
+    {
+        $("#modal_c_city").val(collectionAddresses[index].city);
+        $("#modal_c_line1").val(collectionAddresses[index].line1);
+        $("#modal_c_line2").val(collectionAddresses[index].line2);
+        $("#modal_c_zipCode").val(collectionAddresses[index].zipCode);
+    }
+    else
+    {
+        $("#modal_c_city").val("");
+        $("#modal_c_line1").val("");
+        $("#modal_c_line2").val("");
+        $("#modal_c_zipCode").val("");
+    }
+
+}

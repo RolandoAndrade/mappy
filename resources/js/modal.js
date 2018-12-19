@@ -38,8 +38,3 @@ function newForm(form)
 
 }
 
-function hideForm(form)
-{
-    $('.expandible.'+form).hide(300);
-    $('.more-modal.'+form).show();
-}
