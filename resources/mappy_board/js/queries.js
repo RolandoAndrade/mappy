@@ -182,7 +182,7 @@ async function getAllDeliveryAddresses()
 function putInSelectDelivery(deliveryAddress)
 {
     $("#select-modal-d").append(
-        "<option value='"+deliveryAddress.length+"'>"+
+        "<option value='"+deliveryAddresses.length+"'>"+
         deliveryAddress.line1+"</option>");
 }
 
@@ -209,20 +209,22 @@ function fillCollectionAddressesBoxes()
 }
 function fillDeliveryAddressesBoxes()
 {
-    let index= $("#select-modal-c").val();
+    let index= $("#select-modal-d").val();
     if(index!="null")
     {
-        $("#modal_c_city").val(collectionAddresses[index].city);
-        $("#modal_c_line1").val(collectionAddresses[index].line1);
-        $("#modal_c_line2").val(collectionAddresses[index].line2);
-        $("#modal_c_zipCode").val(collectionAddresses[index].zipCode);
+        $("#modal_d_city").val(deliveryAddresses[index].city);
+        $("#modal_d_line1").val(deliveryAddresses[index].line1);
+        $("#modal_d_line2").val(deliveryAddresses[index].line2);
+        $("#modal_d_zipCode").val(deliveryAddresses[index].zipCode);
+        $("#modal_d_description").val(deliveryAddresses[index].description);
     }
     else
     {
-        $("#modal_c_city").val("");
-        $("#modal_c_line1").val("");
-        $("#modal_c_line2").val("");
-        $("#modal_c_zipCode").val("");
+        $("#modal_d_city").val("");
+        $("#modal_d_line1").val("");
+        $("#modal_d_line2").val("");
+        $("#modal_d_zipCode").val("");
+        $("#modal_d_description").val("");
     }
 
 }
