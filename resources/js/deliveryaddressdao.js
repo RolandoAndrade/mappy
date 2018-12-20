@@ -45,6 +45,12 @@ class DeliveryAddressDAO
     findById(id)
     {
     }
+
+    async getAll()
+    {
+        const request=new GetRequest('api/delivery_address/getAll');
+        return await request.execute();
+    }
     constructor()
     {
 

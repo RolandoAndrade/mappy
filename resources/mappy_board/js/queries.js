@@ -14,14 +14,14 @@ class ParserFromJsonToObject
 {
     parseCollectionAddress(json)
     {
-        const field=json.collection_address_id;
+        const field=json.collection_address_id||json.collection_address;
         return new CollectionAddress(field.country, field.city,
             field.line1, field.line2, field.zipCode);
     }
 
     parseDeliveryAddress(json)
     {
-        const field=json.delivery_address_id;
+        const field=json.delivery_address_id||json.delivery_address;
         const deliveryAddress=new DeliveryAddress(field.country, field.city, field.line1,
                 field.line2, field.zipCode, field.description);
         deliveryAddress.addCoordinates(new Coordinates(json.delivery_address_id.latitude,
@@ -132,8 +132,9 @@ async function getAllCollectionAddresses()
     for(let i=0;i<addresses.length;i++)
     {
         let t=addresses[i];
-        let collectionAddress=new CollectionAddress(t.country,t.city,t.line1,t.line2, t.zipCode);
-        if(!isRepeatedCollectionAddress(collectionAddress))
+        let collectionAddress=new CollectionAddress(t.country,t.city,t.line1,
+            t.line2,t.zipCode);
+        if(!isRepeatedAddress(collectionAddress,collectionAddresses))
         {
             putInSelect(collectionAddress);
             collectionAddresses.push(collectionAddress);
@@ -141,12 +142,11 @@ async function getAllCollectionAddresses()
     }
 }
 
-function isRepeatedCollectionAddress(collectionAddress)
+function isRepeatedAddress(address, arr)
 {
-    for(let i=0;i<collectionAddresses.length;i++)
+    for(let i=0;i<arr.length;i++)
     {
-        let address=collectionAddresses[i];
-        if(address.equals(collectionAddress))
+        if(address.equals(arr[i]))
             return true;
     }
     return false;
@@ -159,7 +159,55 @@ function putInSelect(collectionAddress)
         collectionAddress.line1+"</option>");
 }
 
-function fillBoxes()
+const deliveryAddresses=[];
+
+async function getAllDeliveryAddresses()
+{
+    const dao=new DeliveryAddressDAO();
+    const response=await dao.getAll();
+    const addresses=response[0].delivery_address;
+    for(let i=0;i<addresses.length;i++)
+    {
+        let t=addresses[i];
+        let deliveryAddress=new DeliveryAddress(t.country,t.city,t.line1,t.line2,t.zipCode,t.description);
+        if(!isRepeatedAddress(deliveryAddress,deliveryAddresses))
+        {
+            putInSelectDelivery(deliveryAddress);
+            deliveryAddresses.push(deliveryAddress);
+        }
+    }
+}
+
+
+function putInSelectDelivery(deliveryAddress)
+{
+    $("#select-modal-d").append(
+        "<option value='"+deliveryAddress.length+"'>"+
+        deliveryAddress.line1+"</option>");
+}
+
+
+
+function fillCollectionAddressesBoxes()
+{
+    let index= $("#select-modal-c").val();
+    if(index!="null")
+    {
+        $("#modal_c_city").val(collectionAddresses[index].city);
+        $("#modal_c_line1").val(collectionAddresses[index].line1);
+        $("#modal_c_line2").val(collectionAddresses[index].line2);
+        $("#modal_c_zipCode").val(collectionAddresses[index].zipCode);
+    }
+    else
+    {
+        $("#modal_c_city").val("");
+        $("#modal_c_line1").val("");
+        $("#modal_c_line2").val("");
+        $("#modal_c_zipCode").val("");
+    }
+
+}
+function fillDeliveryAddressesBoxes()
 {
     let index= $("#select-modal-c").val();
     if(index!="null")

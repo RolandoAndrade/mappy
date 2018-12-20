@@ -821,7 +821,7 @@
 				<i class="zmdi zmdi-map"></i>
 			</div>
 			<div class="label-modal">Escoger ya existente</div>
-			<select class="combo-box" name="" id="select-modal-c" onchange="fillBoxes()">
+			<select class="combo-box" name="" id="select-modal-c" onchange="fillCollectionAddressesBoxes()">
 				<option value="null">Selecciona una dirección</option>
 			</select>
 			<div class="label-modal">O crear una nueva</div>
@@ -1076,8 +1076,12 @@
 				Dirección de envío<br>
 				<i class="zmdi zmdi-pin"></i>
 			</div>
-			<div class="label-modal">Crear una nueva</div>
-			<div class="expand b">
+			<div class="label-modal">Escoger ya existente</div>
+			<select class="combo-box" name="" id="select-modal-d" onchange="fillCollectionAddressesBoxes()">
+				<option value="null">Selecciona una dirección</option>
+			</select>
+			<div class="label-modal">O crear una nueva</div>
+			<div class="expandible b">
 
 				<div class="label-modal">País</div>
 				<select class="combo-box" id="modal_d_country">
@@ -1323,6 +1327,7 @@
 				<input class="boxes" type="text" maxlength="35"><div class="label-modal">Descripción del lugar</div>
 				<input class="boxes" type="text" maxlength="150">
 			</div>
+			<div class="more-modal a" onclick="newForm('b')"><i class="zmdi zmdi-plus"></i></div>
 		</div>
 		<div class="form-container-package">
 			<div class="title-section">

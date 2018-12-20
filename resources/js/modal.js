@@ -6,6 +6,9 @@ function doubleClick(e)
     $('.more-modal.a i').removeClass("zmdi-plus");
     $('.more-modal.a i').removeClass("zmdi-minus");
     $('.more-modal.a i').addClass("zmdi-plus");
+    $('.more-modal.b i').removeClass("zmdi-plus");
+    $('.more-modal.b i').removeClass("zmdi-minus");
+    $('.more-modal.b i').addClass("zmdi-plus");
 }
 $(".modal-screen").click(function (event)
 {
