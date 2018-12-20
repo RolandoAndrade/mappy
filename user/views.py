@@ -48,6 +48,14 @@ class RetrieveCollectionAddresses(generics.ListAPIView):
         return models.User.objects.filter(user_id = user.user_id)
 
 
+class RetrieveDeliveryAddresses(generics.ListAPIView):
+    serializer_class = serializers.DeliveryAddressesOfUserSerializer
+
+    def get_queryset(self):
+        user = self.request.user
+        return models.User.objects.filter(user_id = user.user_id)
+
+
 class RetrieveAUser(generics.RetrieveAPIView):
     queryset = models.User.objects.all()
     serializer_class = serializers.UserDataSerializer

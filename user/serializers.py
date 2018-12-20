@@ -1,6 +1,7 @@
 from rest_framework.serializers import ModelSerializer
 from .models import User
 from collection_address.serializers import CollectionAddressSerializer
+from delivery_address.serializers import DeliveryAddressSerializer
 
 
 class UserSerializer(ModelSerializer):
@@ -32,6 +33,14 @@ class CollectionAddressesOfUserSerializer(ModelSerializer):
     class Meta:
         model = User
         fields = ('email', 'collection_address',)
+
+
+class DeliveryAddressesOfUserSerializer(ModelSerializer):
+    delivery_address = DeliveryAddressSerializer(many = True, read_only = True)
+
+    class Meta:
+        model = User
+        fields = ('email', 'delivery_address',)
 
 
 class ProfileSerializer(ModelSerializer):
