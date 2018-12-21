@@ -15,17 +15,33 @@ class ParserFromJsonToObject
     parseCollectionAddress(json)
     {
         const field=json.collection_address_id||json.collection_address;
-        return new CollectionAddress(field.country, field.city,
+        try {
+            return new CollectionAddress(field.country, field.city,
             field.line1, field.line2, field.zipCode);
+        }
+        catch (e)
+        {
+            return new CollectionAddress("","","","","");
+        }
+
     }
 
     parseDeliveryAddress(json)
     {
         const field=json.delivery_address_id||json.delivery_address;
-        const deliveryAddress=new DeliveryAddress(field.country, field.city, field.line1,
+        let deliveryAddress;
+        try {
+            deliveryAddress=new DeliveryAddress(field.country, field.city, field.line1,
                 field.line2, field.zipCode, field.description);
         deliveryAddress.addCoordinates(new Coordinates(json.delivery_address_id.latitude,
             json.delivery_address_id.longitude));
+        }
+        catch
+        {
+            deliveryAddress=new DeliveryAddress("","","","","","");
+        }
+
+
         return deliveryAddress;
     }
 

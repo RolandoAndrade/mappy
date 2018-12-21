@@ -5,6 +5,7 @@ function doubleClick(e)
     $(".modal-screen").fadeIn(300);
     $(".modal-card").fadeIn(300);
     $('.expandible.a').hide();
+    $('.expandible.b').hide();
     $('.more-modal.a i').removeClass("zmdi-plus");
     $('.more-modal.a i').removeClass("zmdi-minus");
     $('.more-modal.a i').addClass("zmdi-plus");
@@ -60,6 +61,7 @@ async function sendModal()
     const recipientsSurname=$("#modal_p_surname").val();
     if(collectionAddress&&deliveryAddress&&packageSave)
     {
+        $(".loading").show();
         deliveryAddress.addCoordinates(coords);
 
         let dao=new DeliveryAddressDAO();
@@ -82,7 +84,22 @@ async function sendModal()
         packageSave.order=co.collection_order_id;
         const pa=await dao.create(packageSave);
         console.log(pa);
-
+        $(".loading").hide();
+    }
+    else
+    {
+        const s=new SwalModal(
+			"Error",
+			"Debes completar algunos campos para continuar",
+			"error",
+			false,
+			"#DC8502",
+			null,
+			"Ok",
+			null,
+			null
+		);
+		s.show();
     }
 }
 
