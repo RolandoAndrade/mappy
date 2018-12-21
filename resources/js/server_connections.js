@@ -12,12 +12,17 @@ class ServiceManager
         const collectionOrder=new CollectionOrder(1,ca.collection_address_id,
             da.delivery_address_id, recipientsName,recipientsSurname);
         const co=await this.save(collectionOrder,new CollectionOrderDAO());
+        const parser=new ParserFromJsonToObject();
         for(let i=0;i<packagesToSave.length;i++)
         {
             packagesToSave[i].order=co.collection_order_id;
             const pa=await this.save(packagesToSave[i],new PackageDAO());
+            collectionOrder.addPackages(parser.parsePackage(pa));
         }
         packagesToSave=[];
+        collectionOrder.deliveryAddress=deliveryAddress;
+        collectionOrder.collectionAddress=collectionAddress;
+        orderManager.createOrder(collectionOrder);
     }
 }
 

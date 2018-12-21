@@ -62,7 +62,7 @@ async function sendModal()
         await sm.parseToSave(deliveryAddress,collectionAddress,
             recipientsName,recipientsSurname);
         $(".loading").hide();
-        window.location="../";
+        exitModal();
     }
     else
     {
