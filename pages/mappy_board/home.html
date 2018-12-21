@@ -821,7 +821,7 @@
 				<i class="zmdi zmdi-map"></i>
 			</div>
 			<div class="label-modal">Escoger ya existente</div>
-			<select class="combo-box" name="" id="select-modal-c" onchange="fillBoxes()">
+			<select class="combo-box" name="" id="select-modal-c" onchange="fillCollectionAddressesBoxes()">
 				<option value="null">Selecciona una dirección</option>
 			</select>
 			<div class="label-modal">O crear una nueva</div>
@@ -1076,8 +1076,12 @@
 				Dirección de envío<br>
 				<i class="zmdi zmdi-pin"></i>
 			</div>
-			<div class="label-modal">Crear una nueva</div>
-			<div class="expand b">
+			<div class="label-modal">Escoger ya existente</div>
+			<select class="combo-box" name="" id="select-modal-d" onchange="fillDeliveryAddressesBoxes()">
+				<option value="null">Selecciona una dirección</option>
+			</select>
+			<div class="label-modal">O crear una nueva</div>
+			<div class="expandible b">
 
 				<div class="label-modal">País</div>
 				<select class="combo-box" id="modal_d_country">
@@ -1314,14 +1318,18 @@
 				<option value="ZW">Zimbabwe</option>
 </select>
 				<div class="label-modal">Ciudad</div>
-				<input class="boxes" type="text" maxlength="35">
+				<input class="boxes" type="text" maxlength="35" id="modal_d_city">
 				<div class="label-modal">Dirección general</div>
-				<input class="boxes" type="text" maxlength="35">
+				<input class="boxes" type="text" maxlength="35" id="modal_d_line1">
 				<div class="label-modal">Dirección específica</div>
-				<input class="boxes" type="text" maxlength="35">
+				<input class="boxes" type="text" maxlength="35" id="modal_d_line2">
 				<div class="label-modal">Código postal</div>
-				<input class="boxes" type="text" maxlength="35"><div class="label-modal">Descripción del lugar</div>
-				<input class="boxes" type="text" maxlength="150">
+				<input class="boxes" type="text" maxlength="35" id="modal_d_zipCode">
+				<div class="label-modal">Descripción del lugar</div>
+				<input class="boxes" type="text" maxlength="150" id="modal_d_description">
+			</div>
+			<div class="more-modal b" onclick="newForm('b')">
+				<i class="zmdi zmdi-plus"></i>
 			</div>
 		</div>
 		<div class="form-container-package">
@@ -1330,16 +1338,16 @@
 				<i class="zmdi zmdi-dropbox"></i>
 			</div>
 			<div class="label-modal">Descripción del paquete</div>
-			<input class="boxes" type="text">
+			<input class="boxes" type="text" id="modal_p_description">
 			<div class="label-modal">Peso del paquete</div>
-			<input class="boxes" type="number">
+			<input class="boxes" type="number" id="modal_p_weight">
 			<div class="label-modal">Nombre del destinatario</div>
-			<input class="boxes" type="text">
+			<input class="boxes" type="text" id="modal_p_name">
 			<div class="label-modal">Apellido del destinatario</div>
-			<input class="boxes" type="text">
+			<input class="boxes" type="text" id="modal_p_surname">
 			<div class="more-modal"><i class="zmdi zmdi-plus"></i></div>
 		</div>
-			<button type="button" class=" btn btn-primary btn-raised">
+			<button type="button" class=" btn btn-primary btn-raised" onclick="sendModal()">
 										Enviar
 			</button>
 	</div>
@@ -1351,14 +1359,14 @@
 	<script src="{% static 'mappy_board/js/sweetalert2.min.js' %}"></script>
 	<script src="{% static 'mappy_board/js/bootstrap.min.js' %}"></script>
 	<script src="{% static 'mappy_board/js/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+	<script src="{% static 'js/collectionaddressdao.js' %}"></script>
+	<script src="{% static 'js/deliveryaddressdao.js' %}"></script>
 	<script src="{% static 'mappy_board/js/main.js' %}"></script>
 	<script src="{% static 'js/modal.js' %}"></script>
 	<script src="{% static 'mappy_board/js/map.js' %}"></script>
 	<script src="{% static 'js/requests.js' %}"></script>
 	<script src="{% static 'js/userdao.js' %}"></script>
 	<script src="{% static 'js/packagedao.js' %}"></script>
-	<script src="{% static 'js/collectionaddressdao.js' %}"></script>
-	<script src="{% static 'js/deliveryaddressdao.js' %}"></script>
 	<script src="{% static 'js/collectionorderdao.js' %}"></script>
 	<script src="{% static 'mappy_board/js/dialogs.js' %}"></script>
 	<script src="{% static 'mappy_board/js/queries.js' %}"></script>
