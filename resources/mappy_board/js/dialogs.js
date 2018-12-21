@@ -94,3 +94,25 @@ class InfoOfMarker extends SwalModal
             );
     }
 }
+class ErrorDialog
+
+{
+    constructor(message)
+    {
+        this.dialog=new SwalModal(
+			"Error",
+			message,
+			"error",
+			false,
+			"#DC8502",
+			null,
+			"Ok",
+			null,
+			null
+		);
+    }
+    show()
+    {
+        this.dialog.show();
+    }
+}

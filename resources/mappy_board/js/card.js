@@ -2,9 +2,10 @@ class CollectionOrderCard
 {
     constructor(collectionOrder)
     {
-        const img="\"/static/mappy_board/assets/img/user.png\"";
+        const img= $('#user-image').attr("src");
 
         $(".noHistory").hide();
+        $(".collectionHistory").show();
         $(".collectionHistory").append('<div class="cd-timeline-block">' +
             '<div class="cd-timeline-img">\n' +
             '<img src='+img+' alt="user-picture">' +
@@ -48,7 +49,7 @@ class CollectionOrderCard
         for(let i=0;i<collectionOrder.packages.length;i++)
         {
             description+='<h4 class="packageDescription text-center text-titles">' +
-            '<i class="zmdi zmdi-money-box zmdi-hc-fw"></i>' +
+            '<i class="zmdi zmdi-dropbox zmdi-hc-fw"></i>' +
             collectionOrder.packages[i].description+" ("+
                 collectionOrder.packages[i].weight.substr(0, collectionOrder.packages[i].weight.indexOf(".")+2)+" kg)"+
             '</h4>';

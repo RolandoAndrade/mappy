@@ -700,7 +700,7 @@
 					<button type="button" class="doOne btn btn-primary btn-raised">¡Realiza una!</button>
 			</div>
 
-			<section id="cd-timeline" class="collectionHistory cd-container">
+			<section id="cd-timeline" class="collectionHistory cd-container" style="display: none">
 
 			</section>
 		</div>
@@ -713,7 +713,6 @@
 	<div id="mapMain" class="mapMain d-flex justify-content-center">
 
 	</div>
-
 
 
 
@@ -808,6 +807,7 @@
 	</section>
 
 
+	<!----------------------------Modal------------------------------->
 
 	<div class="modal-screen">
 		<div class="modal-card">
@@ -1337,15 +1337,19 @@
 				Información del paquete<br>
 				<i class="zmdi zmdi-dropbox"></i>
 			</div>
-			<div class="label-modal">Descripción del paquete</div>
-			<input class="boxes" type="text" id="modal_p_description">
-			<div class="label-modal">Peso del paquete</div>
-			<input class="boxes" type="number" id="modal_p_weight">
-			<div class="label-modal">Nombre del destinatario</div>
-			<input class="boxes" type="text" id="modal_p_name">
-			<div class="label-modal">Apellido del destinatario</div>
-			<input class="boxes" type="text" id="modal_p_surname">
-			<div class="more-modal"><i class="zmdi zmdi-plus"></i></div>
+			<div class="packageNew">
+				<div class="label-modal">Descripción del paquete</div>
+				<input class="boxes" type="text" id="modal_p_description">
+				<div class="label-modal">Peso del paquete en Kg</div>
+				<input class="boxes" type="number" id="modal_p_weight" min="0">
+			</div>
+				<div class="label-modal">Nombre del destinatario</div>
+				<input class="boxes" type="text" id="modal_p_name">
+				<div class="label-modal">Apellido del destinatario</div>
+				<input class="boxes" type="text" id="modal_p_surname">
+
+			<div class="more-modal" onclick="savePackageAndNew()"><i class="zmdi zmdi-plus"></i></div>
+			<div class="more-modal red" onclick="deleteNewPackage()"><i class="zmdi zmdi-delete"></i></div>
 		</div>
 			<button type="button" class=" btn btn-primary btn-raised" onclick="sendModal()">
 										Enviar
@@ -1353,22 +1357,41 @@
 	</div>
 	</div>
 
+	<!----------------------------MapTiles------------------------------->
 
 	<script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+
+	<!----------------------------JQUERY Utils------------------------------->
+
 	<script src="{% static 'mappy_board/js/jquery-3.1.1.min.js' %}"></script>
 	<script src="{% static 'mappy_board/js/sweetalert2.min.js' %}"></script>
 	<script src="{% static 'mappy_board/js/bootstrap.min.js' %}"></script>
 	<script src="{% static 'mappy_board/js/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+
+	<!----------------------------Dialogs------------------------------->
+
+	<script src="{% static 'mappy_board/js/dialogs.js' %}"></script>
+
+	<!----------------------------DAO------------------------------->
+
 	<script src="{% static 'js/collectionaddressdao.js' %}"></script>
 	<script src="{% static 'js/deliveryaddressdao.js' %}"></script>
-	<script src="{% static 'mappy_board/js/main.js' %}"></script>
-	<script src="{% static 'js/modal.js' %}"></script>
-	<script src="{% static 'mappy_board/js/map.js' %}"></script>
-	<script src="{% static 'js/requests.js' %}"></script>
 	<script src="{% static 'js/userdao.js' %}"></script>
 	<script src="{% static 'js/packagedao.js' %}"></script>
 	<script src="{% static 'js/collectionorderdao.js' %}"></script>
-	<script src="{% static 'mappy_board/js/dialogs.js' %}"></script>
+	<script src="{% static 'js/server_connections.js' %}"></script>
+	<!----------------------------INNIT------------------------------->
+
+	<script src="{% static 'mappy_board/js/main.js' %}"></script>
+
+	<!----------------------------Modal------------------------------->
+
+	<script src="{% static 'js/modal.js' %}"></script>
+
+	<!----------------------------Actions------------------------------->
+
+	<script src="{% static 'mappy_board/js/map.js' %}"></script>
+	<script src="{% static 'js/requests.js' %}"></script>
 	<script src="{% static 'mappy_board/js/queries.js' %}"></script>
 	<script src="{% static 'mappy_board/js/card.js' %}"></script>
 </body>

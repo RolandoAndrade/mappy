@@ -43,9 +43,7 @@ class Map
     addMarker(data)
     {
         const marker=this.strategy.addMarker(data,this.map);
-
         this.markers.push(marker);
-        console.log(marker);
     }
 
     clearMarkers()
