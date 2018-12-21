@@ -9,6 +9,9 @@ class DeliveryAddressCreate(generics.ListCreateAPIView):
     queryset = models.DeliveryAddress.objects.all()
     serializer_class = serializers.DeliveryAddressSerializer
 
+    def perform_create(self, serializer):
+        serializer.save(user_id = self.request.user)
+
 
 class DeliveryAddressRetrieve(generics.ListAPIView):
     queryset = models.DeliveryAddress.objects.all()

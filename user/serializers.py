@@ -1,9 +1,8 @@
 from rest_framework.serializers import ModelSerializer
 from .models import User
-from rest_auth.registration.serializers import RegisterSerializer
-from rest_auth.serializers import LoginSerializer
-from rest_framework import serializers
 from collection_address.serializers import CollectionAddressSerializer
+from delivery_address.serializers import DeliveryAddressSerializer
+
 
 class UserSerializer(ModelSerializer):
     class Meta:
@@ -22,10 +21,10 @@ class RegistrationSerializer(ModelSerializer):
         return self.Meta.model
 
 
-class DisableSerializer(ModelSerializer):
+class UserDataSerializer(ModelSerializer):
     class Meta:
         model = User
-        fields = ('email',)
+        fields = ('email', 'image',)
 
 
 class CollectionAddressesOfUserSerializer(ModelSerializer):
@@ -34,3 +33,17 @@ class CollectionAddressesOfUserSerializer(ModelSerializer):
     class Meta:
         model = User
         fields = ('email', 'collection_address',)
+
+
+class DeliveryAddressesOfUserSerializer(ModelSerializer):
+    delivery_address = DeliveryAddressSerializer(many = True, read_only = True)
+
+    class Meta:
+        model = User
+        fields = ('email', 'delivery_address',)
+
+
+class ProfileSerializer(ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('image',)

@@ -3140,7 +3140,7 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 			return changed;
 		};
 
-		CollectionOrderCard.clear = function(labels) {
+		p.clear = function(labels) {
 			var tweens = this.getChildren(false, true, true),
 				i = tweens.length;
 			this._time = this._totalTime = 0;

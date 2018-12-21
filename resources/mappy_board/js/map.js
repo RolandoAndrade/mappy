@@ -2,12 +2,19 @@ class CollectionOrderStrategy
 {
     addMarker(data, map)
     {
-        let marker = L.marker([data.deliveryAddress.coordinates.latitude, data.deliveryAddress.coordinates.longitude]).addTo(map);
+        try {
+            let marker = L.marker([data.deliveryAddress.coordinates.latitude, data.deliveryAddress.coordinates.longitude]).addTo(map);
         marker.on('click',function()
         {
             new InfoOfMarker(data).show();
+            return marker;
         });
-        return marker;
+        }
+        catch (e) {
+            return "";
+        }
+
+
     }
 
 }
@@ -56,6 +63,7 @@ class Map
 var miniMap=new Map('mapMini', new CoordinatesStrategy());
 var myMap=new Map('mapMain', new CollectionOrderStrategy());
 miniMap.map.on('click', onMapClick);
+myMap.map.on('click',doubleClick)
 
 function onMapClick(e) {
     let latlng = e.latlng;
