@@ -79,7 +79,8 @@ class CollectionOrderCard
         return this.getText(order.deliveryAddress.line1)+
             this.getText(", "+order.deliveryAddress.line2)+
             '.<br>'+ order.deliveryAddress.zipCode+" "+order.deliveryAddress.city+
-            ', '+order.deliveryAddress.country;
+            ', '+order.deliveryAddress.country+(order.deliveryAddress.description===""?
+                "":".<br><br><em>\""+order.deliveryAddress.description+"\"</em>");
     }
     static clear()
     {
