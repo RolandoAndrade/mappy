@@ -7,8 +7,8 @@ class CollectionOrderStrategy
         marker.on('click',function()
         {
             new InfoOfMarker(data).show();
-            return marker;
         });
+        return marker;
         }
         catch (e) {
             return "";
@@ -42,14 +42,24 @@ class Map
 
     addMarker(data)
     {
-        this.markers.push(this.strategy.addMarker(data,this.map));
+        const marker=this.strategy.addMarker(data,this.map);
+
+        this.markers.push(marker);
+        console.log(marker);
     }
 
     clearMarkers()
     {
         for (let i=0;i<this.markers.length;i++)
         {
-            this.map.removeLayer(this.markers[i]);
+            try
+            {
+                this.map.removeLayer(this.markers[i]);
+            }
+            catch (e) {
+                console.log(this.markers[i]);
+            }
+
         }
     }
 
