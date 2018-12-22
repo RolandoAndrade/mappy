@@ -59,6 +59,9 @@ function putInSelect(collectionAddress)
     $("#select-modal-c").append(
         "<option value='"+collectionAddresses.length+"'>"+
         collectionAddress.line1+"</option>");
+    $("#select-create-c").append(
+        "<option value='"+collectionAddresses.length+"'>"+
+        collectionAddress.line1+"</option>");
 }
 
 const deliveryAddresses=[];
@@ -84,6 +87,9 @@ async function getAllDeliveryAddresses()
 function putInSelectDelivery(deliveryAddress)
 {
     $("#select-modal-d").append(
+        "<option value='"+deliveryAddresses.length+"'>"+
+        deliveryAddress.line1+"</option>");
+    $("#select-create-d").append(
         "<option value='"+deliveryAddresses.length+"'>"+
         deliveryAddress.line1+"</option>");
 }

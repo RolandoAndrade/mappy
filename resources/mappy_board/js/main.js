@@ -87,6 +87,12 @@ $(document).ready(function(){
         	autoHideScrollbar: true,
         	scrollButtons: {enable: true}
         });
+        $(".carousel-create").mousewheel(function(event, delta)
+		{
+      		this.scrollLeft -= (delta * 30);
+      		event.preventDefault();
+   		});
+
 
         await setEmail();
 		await getAllCollectionAddresses();
