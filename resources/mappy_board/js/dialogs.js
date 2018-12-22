@@ -51,7 +51,7 @@ class SwalModal
 		  	cancelButtonColor: this.cancelButtonColor,
 		  	confirmButtonText: this.confirmButtonText,
 		  	cancelButtonText: this.cancelButtonText
-		}).then(this.action);
+		}).then(this.action).catch(swal.noop);
     }
 }
 
@@ -73,14 +73,22 @@ class InfoOfMarker extends SwalModal
 {
     constructor(order)
     {
+        let Cline2=order.collectionAddress.line2===""?".":
+            ", "+order.collectionAddress.line2+".";
+        let Dline2=order.deliveryAddress.line2===""?".":
+            ", "+order.deliveryAddress.line2+".";
+        let quote=order.deliveryAddress.description===""?"":"<br>\"<em>"+
+            order.deliveryAddress.description+"\"</em><br>"
         super(
                 order.getPackagesResume(),
                 "<b>Para:</b> <em>"+order.recipientsName+" "+order.recipientsSurname+"</em><br>" +
-                "<b>Dirección de recoleción: </b><em>"+order.collectionAddress.line1+"<br></em>"+
-                "<b>Dirección de envío: </b><em>"+order.deliveryAddress.line1+"</em><br>"+
+                "<b>Dirección de recoleción: </b><em>"+
+            order.collectionAddress.line1+Cline2+"<br></em>"+
+                "<b>Dirección de envío: </b><em>"+order.deliveryAddress.line1+Dline2+"</em><br>"+
                 "<b>Peso total: </b><em>"+order.getWeight()+" kg</em><br>"+
                 order.deliveryAddress.zipCode+" "+
-                order.deliveryAddress.city+", "+order.deliveryAddress.country+"<br>",
+                order.deliveryAddress.city+", "+order.deliveryAddress.country+"<br>"+
+                quote,
                 "info",
                 true,
                 "#ff4837",
@@ -92,5 +100,27 @@ class InfoOfMarker extends SwalModal
                 }
 
             );
+    }
+}
+class ErrorDialog
+
+{
+    constructor(message)
+    {
+        this.dialog=new SwalModal(
+			"Error",
+			message,
+			"error",
+			false,
+			"#DC8502",
+			null,
+			"Ok",
+			null,
+			null
+		);
+    }
+    show()
+    {
+        this.dialog.show();
     }
 }

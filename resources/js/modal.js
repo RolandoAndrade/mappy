@@ -1,5 +1,3 @@
-var coords=new Coordinates(0,0);
-
 function doubleClick(e)
 {
     $(".modal-screen").fadeIn(300);
@@ -15,7 +13,6 @@ function doubleClick(e)
     let latlng = e.latlng;
     coords.latitude= parseFloat(latlng.lat.toString().substr(0,8));
     coords.longitude = parseFloat(latlng.lng.toString().substr(0,8));
-    console.log(coords);
 }
 $(".modal-screen").click(function (event)
 {
@@ -50,8 +47,6 @@ function newForm(form)
 
 }
 
-var packagesToSave=[];
-
 async function sendModal()
 {
     const collectionAddress=getNewCollectionAddress("modal_");
@@ -63,43 +58,15 @@ async function sendModal()
     {
         $(".loading").show();
         deliveryAddress.addCoordinates(coords);
-
-        let dao=new DeliveryAddressDAO();
-        const da=await dao.create(deliveryAddress);
-        console.log(da);
-
-        dao=new CollectionAddressDAO();
-        const ca=await dao.create(collectionAddress);
-        console.log(ca);
-
-        const collectionOrder=new CollectionOrder(1,ca.collection_address_id,
-            da.delivery_address_id, recipientsName,recipientsSurname);
-
-
-        dao=new CollectionOrderDAO();
-        const co=await dao.create(collectionOrder);
-        console.log(co);
-
-        dao=new PackageDAO();
-        packageSave.order=co.collection_order_id;
-        const pa=await dao.create(packageSave);
-        console.log(pa);
+        const sm=new ServiceManager();
+        await sm.parseToSave(deliveryAddress,collectionAddress,
+            recipientsName,recipientsSurname);
         $(".loading").hide();
+        exitModal();
     }
     else
     {
-        const s=new SwalModal(
-			"Error",
-			"Debes completar algunos campos para continuar",
-			"error",
-			false,
-			"#DC8502",
-			null,
-			"Ok",
-			null,
-			null
-		);
-		s.show();
+        new ErrorDialog("Debes completar algunos campos para continuar").show();
     }
 }
 
@@ -148,9 +115,11 @@ function getPackageToSave(location)
     const valid = eval(pDescription) || eval(pWeight) || eval(pName)||eval(pSurname);
     if (eval(pDescription) && eval(pWeight) && eval(pName)&& eval(pSurname))
     {
-        return new Package(pWeight.val(),pDescription.val(),1);
+        pWeight.val(Math.abs(pWeight.val()));
+        packagesToSave.push(new Package(parseFloat(pWeight.val()),pDescription.val(),1));
+        return true;
     }
-    return null;
+    return false;
 }
 
 function eval(element)
@@ -163,4 +132,35 @@ function eval(element)
     }
     element.css("border","solid 1px orange");
     return true;
+}
+
+function savePackageAndNew()
+{
+    if(getPackageToSave("modal_"))
+    {
+        $(".packageNew").hide(300);
+        $(".packageNew").show(300);
+        $("#modal_p_description").val("");
+        $("#modal_p_weight").val("");
+
+        $(".more-modal.red").css("display","inline-block");
+    }
+    else
+    {
+        new ErrorDialog("Debes completar algunos campos para continuar").show();
+    }
+}
+function deleteNewPackage()
+{
+    const aPackage=packagesToSave[packagesToSave.length-1];
+
+    $(".packageNew").hide(300);
+    $(".packageNew").show(300);
+    $("#modal_p_description").val(aPackage.description);
+    $("#modal_p_weight").val(aPackage.weight);
+    eval($("#modal_p_description"))&&eval($("#modal_p_weight"));
+    packagesToSave.pop();
+    if(packagesToSave.length==0)
+        $(".more-modal.red").hide();
+
 }

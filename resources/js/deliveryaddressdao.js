@@ -7,6 +7,8 @@ class Coordinates
     }
 }
 
+var coords=new Coordinates(0,0);
+
 class DeliveryAddress extends CollectionAddress
 {
 	constructor(country, city, line1, line2, zipCode, description)
