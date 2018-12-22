@@ -112,11 +112,20 @@
    	text-align: center;
    	line-height: 50px;
 	cursor: pointer;
+	display: inline-block;
 }
 .more-modal:hover {
    box-shadow: 0 3px 11px 0 #874300;
    transform: scale(1.05);
 }
+
+.more-modal.red
+{
+	background-color: #ff4b29;
+	display: none;
+}
+
+
 
 .expandible
 {

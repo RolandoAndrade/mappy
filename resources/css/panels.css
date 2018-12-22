@@ -44,3 +44,130 @@
     display: none;
     color: #a00500;
 }
+
+.makeACollectionOrder
+{
+    width: 100%;
+    display: inline-block;
+    font-size: 0;
+    margin: -10px;
+    padding: 0;
+    text-align: center;
+}
+.create-container
+{
+	text-align: center;
+	display: inline-block;
+	width:40%;
+    margin: 2%;
+    padding: 0px;
+	font-size: 14px;
+	vertical-align: top;
+    max-width: 500px;
+    min-width: 300px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0px 2px 20px 5px #ffcda5;
+}
+.create-container-package
+{
+	text-align: center;
+	display: inline-block;
+	width: 100%;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	font-size: 14px;
+}
+.boxes-create
+{
+    display: block;
+    width: 90%;
+    max-width: 280px;
+    margin: 0 auto;
+	padding: 5px;
+	border: solid 1px orange;
+	border-radius: 5px;
+}
+.content-create
+{
+    text-align: center;
+    width: 100%;
+    padding: 10px 10px 30px 30px;
+}
+
+.label-create
+{
+	padding: 12px;
+	font-size: 14px;
+}
+
+.combo-box-create
+{
+	display: block;
+    width: 90%;
+    max-width: 280px;
+    margin: 0 auto;
+	padding: 5px;
+	border: solid 1px orange;
+	border-radius: 5px;
+}
+.carousel-create
+{
+    width: 100%;
+    display: inline-block;
+}
+.package-create-container
+{
+	text-align: center;
+	display: inline-block;
+	width:25%;
+    margin: 2%;
+    padding: 0px;
+	font-size: 14px;
+	vertical-align: top;
+    max-width: 400px;
+    min-width: 300px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0px 2px 20px 5px #ffcda5;
+}
+.more-container
+{
+    text-align: center;
+	display: inline-block;
+	width:25%;
+    margin: 2%;
+    padding: 0px;
+	font-size: 14px;
+	vertical-align: top;
+    max-width: 400px;
+    min-width: 300px;
+    height: 470px;
+}
+.addPackage
+{
+	margin: 10px auto;
+	width: 80px;
+   	height: 80px;
+   	background-color: white;
+   	border-radius: 50%;
+   	transition: all 0.1s ease-in-out;
+   	font-size: 60px;
+   	color: rgba(255, 165, 0, 0.47);
+   	text-align: center;
+   	line-height: 80px;
+	cursor: pointer;
+	display: inline-block;
+    border: solid rgba(255, 165, 0, 0.47);
+    margin-top: 50%;
+    transform: translate(0,50%);
+}
+.addPackage:hover {
+    color: rgba(255, 165, 0, 1);
+    border: solid rgba(255, 165, 0, 1);
+}
+.cards-create
+{
+    display: inline-block;
+    height: 470px;
+}
