@@ -111,7 +111,7 @@
 			<div class="content-create">
 				<div class="label-create">Escoger ya existente</div>
 				<select class="combo-box-create" name=""
-						id="select-create-c" onchange="">
+						id="select-create-c" onchange="fillCollectionAddressesBoxes('create')">
 					<option value="null">Selecciona una dirección</option>
 				</select>
 				<div class="label-create">Modificar datos de la dirección</div>
@@ -351,13 +351,13 @@
 				<option value="ZW">Zimbabwe</option>
 </select>
 					<div class="label-create">Ciudad</div>
-					<input class="boxes-create" type="text" id="create_c_city">
+					<input class="boxes-create" type="text" id="create_c_city" maxlength="35">
 					<div class="label-create">Dirección general</div>
-					<input class="boxes-create" type="text" id="create_c_line1">
+					<input class="boxes-create" type="text" id="create_c_line1" maxlength="35">
 					<div class="label-create">Dirección específica</div>
-					<input class="boxes-create" type="text" id="create_c_line2">
+					<input class="boxes-create" type="text" id="create_c_line2" maxlength="35">
 					<div class="label-create">Código postal</div>
-					<input class="boxes-create" type="text" id="create_c_zipCode">
+					<input class="boxes-create" type="text" id="create_c_zipCode" maxlength="35">
 				</div>
 				<div class="more-modal c" onclick="newForm('c')"><i class="zmdi zmdi-plus"></i></div>
 			</div>
@@ -371,7 +371,7 @@
 			<div class="content-create">
 				<div class="label-create">Escoger ya existente</div>
 				<select class="combo-box-create" name=""
-						id="select-create-d" onchange="">
+						id="select-create-d" onchange="fillDeliveryAddressesBoxes('create')">
 					<option value="null">Selecciona una dirección</option>
 				</select>
 				<div class="label-create">Modificar datos de la dirección</div>
@@ -609,17 +609,17 @@
 				<option value="YE">Yemen</option>
 				<option value="ZM">Zambia</option>
 				<option value="ZW">Zimbabwe</option>
-</select>
+</select >
 					<div class="label-create">Ciudad</div>
-					<input class="boxes-create" type="text" id="create_d_city">
+					<input class="boxes-create" type="text" id="create_d_city" maxlength="35">
 					<div class="label-create">Dirección general</div>
-					<input class="boxes-create" type="text" id="create_d_line1">
+					<input class="boxes-create" type="text" id="create_d_line1" maxlength="35">
 					<div class="label-create">Dirección específica</div>
-					<input class="boxes-create" type="text" id="create_d_line2">
+					<input class="boxes-create" type="text" id="create_d_line2" maxlength="35">
 					<div class="label-create">Código postal</div>
-					<input class="boxes-create" type="text" id="create_d_zipCode">
+					<input class="boxes-create" type="text" id="create_d_zipCode" maxlength="35">
 					<div class="label-create">Descripción</div>
-					<input class="boxes-create" type="text" id="create_d_description">
+					<input class="boxes-create" type="text" id="create_d_description" maxlength="150">
 				</div>
 				<div class="more-modal d" onclick="newForm('d')"><i class="zmdi zmdi-plus"></i></div>
 			</div>
@@ -627,21 +627,21 @@
 		<div class="create-container">
 				<div class="title-section">
 				Datos del paquete<br>
-				<i class="zmdi zmdi-map"></i>
+				<i class="zmdi zmdi-dropbox"></i>
 			</div>
 				<div class="content-create">
 				<div class="packageNew">
 					<div class="label-create">Descripción</div>
-					<input class="boxes-create" type="text" id="create_p_description">
+					<input class="boxes-create" type="text" id="create_p_description"  maxlength="35">
 					<div class="label-create">Peso en kg</div>
-					<input class="boxes-create" type="text" id="create_p_weight">
+					<input class="boxes-create" type="number" id="create_p_weight" min="0">
 				</div>
 					<div class="label-create">Nombre del destinatario</div>
-					<input class="boxes-create" type="text" id="create_p_name">
+					<input class="boxes-create" type="text" id="create_p_name" maxlength="35">
 					<div class="label-create">Apellido del destinatario</div>
-					<input class="boxes-create" type="text" id="create_p_surname">
+					<input class="boxes-create" type="text" id="create_p_surname" maxlength="35">
 
-				<div class="more-modal d" onclick="savePackageAndNewCreator()"><i class="zmdi zmdi-plus"></i></div>
+				<div class="more-modal e" onclick="savePackageAndNewCreator()"><i class="zmdi zmdi-plus"></i></div>
 			</div>
 		</div>
 		<div id="mapMini" class="mapMini d-flex justify-content-center"></div>
@@ -671,7 +671,7 @@
 
 
 
-		<div class="check">
+		<div class="check" onclick="sendOrderForm('create')">
 			<i class="zmdi zmdi-check"></i></div>
 		</div>
 	</div>
@@ -807,7 +807,7 @@
 				<i class="zmdi zmdi-map"></i>
 			</div>
 			<div class="label-modal">Escoger ya existente</div>
-			<select class="combo-box" name="" id="select-modal-c" onchange="fillCollectionAddressesBoxes()">
+			<select class="combo-box" name="" id="select-modal-c" onchange="fillCollectionAddressesBoxes('modal')">
 				<option value="null">Selecciona una dirección</option>
 			</select>
 			<div class="label-modal">O crear una nueva</div>
@@ -1063,7 +1063,7 @@
 				<i class="zmdi zmdi-pin"></i>
 			</div>
 			<div class="label-modal">Escoger ya existente</div>
-			<select class="combo-box" name="" id="select-modal-d" onchange="fillDeliveryAddressesBoxes()">
+			<select class="combo-box" name="" id="select-modal-d" onchange="fillDeliveryAddressesBoxes('modal')">
 				<option value="null">Selecciona una dirección</option>
 			</select>
 			<div class="label-modal">O crear una nueva</div>
@@ -1325,14 +1325,14 @@
 			</div>
 			<div class="packageNew">
 				<div class="label-modal">Descripción del paquete</div>
-				<input class="boxes" type="text" id="modal_p_description">
+				<input class="boxes" type="text" id="modal_p_description" maxlength="35">
 				<div class="label-modal">Peso del paquete en Kg</div>
 				<input class="boxes" type="number" id="modal_p_weight" min="0">
 			</div>
 				<div class="label-modal">Nombre del destinatario</div>
-				<input class="boxes" type="text" id="modal_p_name">
+				<input class="boxes" type="text" id="modal_p_name" maxlength="35">
 				<div class="label-modal">Apellido del destinatario</div>
-				<input class="boxes" type="text" id="modal_p_surname">
+				<input class="boxes" type="text" id="modal_p_surname" maxlength="35">
 
 			<div class="more-modal" onclick="savePackageAndNew()"><i class="zmdi zmdi-plus"></i></div>
 			<div class="more-modal red" onclick="deleteNewPackage()"><i class="zmdi zmdi-delete"></i></div>

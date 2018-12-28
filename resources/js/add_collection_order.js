@@ -53,3 +53,57 @@ function packageCardGenerator()
         new PackageCard(packagesToSave[i].description,packagesToSave[i].weight,i);
     }
 }
+function getCoords(form)
+{
+    return form==="modal"?coords:miniCoords;
+}
+async function sendOrderForm(form)
+{
+    const collectionAddress=getNewCollectionAddress(form+"_");
+    const deliveryAddress=getNewDeliveryAddress(form+"_");
+    const packageSave=getPackageToSave(form+"_");
+    const recipientsName=$("#"+form+"_p_name").val();
+    const recipientsSurname=$("#"+form+"_p_surname").val();
+    if(collectionAddress&&deliveryAddress&&packageSave)
+    {
+        let c=getCoords(form);
+        if(c==null)
+        {
+            await findLocation();
+            return;
+        }
+        $(".loading").show();
+        deliveryAddress.addCoordinates();
+        const sm=new ServiceManager();
+        await sm.parseToSave(deliveryAddress,collectionAddress,
+            recipientsName,recipientsSurname);
+        $(".loading").hide();
+        exitModal();
+
+    }
+    else
+    {
+        new ErrorDialog("Debes completar algunos campos para continuar").show();
+    }
+}
+async function findLocation()
+{
+	const line1=$("#create_d_line1").val();
+	const line2=$("#create_d_line2").val();
+	await $.get(location.protocol + '//nominatim.openstreetmap.org/search?format=json&q='+
+        line1+", "+line2, function(data){
+            if(data.length>0)
+            {
+                const dir=data[0];
+                miniCoords=new Coordinates(dir.lat,dir.lon);
+                miniMap.clearMarkers();
+                miniMap.addMarker(miniCoords);
+                miniMap.setView(miniCoords);
+                new WarningDialog("Confirme las coordenadas", "Revise la ubicación marcada en el mapa").show();
+            }
+            else
+            {
+                new ErrorDialog("No fue encontrada la dirección. Ubique la dirección manualmente en el mapa").show();
+            }
+        });
+}
