@@ -71,14 +71,14 @@ class Map
 var miniMap=new Map('mapMini', new CoordinatesStrategy());
 var myMap=new Map('mapMain', new CollectionOrderStrategy());
 miniMap.map.on('click', onMapClick);
-myMap.map.on('click',doubleClick)
+myMap.map.on('click',doubleClick);
 
-function onMapClick(e) {
+function onMapClick(e)
+{
     let latlng = e.latlng;
-    let latitude = latlng.lat;
-    let longitude = latlng.lng;
+    const lat=latlng.lat.toString().substr(0,8);
+    const lon=latlng.lng.toString().substr(0,8);
+    miniCoords=new Coordinates(parseFloat(lat),parseFloat(lon));
     miniMap.clearMarkers();
-    miniMap.addMarker(new Coordinates(latitude, longitude));
-    $('#latitude').val(latitude);
-    $('#longitude').val(longitude);
+    miniMap.addMarker(miniCoords);
 }

@@ -70,19 +70,24 @@ async function sendOrderForm(form)
         if(c==null)
         {
             await findLocation();
+            packagesToSave.pop();
             return;
         }
         $(".loading").show();
-        deliveryAddress.addCoordinates();
+        deliveryAddress.addCoordinates(c);
         const sm=new ServiceManager();
         await sm.parseToSave(deliveryAddress,collectionAddress,
             recipientsName,recipientsSurname);
         $(".loading").hide();
         exitModal();
+        viewsManager.changeToMap();
+
 
     }
     else
     {
+        if(packageSave)
+            packagesToSave.pop();
         new ErrorDialog("Debes completar algunos campos para continuar").show();
     }
 }
