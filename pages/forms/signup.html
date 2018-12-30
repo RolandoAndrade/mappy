@@ -46,9 +46,12 @@
 								</div>
 								<div class="form-group">
 									<label for="birthDate">Fecha de nacimiento</label>
-									<input id="birthDate" type="date" class="form-control" name="birthDate" autofocus>
-									<div class="invalid-feedback" id="invalid-birthdate">
+									<input id="birthDate" type="date" class="form-control" name="birthDate" min="1960-01-01" max="2001-12-31" autofocus>
+									<div class="invalid-feed" id="invalid-birthdate">
 										Tienes que ser mayor de edad
+									</div>
+									<div class="invalid-feedback" id="invalid-birth">
+										Esta fecha no está en un rango adecuado
 									</div>
 								</div>
 								<div class="form-group">
@@ -66,7 +69,7 @@
 									<label for="password">Contraseña</label>
 									<input id="password" type="password" class="form-control" name="password" required data-eye>
 									<div class="invalid-feedback" id="invalid-password">
-										Contraseña inválida. Debe tener por lo menos 8 caracteres, con al menos una mayúscula, una minúscula y un número
+										Contraseña inválida. Debe tener por lo menos 8 caracteres, con al menos una mayúscula, una minúscula, un número y un caracter especial.
 									</div>
 								</div>
 

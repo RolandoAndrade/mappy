@@ -25,12 +25,12 @@
 			<div class="full-box dashboard-sideBar-UserInfo">
 				<figure class="full-box">
 					<img src="{% static 'mappy_board/assets/img/user.png' %}" alt="UserIcon"
-                    id="user-image">
+                    id="user-image" class="user-image">
 					<figcaption class="email-me text-center text-titles"><!--Correo --></figcaption>
 				</figure>
 				<ul class="full-box list-unstyled text-center">
 					<li>
-						<a href="#!">
+						<a href="#!" class="settings-btn">
 							<i class="zmdi zmdi-settings"></i>
 						</a>
 					</li>
@@ -83,12 +83,6 @@
 				</li>
 
 				<p class="navbar-text">ÓRDENES DE RECOLECCIÓN</p>
-				<li>
-					<a href="#!" class="btn-Notifications-area">
-						<i class="zmdi zmdi-notifications-none"></i>
-						<span class="badge">7</span>
-					</a>
-				</li>
 
 				<li>
 					<a href="#!" class="btn-search">
@@ -690,7 +684,101 @@
 			<section id="cd-timeline" class="collectionHistory cd-container" style="display: none">
 
 			</section>
+	</div>
+
+	<!----------------------------Settings------------------------------->
+
+	<div class="settings">
+		<div class="profile-card">
+			<div class="profile-card-image">
+				<div class="alpha-card-image"></div>
+
+			</div>
+			<div class="profile-image-stat">
+				<img src="{% static 'mappy_board/assets/img/user.png' %}" alt="UserIcon"
+                    id="profile-image-card" class="user-image">
+			</div>
+			<div class="profile-stats">
+				<div class="stat"></div>
+				<div class="stat">
+					<div class="title-stat">
+						Rolando Andrade
+					</div>
+					<div class="data-stat email-me">
+					</div>
+					<div class="icon-stat">
+						<i class="zmdi zmdi-account"></i>
+					</div>
+				</div>
+				<div class="stat">
+					<div class="title-stat collection-order-number">
+					</div>
+					<div class="data-stat">
+						Órdenes de recolección en curso
+					</div>
+					<div class="icon-stat">
+						<i class="zmdi zmdi-dropbox"></i>
+					</div>
+				</div>
+				<div class="stat">
+					<div class="title-stat collection-address-number">
+					</div>
+					<div class="data-stat">
+						Direcciones de recolección registradas
+					</div>
+					<div class="icon-stat">
+						<i class="zmdi zmdi-map"></i>
+					</div>
+				</div>
+				<div class="stat">
+					<div class="title-stat delivery-address-number">
+					</div>
+					<div class="data-stat">
+						Direcciones de envío registradas
+					</div>
+					<div class="icon-stat">
+						<i class="zmdi zmdi-pin"></i>
+					</div>
+				</div>
+			</div>
+
 		</div>
+		<div class="create-form">
+			<div class="create-container">
+			<div class="title-section">
+				Modificar datos de usuario<br>
+				<i class="zmdi zmdi-account"></i>
+			</div>
+			<div class="content-create">
+				<div class="label-create">Imagen de perfil</div>
+				<input type="file" accept="image/png, image/jpeg">
+				<div class="label-create">Primer nombre</div>
+				<input class="boxes-create" type="text" maxlength="35">
+				<div class="label-create">Segundo nombre</div>
+				<input class="boxes-create" type="text" maxlength="35">
+				<div class="label-create">Primer Apellido</div>
+				<input class="boxes-create" type="text" maxlength="35">
+				<div class="label-create">Segundo Apellido</div>
+				<input class="boxes-create" type="text" maxlength="35">
+				<div class="more-modal" onclick=""><i class="zmdi zmdi-edit"></i></div>
+			</div>
+
+		</div>
+			<div class="create-container">
+			<div class="title-section red">
+				Zona peligrosa<br>
+				<i class="zmdi zmdi-block"></i>
+			</div>
+			<div class="content-create">
+				<div class="expandible d">
+
+				</div>
+				<div class="more-modal redi" onclick="newForm('d')"><i class="zmdi zmdi-alert-triangle"></i></div>
+			</div>
+		</div>
+		</div>
+
+	</div>
 
 	</section>
 
@@ -738,62 +826,6 @@
 			Espere un momento por favor...
 		</div>
 	</div>
-
-<section class="full-box Notifications-area">
-		<div class="full-box Notifications-bg btn-Notifications-area"></div>
-		<div class="full-box Notifications-body">
-			<div class="Notifications-body-title text-titles text-center">
-				NOTIFICACIONES <i class="zmdi zmdi-close btn-Notifications-area"></i>
-			</div>
-			<div class="list-group">
-			  	<div class="list-group-item">
-				    <div class="row-action-primary">
-				      	<i class="zmdi zmdi-alert-triangle"></i>
-				    </div>
-				    <div class="row-content">
-				      	<div class="least-content">17m</div>
-				      	<h4 class="list-group-item-heading">Paquete entregado</h4>
-				      	<p class="list-group-item-text">Tu paquete fue entregado en...</p>
-				    </div>
-			  	</div>
-			  	<div class="list-group-separator"></div>
-			  	<div class="list-group-item">
-				    <div class="row-action-primary">
-				      	<i class="zmdi zmdi-alert-octagon"></i>
-				    </div>
-				    <div class="row-content">
-				      	<div class="least-content">15m</div>
-				      	<h4 class="list-group-item-heading">Tile with a label</h4>
-				      	<p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus.</p>
-				    </div>
-			  	</div>
-			  	<div class="list-group-separator"></div>
-				<div class="list-group-item">
-				    <div class="row-action-primary">
-				      	<i class="zmdi zmdi-help"></i>
-				    </div>
-				    <div class="row-content">
-				      	<div class="least-content">10m</div>
-				      	<h4 class="list-group-item-heading">Tile with a label</h4>
-				      	<p class="list-group-item-text">Maecenas sed diam eget risus varius blandit.</p>
-				    </div>
-				</div>
-			  	<div class="list-group-separator"></div>
-			  	<div class="list-group-item">
-				    <div class="row-action-primary">
-				      	<i class="zmdi zmdi-info"></i>
-				    </div>
-				    <div class="row-content">
-				      	<div class="least-content">8m</div>
-				      	<h4 class="list-group-item-heading">Tile with a label</h4>
-				      	<p class="list-group-item-text">Maecenas sed diam eget risus varius blandit.</p>
-				    </div>
-			  	</div>
-			</div>
-
-		</div>
-	</section>
-
 
 	<!----------------------------Modal------------------------------->
 
