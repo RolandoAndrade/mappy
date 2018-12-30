@@ -38,7 +38,7 @@
     border-radius: 15px;
     background: black;
     display: inline-block;
-    box-shadow: 0px 2px 50px 10px #BDBDBD;
+    box-shadow: 0px 2px 30px 10px #BDBDBD;
 }
 
 .mapCoords
@@ -76,7 +76,7 @@
     min-width: 300px;
     border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0px 2px 50px 10px #BDBDBD;
+    box-shadow: 0px 2px 30px 10px #BDBDBD;
 }
 .create-container-package
 {
