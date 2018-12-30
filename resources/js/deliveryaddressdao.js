@@ -8,6 +8,7 @@ class Coordinates
 }
 
 var coords=new Coordinates(0,0);
+var miniCoords=null;
 
 class DeliveryAddress extends CollectionAddress
 {

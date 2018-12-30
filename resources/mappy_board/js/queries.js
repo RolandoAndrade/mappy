@@ -96,43 +96,43 @@ function putInSelectDelivery(deliveryAddress)
 
 
 
-function fillCollectionAddressesBoxes()
+function fillCollectionAddressesBoxes(form)
 {
-    let index= $("#select-modal-c").val();
+    let index= $("#select-"+form+"-c").val();
     if(index!="null")
     {
-        $("#modal_c_city").val(collectionAddresses[index].city);
-        $("#modal_c_line1").val(collectionAddresses[index].line1);
-        $("#modal_c_line2").val(collectionAddresses[index].line2);
-        $("#modal_c_zipCode").val(collectionAddresses[index].zipCode);
+        $("#"+form+"_c_city").val(collectionAddresses[index].city);
+        $("#"+form+"_c_line1").val(collectionAddresses[index].line1);
+        $("#"+form+"_c_line2").val(collectionAddresses[index].line2);
+        $("#"+form+"_c_zipCode").val(collectionAddresses[index].zipCode);
     }
     else
     {
-        $("#modal_c_city").val("");
-        $("#modal_c_line1").val("");
-        $("#modal_c_line2").val("");
-        $("#modal_c_zipCode").val("");
+        $("#"+form+"_c_city").val("");
+        $("#"+form+"_c_line1").val("");
+        $("#"+form+"_c_line2").val("");
+        $("#"+form+"_c_zipCode").val("");
     }
 
 }
-function fillDeliveryAddressesBoxes()
+function fillDeliveryAddressesBoxes(form)
 {
-    let index= $("#select-modal-d").val();
+    let index= $("#select-"+form+"-d").val();
     if(index!="null")
     {
-        $("#modal_d_city").val(deliveryAddresses[index].city);
-        $("#modal_d_line1").val(deliveryAddresses[index].line1);
-        $("#modal_d_line2").val(deliveryAddresses[index].line2);
-        $("#modal_d_zipCode").val(deliveryAddresses[index].zipCode);
-        $("#modal_d_description").val(deliveryAddresses[index].description);
+        $("#"+form+"_d_city").val(deliveryAddresses[index].city);
+        $("#"+form+"_d_line1").val(deliveryAddresses[index].line1);
+        $("#"+form+"_d_line2").val(deliveryAddresses[index].line2);
+        $("#"+form+"_d_zipCode").val(deliveryAddresses[index].zipCode);
+        $("#"+form+"_d_description").val(deliveryAddresses[index].description);
     }
     else
     {
-        $("#modal_d_city").val("");
-        $("#modal_d_line1").val("");
-        $("#modal_d_line2").val("");
-        $("#modal_d_zipCode").val("");
-        $("#modal_d_description").val("");
+        $("#"+form+"_d_city").val("");
+        $("#"+form+"_d_line1").val("");
+        $("#"+form+"_d_line2").val("");
+        $("#"+form+"_d_zipCode").val("");
+        $("#"+form+"_d_description").val("");
     }
 
 }

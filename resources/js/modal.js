@@ -2,33 +2,35 @@ function doubleClick(e)
 {
     $(".modal-screen").fadeIn(300);
     $(".modal-card").fadeIn(300);
-    $('.expandible.a').hide();
-    $('.expandible.b').hide();
-    $('.more-modal.a i').removeClass("zmdi-plus");
-    $('.more-modal.a i').removeClass("zmdi-minus");
-    $('.more-modal.a i').addClass("zmdi-plus");
-    $('.more-modal.b i').removeClass("zmdi-plus");
-    $('.more-modal.b i').removeClass("zmdi-minus");
-    $('.more-modal.b i').addClass("zmdi-plus");
     let latlng = e.latlng;
+    coords=new Coordinates(0,0);
     coords.latitude= parseFloat(latlng.lat.toString().substr(0,8));
     coords.longitude = parseFloat(latlng.lng.toString().substr(0,8));
 }
-$(".modal-screen").click(function (event)
+function modalBackAction()
 {
-   if(!$(event.target).closest(".modal-card").length && !$(event.target).is(".modal-card"))
-   {
-       exitModal()
-   }
-});
+    $(".modal-screen").click(function (event)
+    {
+    if(!$(event.target).closest(".modal-card").length && !$(event.target).is(".modal-card"))
+    {
+        exitModal()
+    }
+    });
+    $(".close-modal").click(exitModal);
+}
+modalBackAction();
+
 
 function exitModal()
 {
     $(".modal-card").fadeOut(300);
-    $(".modal-screen").fadeOut(300);
+    $(".modal-screen").fadeOut(300).promise().done(function ()
+    {
+        $('.modal-screen').replaceWith(copyModal);
+        copyModal=$('.modal-screen').clone();
+        modalBackAction();
+    });
 }
-
-$(".close-modal").click(exitModal);
 
 function newForm(form)
 {
@@ -46,31 +48,6 @@ function newForm(form)
     }
 
 }
-
-async function sendModal()
-{
-    const collectionAddress=getNewCollectionAddress("modal_");
-    const deliveryAddress=getNewDeliveryAddress("modal_");
-    const packageSave=getPackageToSave("modal_");
-    const recipientsName=$("#modal_p_name").val();
-    const recipientsSurname=$("#modal_p_surname").val();
-    if(collectionAddress&&deliveryAddress&&packageSave)
-    {
-        $(".loading").show();
-        deliveryAddress.addCoordinates(coords);
-        const sm=new ServiceManager();
-        await sm.parseToSave(deliveryAddress,collectionAddress,
-            recipientsName,recipientsSurname);
-        $(".loading").hide();
-        exitModal();
-    }
-    else
-    {
-        new ErrorDialog("Debes completar algunos campos para continuar").show();
-    }
-}
-
-
 
 function getNewDeliveryAddress(location)
 {

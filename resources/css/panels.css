@@ -19,7 +19,10 @@
     padding: 20px;
     margin-top: 10px;
 }
-
+.makeACollectionOrder
+{
+    visibility: hidden;
+}
 .makeACollectionOrder h4
 {
     color: #DC8502;
@@ -27,9 +30,15 @@
 
 .mapMini
 {
-    width: 400px;
-    height: 400px;
-    margin: 0 auto;
+    max-width: 500px;
+    min-width: 300px;
+    height: 500px;
+    width: 50%;
+    margin: 20px auto;
+    border-radius: 15px;
+    background: black;
+    display: inline-block;
+    box-shadow: 0px 2px 50px 10px #BDBDBD;
 }
 
 .mapCoords
@@ -67,7 +76,7 @@
     min-width: 300px;
     border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0px 2px 20px 5px #ffcda5;
+    box-shadow: 0px 2px 50px 10px #BDBDBD;
 }
 .create-container-package
 {
@@ -129,7 +138,7 @@
     min-width: 300px;
     border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0px 2px 20px 5px #ffcda5;
+    box-shadow: 0px 2px 50px 10px #BDBDBD;
 }
 .more-container
 {
@@ -146,8 +155,7 @@
 }
 .addPackage
 {
-	margin: 10px auto;
-	width: 80px;
+    width: 80px;
    	height: 80px;
    	background-color: white;
    	border-radius: 50%;
@@ -159,7 +167,7 @@
 	cursor: pointer;
 	display: inline-block;
     border: solid rgba(255, 165, 0, 0.47);
-    margin-top: 50%;
+    margin: 50% auto 10px;
     transform: translate(0,50%);
 }
 .addPackage:hover {
@@ -169,5 +177,38 @@
 .cards-create
 {
     display: inline-block;
-    height: 470px;
+    height: auto;
+    margin: 2%;
+
+}
+
+.cleaner{
+    display:none;
+}
+.label-create.b
+{
+    font-size: 18px;
+}
+.check
+{
+    position: fixed;
+    width: 70px;
+    height: 70px;
+    bottom: 20px;
+    right: 20px;
+    background: orange;
+    z-index: 999;
+    color: white;
+    border-radius: 50%;
+   	box-shadow: 0 3px 7px 0 #874300;
+   	transition: all 0.1s ease-in-out;
+   	font-size: 50px;
+   	text-align: center;
+   	line-height: 70px;
+	cursor: pointer;
+}
+
+.check:hover {
+   box-shadow: 0 3px 11px 0 #874300;
+   transform: scale(1.05);
 }

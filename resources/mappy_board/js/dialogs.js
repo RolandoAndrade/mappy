@@ -124,3 +124,24 @@ class ErrorDialog
         this.dialog.show();
     }
 }
+class WarningDialog
+{
+    constructor(title, message)
+    {
+        this.dialog=new SwalModal(
+			title,
+			message,
+			"warning",
+			false,
+			"#DC8502",
+			null,
+			"Ok",
+			null,
+			null
+		);
+    }
+    show()
+    {
+        this.dialog.show();
+    }
+}
