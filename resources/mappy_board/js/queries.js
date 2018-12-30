@@ -5,7 +5,7 @@ async function setEmail()
     $('.email-me').text(user.email);
     if(user.image!=null)
     {
-        $('#user-image').attr("src","/static/accounts/images"+user.image);
+        $('.user-image').attr("src","/static/accounts/images"+user.image);
     }
 
 }
@@ -23,6 +23,7 @@ async function getAllCollectionOrders()
         emptyCollectionOrder.show();
     }
     orderManager.showCollectionOrders();
+    $(".collection-order-number").append(collectionOrders.length.toString())
 }
 
 const collectionAddresses=[];
@@ -42,6 +43,7 @@ async function getAllCollectionAddresses()
             collectionAddresses.push(collectionAddress);
         }
     }
+    $(".collection-address-number").append(collectionAddresses.length.toString());
 }
 
 function isRepeatedAddress(address, arr)
@@ -81,6 +83,7 @@ async function getAllDeliveryAddresses()
             deliveryAddresses.push(deliveryAddress);
         }
     }
+    $(".delivery-address-number").append(deliveryAddresses.length.toString());
 }
 
 

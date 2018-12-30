@@ -67,7 +67,8 @@ $(document).ready(function(){
 	copyMakeACollectionOrder=$('.makeACollectionOrder').clone();
 	copyPackageForm=$(".create-container.OfPackage").clone();
 
-	viewsManager=new ViewsManager($('.navbar-text'), $('#mapMain'),$('.makeACollectionOrder'),$('.historyOfCollectionOrders'));
+	viewsManager=new ViewsManager($('.navbar-text'), $('#mapMain'),
+		$('.makeACollectionOrder'),$('.historyOfCollectionOrders'),$(".settings"));
 
 
 
@@ -76,6 +77,10 @@ $(document).ready(function(){
 	$('.collectionOrderSideBar').on('click', function(){viewsManager.changeToCollectionOrder()});
 
 	$('.historySideBar').on('click', function(){viewsManager.changeToHistory()});
+
+	$('.configurationSideBar').on('click', function(){viewsManager.changeToSettings()});
+
+	$('.settings-btn').on('click', function(){viewsManager.changeToSettings()});
 
 	$('.doOne').on('click', function(){viewsManager.changeToCollectionOrder()});
 
@@ -102,7 +107,7 @@ $(document).ready(function(){
    		});
 
 
-        await setEmail();
+       	await setEmail();
 		await getAllCollectionAddresses();
 		await getAllDeliveryAddresses();
 		await getAllCollectionOrders();
@@ -116,12 +121,13 @@ $(document).ready(function(){
 
 class ViewsManager
 {
-	constructor(navbar, map, createOrderForm, history)
+	constructor(navbar, map, createOrderForm, history,settings)
 	{
 		this.map=map;
 		this.createOrderForm=createOrderForm;
 		this.history=history;
 		this.navbar=navbar;
+		this.settings=settings;
 		this.changeToMap();
 	}
 
@@ -130,6 +136,7 @@ class ViewsManager
 		this.navbar.text("ÓRDENES DE RECOLECCIÓN");
 		this.createOrderForm.hide(300);
 		this.history.hide(300);
+		this.settings.hide(300);
 		this.map.show(300);
 	}
 
@@ -138,6 +145,7 @@ class ViewsManager
 		this.navbar.text("CREAR ORDEN DE RECOLECCIÓN");
 		this.map.hide(300);
 		this.history.hide(300);
+		this.settings.hide(300);
 		this.createOrderForm.show(300);
 	}
 
@@ -146,7 +154,17 @@ class ViewsManager
 		this.navbar.text("ÓRDENES EN CURSO");
 		this.map.hide(300);
 		this.createOrderForm.hide(300);
+		this.settings.hide(300);
 		this.history.show(300);
+	}
+
+	changeToSettings()
+	{
+		this.navbar.text("CONFIGURACIÓN");
+		this.map.hide(300);
+		this.createOrderForm.hide(300);
+		this.history.hide(300);
+		this.settings.show(300);
 	}
 
 }
