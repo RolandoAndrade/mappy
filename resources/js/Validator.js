@@ -29,7 +29,7 @@ class Validator {
             console.error('Password must be at least 8 characters long. ');
             return false;
         }
-        const REGEXP =new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/);
+        const REGEXP =new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/);
         if(REGEXP.test(password))
             return true;
     
