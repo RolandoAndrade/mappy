@@ -32,14 +32,6 @@ $(document).ready(function(){
 		}
 	});
 
-	$('.btn-Notifications-area').on('click', function(){
-		var NotificationsArea=$('.Notifications-area');
-		if(NotificationsArea.css('opacity')=="0"){
-			NotificationsArea.addClass('show-Notification-area');
-		}else{
-			NotificationsArea.removeClass('show-Notification-area');
-		}
-	});
 	$('.btn-search').on('click', function(){
 		swal({
 		  title: 'Buscar una ubicación',
