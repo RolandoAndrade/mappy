@@ -19,7 +19,10 @@
     padding: 20px;
     margin-top: 10px;
 }
-
+.makeACollectionOrder
+{
+    visibility: hidden;
+}
 .makeACollectionOrder h4
 {
     color: #DC8502;

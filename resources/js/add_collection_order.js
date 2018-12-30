@@ -64,25 +64,36 @@ async function sendOrderForm(form)
     const packageSave=getPackageToSave(form+"_");
     const recipientsName=$("#"+form+"_p_name").val();
     const recipientsSurname=$("#"+form+"_p_surname").val();
-    if(collectionAddress&&deliveryAddress&&packageSave)
-    {
-        let c=getCoords(form);
-        if(c==null)
+    if(collectionAddress&&deliveryAddress&&packageSave) {
+        let c = getCoords(form);
+        if (c == null)
         {
-            await findLocation();
+            const line1=$("#create_d_line1").val();
+	        const line2=$("#create_d_line2").val();
+            await findLocation(line1,line2);
             packagesToSave.pop();
             return;
         }
         $(".loading").show();
         deliveryAddress.addCoordinates(c);
-        const sm=new ServiceManager();
-        await sm.parseToSave(deliveryAddress,collectionAddress,
-            recipientsName,recipientsSurname);
+        const sm = new ServiceManager();
+        await sm.parseToSave(deliveryAddress, collectionAddress,
+            recipientsName, recipientsSurname);
         $(".loading").hide();
-        exitModal();
-        viewsManager.changeToMap();
-
-
+        if (form === "modal")
+            exitModal();
+        else
+        {
+            viewsManager.changeToMap();
+            $(".create-form").replaceWith(copyMakeACollectionOrder);
+            copyMakeACollectionOrder=$(".create-form");
+            $(".scroll-create").empty();
+            $(".create-container.OfPackage").replaceWith(copyPackageForm);
+	        copyPackageForm=$(".create-container.OfPackage").clone();
+            miniCoords=null;
+            miniMap.clearMarkers();
+        }
+        packagesToSave=[];
     }
     else
     {
@@ -91,10 +102,8 @@ async function sendOrderForm(form)
         new ErrorDialog("Debes completar algunos campos para continuar").show();
     }
 }
-async function findLocation()
+async function findLocation(line1, line2)
 {
-	const line1=$("#create_d_line1").val();
-	const line2=$("#create_d_line2").val();
 	await $.get(location.protocol + '//nominatim.openstreetmap.org/search?format=json&q='+
         line1+", "+line2, function(data){
             if(data.length>0)

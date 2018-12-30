@@ -2,33 +2,35 @@ function doubleClick(e)
 {
     $(".modal-screen").fadeIn(300);
     $(".modal-card").fadeIn(300);
-    $('.expandible.a').hide();
-    $('.expandible.b').hide();
-    $('.more-modal.a i').removeClass("zmdi-plus");
-    $('.more-modal.a i').removeClass("zmdi-minus");
-    $('.more-modal.a i').addClass("zmdi-plus");
-    $('.more-modal.b i').removeClass("zmdi-plus");
-    $('.more-modal.b i').removeClass("zmdi-minus");
-    $('.more-modal.b i').addClass("zmdi-plus");
     let latlng = e.latlng;
+    coords=new Coordinates(0,0);
     coords.latitude= parseFloat(latlng.lat.toString().substr(0,8));
     coords.longitude = parseFloat(latlng.lng.toString().substr(0,8));
 }
-$(".modal-screen").click(function (event)
+function modalBackAction()
 {
-   if(!$(event.target).closest(".modal-card").length && !$(event.target).is(".modal-card"))
-   {
-       exitModal()
-   }
-});
+    $(".modal-screen").click(function (event)
+    {
+    if(!$(event.target).closest(".modal-card").length && !$(event.target).is(".modal-card"))
+    {
+        exitModal()
+    }
+    });
+    $(".close-modal").click(exitModal);
+}
+modalBackAction();
+
 
 function exitModal()
 {
     $(".modal-card").fadeOut(300);
-    $(".modal-screen").fadeOut(300);
+    $(".modal-screen").fadeOut(300).promise().done(function ()
+    {
+        $('.modal-screen').replaceWith(copyModal);
+        copyModal=$('.modal-screen').clone();
+        modalBackAction();
+    });
 }
-
-$(".close-modal").click(exitModal);
 
 function newForm(form)
 {
