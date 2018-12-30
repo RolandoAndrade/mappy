@@ -46,9 +46,12 @@
 								</div>
 								<div class="form-group">
 									<label for="birthDate">Fecha de nacimiento</label>
-									<input id="birthDate" type="date" class="form-control" name="birthDate" min="1960-01-01" max="2008-01-01" autofocus>
-									<div class="invalid-feedback" id="invalid-birthdate">
+									<input id="birthDate" type="date" class="form-control" name="birthDate" min="1960-01-01" max="2001-12-31" autofocus>
+									<div class="invalid-feed" id="invalid-birthdate">
 										Tienes que ser mayor de edad
+									</div>
+									<div class="invalid-feedback" id="invalid-birth">
+										Esta fecha no está en un rango adecuado
 									</div>
 								</div>
 								<div class="form-group">
