@@ -4,6 +4,13 @@ from collection_address.serializers import CollectionAddressSerializer
 from delivery_address.serializers import DeliveryAddressSerializer
 
 
+class UpdateUserSerializer(ModelSerializer):
+    class Meta:
+        model = User
+        fields = (
+            'firstName', 'secondName', 'firstSurname', 'secondSurname',)
+
+
 class UserSerializer(ModelSerializer):
     class Meta:
         model = User
@@ -24,7 +31,7 @@ class RegistrationSerializer(ModelSerializer):
 class UserDataSerializer(ModelSerializer):
     class Meta:
         model = User
-        fields = ('email', 'image',)
+        fields = ('email', 'image', 'firstName', 'secondName', 'firstSurname', 'secondSurname',)
 
 
 class CollectionAddressesOfUserSerializer(ModelSerializer):

@@ -105,7 +105,7 @@ class OrderManager
     reset()
     {
         myMap.clearMarkers();
-        CollectionOrderCard.clear()
+        CollectionOrderCard.clear();
         this.showCollectionOrders();
     }
 
