@@ -59,6 +59,17 @@ class UserDAO
             response.image=response.image.substr(response.image.lastIndexOf("/"),response.image.length);
         return response;
     }
+    async update(firstName, secondName, firstSurname, secondSurname)
+    {
+        const data ={
+            firstName: firstName,
+            secondName: secondName,
+            firstSurname: firstSurname,
+            secondSurname: secondSurname
+        };
+        const request = new PutRequest(data,'../api/users/put/me');
+        return await request.execute();
+    }
     delete(user)
     {
     }

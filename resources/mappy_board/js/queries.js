@@ -7,9 +7,19 @@ async function setEmail()
     {
         $('.user-image').attr("src","/static/accounts/images"+user.image);
     }
+    updateProfileStats(user);
 
 }
-
+function updateProfileStats(user)
+{
+    const s=user.firstName+" "+user.firstSurname;
+    $("#username-stat").empty();
+    $("#username-stat").append(s);
+    $("#user_first_name").val(user.firstName);
+    $("#user_second_name").val(user.secondName);
+    $("#user_first_surname").val(user.firstSurname);
+    $("#user_second_surname").val(user.secondSurname);
+}
 async function getAllCollectionOrders()
 {
     const dao = new CollectionOrderDAO();
