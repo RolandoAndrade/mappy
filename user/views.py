@@ -81,3 +81,10 @@ class UpdateAUser(generics.UpdateAPIView):
 class ProfileView(generics.UpdateAPIView):
     serializer_class = serializers.ProfileSerializer
     queryset = models.User.objects.all()
+
+    def put(self, request, *args, **kwargs):
+        if kwargs.get('pk') == 'me':
+            kwargs = {'pk': request.user.pk}
+            self.kwargs = kwargs
+            return self.update(request, *args, **kwargs)
+        return Response("Error")

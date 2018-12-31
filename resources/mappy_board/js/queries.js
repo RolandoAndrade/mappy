@@ -5,7 +5,7 @@ async function setEmail()
     $('.email-me').text(user.email);
     if(user.image!=null)
     {
-        $('.user-image').attr("src","/static/accounts/images"+user.image);
+        $('.user-image').attr("src",user.image);
     }
     updateProfileStats(user);
 

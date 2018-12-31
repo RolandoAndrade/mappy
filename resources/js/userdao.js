@@ -55,8 +55,6 @@ class UserDAO
     {
         const request=new GetRequest('api/users/get/me');
         const response = await request.execute();
-        if(response.image!=null)
-            response.image=response.image.substr(response.image.lastIndexOf("/"),response.image.length);
         return response;
     }
     async update(firstName, secondName, firstSurname, secondSurname)
@@ -68,6 +66,15 @@ class UserDAO
             secondSurname: secondSurname
         };
         const request = new PutRequest(data,'../api/users/put/me');
+        return await request.execute();
+    }
+
+    async updateProfileImage(url)
+    {
+        const data ={
+            image: url
+        };
+        const request = new PutRequest(data,'../api/users/updateImage/me');
         return await request.execute();
     }
     delete(user)

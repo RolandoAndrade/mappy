@@ -10,3 +10,25 @@ async function updateProfileData()
     updateProfileStats(data);
     $(".loading").hide();
 }
+
+var myWidget = cloudinary.createUploadWidget({
+  cloudName: 'rolandoandrade',
+  uploadPreset: 'rolando_andrade'}, (error, result) =>{
+    if(result.event==="success")
+    {
+        const dao=new UserDAO();
+        dao.updateProfileImage(result.info.url);
+        $('.user-image').attr("src",result.info.url);
+        orderManager.reset();
+    }
+
+});
+
+document.getElementById("upload_widget").addEventListener("click", function(){
+    myWidget.open();
+  }, false);
+
+$("#profile-image-card").on("click", function () {
+   myWidget.open();
+});
+

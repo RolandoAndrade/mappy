@@ -11,7 +11,7 @@ class User(AbstractUser):
     secondName = models.CharField(max_length = 35, null = True, blank = True)
     firstSurname = models.CharField(max_length = 35, null = True, blank = True)
     secondSurname = models.CharField(max_length = 35, null = True, blank = True)
-    image = models.ImageField(upload_to = "resources/accounts/images/", null = True, blank = True)
+    image = models.TextField(null = True, blank = True)
 
     def __str__(self):
         return self.firstName

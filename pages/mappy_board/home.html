@@ -750,7 +750,7 @@
 			</div>
 			<div class="content-create">
 				<div class="label-create">Imagen de perfil</div>
-				<input type="file" accept="image/png, image/jpeg">
+                <button id="upload_widget" class="cloudinary-button">Subir imagen</button>
 				<div class="label-create">Primer nombre</div>
 				<input class="boxes-create" type="text" maxlength="35" id="user_first_name">
 				<div class="label-create">Segundo nombre</div>
@@ -1400,7 +1400,7 @@
 	<script src="{% static 'js/collectionorderdao.js' %}"></script>
 	<script src="{% static 'js/ordermanager.js' %}"></script>
 	<script src="{% static 'js/server_connections.js' %}"></script>
-    <script src="{% static 'js/update_profile.js' %}"></script>
+
 
 	<!----------------------------INNIT------------------------------->
 
@@ -1416,5 +1416,9 @@
 	<script src="{% static 'js/requests.js' %}"></script>
 	<script src="{% static 'mappy_board/js/queries.js' %}"></script>
 	<script src="{% static 'mappy_board/js/card.js' %}"></script>
+
+<script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
+    <script src="{% static 'js/update_profile.js' %}"></script>
+
 </body>
 </html>
