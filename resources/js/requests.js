@@ -97,3 +97,35 @@ class DeleteRequest
                 return json;}).catch(e => {return e});
     }
 }
+class PutRequest
+{
+    constructor(data, url)
+    {
+        this.data=JSON.stringify(data);
+        this.url=url;
+    }
+
+    async execute()
+    {
+        const cookie = new Cookie("csrftoken");
+        const token = cookie.getCookie();
+        const location = window.location.hostname;
+        const settings = {
+            method: 'PUT',
+            body: this.data,
+            headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                    "X-CSRFToken": token,
+                }
+            };
+        return await fetch(this.url, settings)
+                    .then(response => response.json())
+                    .then(json => {
+                     return json;
+                    })
+                    .catch(e => {
+                        return e
+                    });
+    }
+}

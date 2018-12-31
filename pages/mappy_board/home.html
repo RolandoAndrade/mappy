@@ -701,8 +701,7 @@
 			<div class="profile-stats">
 				<div class="stat"></div>
 				<div class="stat">
-					<div class="title-stat">
-						Rolando Andrade
+					<div class="title-stat" id="username-stat">
 					</div>
 					<div class="data-stat email-me">
 					</div>
@@ -751,16 +750,16 @@
 			</div>
 			<div class="content-create">
 				<div class="label-create">Imagen de perfil</div>
-				<input type="file" accept="image/png, image/jpeg">
+                <button id="upload_widget" class="cloudinary-button">Subir imagen</button>
 				<div class="label-create">Primer nombre</div>
-				<input class="boxes-create" type="text" maxlength="35">
+				<input class="boxes-create" type="text" maxlength="35" id="user_first_name">
 				<div class="label-create">Segundo nombre</div>
-				<input class="boxes-create" type="text" maxlength="35">
+				<input class="boxes-create" type="text" maxlength="35" id="user_second_name">
 				<div class="label-create">Primer Apellido</div>
-				<input class="boxes-create" type="text" maxlength="35">
+				<input class="boxes-create" type="text" maxlength="35" id="user_first_surname">
 				<div class="label-create">Segundo Apellido</div>
-				<input class="boxes-create" type="text" maxlength="35">
-				<div class="more-modal" onclick=""><i class="zmdi zmdi-edit"></i></div>
+				<input class="boxes-create" type="text" maxlength="35" id="user_second_surname">
+				<div class="more-modal" onclick="updateProfileData()"><i class="zmdi zmdi-edit"></i></div>
 			</div>
 
 		</div>
@@ -1402,6 +1401,7 @@
 	<script src="{% static 'js/ordermanager.js' %}"></script>
 	<script src="{% static 'js/server_connections.js' %}"></script>
 
+
 	<!----------------------------INNIT------------------------------->
 
 	<script src="{% static 'mappy_board/js/main.js' %}"></script>
@@ -1416,5 +1416,9 @@
 	<script src="{% static 'js/requests.js' %}"></script>
 	<script src="{% static 'mappy_board/js/queries.js' %}"></script>
 	<script src="{% static 'mappy_board/js/card.js' %}"></script>
+
+<script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
+    <script src="{% static 'js/update_profile.js' %}"></script>
+
 </body>
 </html>
