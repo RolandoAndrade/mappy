@@ -10,34 +10,9 @@ class UserListView(generics.ListCreateAPIView):
     serializer_class = serializers.UserSerializer
 
 
-class DisableUser(generics.UpdateAPIView):
-    queryset = models.User.objects.all()
-    serializer_class = serializers.UserDataSerializer
-
-    def update(self, request, *args, **kwargs):
-        instance = self.get_object()
-        instance.is_active = False
-        instance.save()
-        serializer = self.get_serializer(instance)
-        serializer.is_valid(raise_exception = True)
-        self.perform_update(serializer)
-
-        return Response(serializer.data)
-
-
 class EnableUser(generics.UpdateAPIView):
     queryset = models.User.objects.all()
-    serializer_class = serializers.UserDataSerializer
-
-    def update(self, request, *args, **kwargs):
-        instance = self.get_object()
-        instance.is_active = True
-        instance.save()
-        serializer = self.get_serializer(instance)
-        serializer.is_valid(raise_exception = True)
-        self.perform_update(serializer)
-
-        return Response(serializer.data)
+    serializer_class = serializers.DisableSerializer
 
 
 class RetrieveCollectionAddresses(generics.ListAPIView):
@@ -88,3 +63,12 @@ class ProfileView(generics.UpdateAPIView):
             self.kwargs = kwargs
             return self.update(request, *args, **kwargs)
         return Response("Error")
+
+
+class GiveMeTheUser(generics.ListAPIView):
+    serializer_class = serializers.UserSerializer
+
+    def get_queryset(self):
+        user = self.request.query_params.get("user", None)
+        print(user)
+        return models.User.objects.filter(email = user)

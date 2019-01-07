@@ -29,8 +29,12 @@ class UserDAO
             email: user.email,
             password: user.password,
         };
-        const request = new PostRequest(data,'../api/login/')
-        return await request.execute();
+
+        const request = new PostRequest(data,'../api/login/');
+
+        const r=await request.execute();
+        console.log(r);
+        return r;
     }
 
     logout()

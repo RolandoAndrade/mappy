@@ -50,7 +50,6 @@ class LoginSerializer(serializers.Serializer):
         password = attrs.get('password')
 
         user = None
-
         if 'allauth' in settings.INSTALLED_APPS:
             from allauth.account import app_settings
 
@@ -79,11 +78,11 @@ class LoginSerializer(serializers.Serializer):
 
         # Did we get back an active user?
         if user:
-            if not user.is_active:
-                msg = _('User account is disabled.')
+            if not user.enabled:
+                msg = _('La cuenta ha sido desactivada.')
                 raise exceptions.ValidationError(msg)
         else:
-            msg = _('Unable to log in with provided credentials.')
+            msg = _('No puede iniciar sesión con las credenciales proporcionadas.')
             raise exceptions.ValidationError(msg)
 
         # If required, is the email verified?
