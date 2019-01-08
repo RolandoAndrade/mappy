@@ -1,14 +1,14 @@
 async function signup ()
 {
-	var email=document.getElementById('email');
-	var password=document.getElementById('password');
-	var birthDate=document.getElementById('birthDate');
-	var firstName=document.getElementById('firstName').value;
-	var secondName=document.getElementById('secondName').value;
-	var firstSurname=document.getElementById('firstSurname').value;
-	var secondSurname=document.getElementById('secondSurname').value;
-	var error1=document.getElementById('invalid-feedback1');
-	var v=new Validator();
+	let email=$('#email');
+	let password=$('#password');
+	let birthDate=$('#birthDate');
+	let firstName=$('#firstName').value;
+	let secondName=$('#secondName').value;
+	let firstSurname=$('#firstSurname').value;
+	let secondSurname=$('#secondSurname').value;
+	let error1=$('#invalid-feedback1');
+	let v=new Validator();
 	if(!v.validateBirthdate(birthDate.value))
 	{
 	    birthDate.style.borderColor="#dc3545";
@@ -56,19 +56,34 @@ async function signup ()
         window.location="../";
 }
 
+function validate(field, validation)
+{
+	if(validation)
+	{
+
+	}
+	else
+	{
+
+	}
+}
+
+function validateFields(email, password, birthdate)
+{
+
+}
+
 $(".my-login-validation").submit(function()
-	 {
-		var form = $(this);
-		event.preventDefault();
-        event.stopPropagation();
-        if (form[0].checkValidity() === false)
-        {
-
-        }
-        else
-        {
-            signup();
-        }
-
-		form.addClass('was-validated');
-	});
+{
+	let form = $(this);
+	event.preventDefault();
+	event.stopPropagation();
+	if (form[0].checkValidity() === false)
+	{
+	}
+	else
+	{
+		signup();
+	}
+	form.addClass('was-validated');
+});

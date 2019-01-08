@@ -34,7 +34,6 @@ class UserDAO
         const request = new PostRequest(data,'../api/login/');
 
         const r=await request.execute();
-        console.log(r);
         return r;
     }
 
@@ -87,10 +86,6 @@ class UserDAO
         return await request.execute();
     }
 
-    delete(user)
-    {
-    }
-
     async findByEmail(email)
     {
         const request=new GetRequest('../api/users/giveMe?user='+email);
@@ -128,13 +123,14 @@ class Coordinates
 
 class CollectionAddress
 {
-	constructor(country, city, line1, line2, zipCode)
+	constructor(country, city, line1, line2, zipCode, id)
 	{
 		this.country=country;
 		this.city=city;
 		this.line1=line1;
 		this.line2=line2;
 		this.zipCode=zipCode;
+		this.id = id | 0;
 	}
 
 	equals(collectionAddress)
@@ -181,11 +177,12 @@ var miniCoords=null;
 
 class DeliveryAddress extends CollectionAddress
 {
-	constructor(country, city, line1, line2, zipCode, description)
+	constructor(country, city, line1, line2, zipCode, description, id)
 	{
-        super(country, city, line1, line2, zipCode);
+        super(country, city, line1, line2, zipCode, id);
 		this.description=description;
 		this.coordinates=null;
+		this.id = id | 0;
 	}
 
 	addCoordinates(coordinates)
@@ -284,36 +281,31 @@ class CollectionOrderDAO
             recipientsName: collectionOrder.recipientsName,
             recipientsSurname: collectionOrder.recipientsSurname,
         };
-        const request=new PostRequest(data,'api/collection_order/create');
+        const request=new PostRequest(data,'../api/collection_order/create');
         return await request.execute();
     }
+
     async getAll()
     {
-        const request=new GetRequest('api/collection_order/getAll');
+        const request=new GetRequest('../api/collection_order/getAll');
         return await request.execute();
     }
 
     async delete(collectionOrder)
     {
-        const request=new DeleteRequest('api/collection_order/remove',collectionOrder.id)
+        const request=new DeleteRequest('../api/collection_order/remove',collectionOrder.id);
         return await request.execute();
-    }
-    findById(id)
-    {
-    }
-    constructor()
-    {
-
     }
 }
 
 class Package
 {
-	constructor(weight, description, order)
+	constructor(weight, description, order, id)
 	{
 		this.weight=weight;
 		this.description=description;
 		this.order=order;
+		this.id = id | 0;
 	}
 }
 
@@ -379,6 +371,13 @@ class MyError
     {
         this.error=error;
     }
+
+    getMessage()
+    {
+        if(this.error.non_field_errors)
+            return this.error.non_field_errors;
+        return "Error";
+    }
 }
 
 class MyCorrect
@@ -405,7 +404,8 @@ class JSONparser
     {
         if(json&&json.collection_address_id)
         {
-            return new CollectionAddress(json.country, json.city, json.line1, json.line2,json.zipCode);
+            return new CollectionAddress(json.country, json.city,
+                json.line1, json.line2,json.zipCode,json.collection_address_id);
         }
         return new CollectionAddress("","","","","");
     }
@@ -414,7 +414,8 @@ class JSONparser
     {
         if(json&&json.delivery_address_id)
         {
-            let del = new DeliveryAddress(json.country, json.city, json.line1, json.line2,json.zipCode);
+            let del = new DeliveryAddress(json.country, json.city,
+                json.line1, json.line2,json.zipCode,json.description, json.delivery_address_id);
             del.addCoordinates(new Coordinates(json.latitude, json.longitude));
             return del;
         }
@@ -494,9 +495,10 @@ class AuthManager
     async disable(email)
     {
         const user = await this.dao.findByEmail(email);
+        console.log(user[0]);
         if(user.length===0)
             return new MyError("No hay usuario registrado a este nombre");
-        return await this.dao.disableUser(user.user_id);
+        return await this.dao.disableUser(user[0].user_id);
     }
 
     async updateData(firstName, secondName, firstSurname, secondSurname)
@@ -509,3 +511,21 @@ class AuthManager
         return await this.dao.updateProfileImage(image);
     }
 }
+
+class CollectionOrderManager
+{
+    constructor()
+    {
+        this.dao = new CollectionOrderDAO();
+        this.parser = new JSONparser();
+    }
+
+    async create(collectionAddress, deliveryAddress, recipientsName, recipientsSurname, packages)
+    {
+        const r = await this.dao.create(new CollectionOrder(0, collectionAddress,
+            deliveryAddress, recipientsName, recipientsSurname));
+        return this.parser.parseCollectionOrder(r);
+
+    }
+}
+
