@@ -18,7 +18,7 @@ class User
         this.secondName=secondName;
         this.firstSurname=firstSurname;
         this.secondSurname=secondSurname;
-        this.image = image | "";
+        this.image = image || "";
     }
 }
 
@@ -111,7 +111,7 @@ class Coordinates
             const lat=latitude.toString().substr(0,8);
             const lon=longitude.toString().substr(0,8);
             this.latitude=parseFloat(lat);
-            this.longitude=longitude(parseFloat(lon));
+            this.longitude=parseFloat(lon);
         }
         catch (e)
         {
@@ -130,7 +130,7 @@ class CollectionAddress
 		this.line1=line1;
 		this.line2=line2;
 		this.zipCode=zipCode;
-		this.id = id | 0;
+		this.id = id || 0;
 	}
 
 	equals(collectionAddress)
@@ -139,6 +139,19 @@ class CollectionAddress
         this.city===collectionAddress.city&&this.line1===collectionAddress.line1&&
         this.line2===collectionAddress.line2&&this.zipCode===collectionAddress.zipCode;
     }
+
+    imThere(arr)
+    {
+        for(let i=0;i<arr.length;i++)
+        {
+            if (this.equals(arr[i]))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
 
 class CollectionAddressDAO
@@ -155,16 +168,7 @@ class CollectionAddressDAO
         const request=new PostRequest(data,'api/collection_address/create/');
         return await request.execute();
     }
-    delete(collectionAddress)
-    {
-    }
-    findById(id)
-    {
-    }
-    constructor()
-    {
 
-    }
     async getAll()
     {
         const request=new GetRequest('api/collection_address/getAll');
@@ -182,7 +186,7 @@ class DeliveryAddress extends CollectionAddress
         super(country, city, line1, line2, zipCode, id);
 		this.description=description;
 		this.coordinates=null;
-		this.id = id | 0;
+		this.id = id || 0;
 	}
 
 	addCoordinates(coordinates)
@@ -208,21 +212,11 @@ class DeliveryAddressDAO
         const request=new PostRequest(data,'api/delivery_address/create');
         return await request.execute();
     }
-    delete(collectionAddress)
-    {
-    }
-    findById(id)
-    {
-    }
 
     async getAll()
     {
         const request=new GetRequest('api/delivery_address/getAll');
         return await request.execute();
-    }
-    constructor()
-    {
-
     }
 }
 
@@ -512,6 +506,56 @@ class AuthManager
     }
 }
 
+class DeliveryAddressManager
+{
+    constructor()
+    {
+        this.dao=new DeliveryAddressDAO();
+        this.parser=new JSONparser();
+    }
+
+    async getAll()
+    {
+        let response= await this.dao.getAll();
+        response=response[0].delivery_address;
+        let r=[];
+        for(let i=0;i<response.length;i++)
+        {
+            let ca=this.parser.parseDeliveryAddress(response[i]);
+            if(!ca.imThere(r))
+            {
+                r.push(ca);
+            }
+        }
+        return r;
+    }
+}
+
+class CollectionAddressManager
+{
+    constructor()
+    {
+        this.dao=new CollectionAddressDAO();
+        this.parser=new JSONparser();
+    }
+
+    async getAll()
+    {
+        let response= await this.dao.getAll();
+        response=response[0].collection_address;
+        let r=[];
+        for(let i=0;i<response.length;i++)
+        {
+            let ca=this.parser.parseCollectionAddress(response[i]);
+            if(!ca.imThere(r))
+            {
+                r.push(ca);
+            }
+        }
+        return r;
+    }
+}
+
 class CollectionOrderManager
 {
     constructor()
@@ -527,5 +571,18 @@ class CollectionOrderManager
         return this.parser.parseCollectionOrder(r);
 
     }
+
+    async getAll()
+    {
+        const response=await this.dao.getAll();
+        let r=[];
+        for(let i=0;i<response.length;i++)
+        {
+            r.push(this.parser.parseCollectionOrder(response[i]));
+        }
+        return r;
+    }
 }
+
+
 

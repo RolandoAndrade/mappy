@@ -3,74 +3,48 @@ async function signup ()
 	let email=$('#email');
 	let password=$('#password');
 	let birthDate=$('#birthDate');
-	let firstName=$('#firstName').value;
-	let secondName=$('#secondName').value;
-	let firstSurname=$('#firstSurname').value;
-	let secondSurname=$('#secondSurname').value;
+	let firstName=$('#firstName').val();
+	let secondName=$('#secondName').val();
+	let firstSurname=$('#firstSurname').val();
+	let secondSurname=$('#secondSurname').val();
 	let error1=$('#invalid-feedback1');
-	let v=new Validator();
-	if(!v.validateBirthdate(birthDate.value))
+	if(!validateFields(email,password, birthDate))
 	{
-	    birthDate.style.borderColor="#dc3545";
-	    document.getElementById('invalid-birthdate').style.display="inline";
-	    return;
+		return;
 	}
-	else
+	const manager=new AuthManager();
+
+	let key=await manager.create(email.val(),password.val(),birthDate.val(),
+		firstName, secondName, firstSurname,secondSurname);
+	if(key instanceof MyError)
 	{
-	    birthDate.style.borderColor="#28a745";
-	    document.getElementById('invalid-birthdate').style.display="none";
-	}
-	if(!v.validateEmail(email.value))
-	{
-	    email.style.borderColor="#dc3545";
-	    document.getElementById('invalid-email').style.display="inline";
-	    return;
-	}
-	else
-	{
-	    email.style.borderColor="#28a745";
-	    document.getElementById('invalid-email').style.display="none";
-	}
-	if(!v.validatePassword(password.value))
-	{
-	    password.style.borderColor="#dc3545";
-	    document.getElementById('invalid-password').style.display="inline";
-	    return;
-	}
-	else
-	{
-	    password.style.borderColor="#28a745";
-	    document.getElementById('invalid-password').style.display="none";
-	}
-	var dao=new UserDAO();
-	var key=await dao.create(new User(email.value,password.value,birthDate.value,firstName, secondName, firstSurname,secondSurname));
-	if(key.key===undefined)
-	{
-	    if(key.email!=undefined)
-	    {   error1.innerHTML = key.email;
-	        error1.style.display="inline";
-	        email.style.borderColor="#dc3545";
-	    }
+	    error1.text(key.email);
+	    error1.show();
+	    email.css("border-color","#dc3545");
 	}
 	else
         window.location="../";
 }
 
-function validate(field, validation)
+function validate(field, validation, text)
 {
-	if(validation)
+	if(!validation)
 	{
-
+		field.css("border-color", "#dc3545");
+		$('#invalid-'+text).show();
+		return false;
 	}
-	else
-	{
-
-	}
+	field.css("border-color","#28a745");
+	$('#invalid-'+text).hide();
+	return true;
 }
 
 function validateFields(email, password, birthdate)
 {
-
+	let v=new Validator();
+	return validate(email, v.validateEmail(email.val()), "email")&&
+		validate(password, v.validatePassword(password.val()), "password")&&
+		validate(birthdate, v.validateBirthdate(birthdate.val()), "birthday");
 }
 
 $(".my-login-validation").submit(function()

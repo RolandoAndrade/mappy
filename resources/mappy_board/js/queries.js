@@ -1,9 +1,9 @@
 async function setEmail()
 {
-    const dao=new UserDAO();
-    const user = await dao.getUser();
+    const manager = new AuthManager();
+    const user = await manager.me();
     $('.email-me').text(user.email);
-    if(user.image!=null)
+    if(user.image!=""&&user.image!=null)
     {
         $('.user-image').attr("src",user.image);
     }
@@ -20,50 +20,22 @@ function updateProfileStats(user)
     $("#user_first_surname").val(user.firstSurname);
     $("#user_second_surname").val(user.secondSurname);
 }
+
 async function getAllCollectionOrders()
 {
-    const dao = new CollectionOrderDAO();
-    const collectionOrders=await dao.getAll();
-    for(let i=0;i<collectionOrders.length;i++)
-    {
-        orderManager.addOrder(collectionOrders[i]);
-    }
-    if(!orderManager.hasOrders())
-    {
-        emptyCollectionOrder.show();
-    }
-    orderManager.showCollectionOrders();
-    $(".collection-order-number").append(collectionOrders.length.toString())
+    await orderManager.start();
 }
 
-const collectionAddresses=[];
+let collectionAddresses=[];
 async function getAllCollectionAddresses()
 {
-    const dao=new CollectionAddressDAO();
-    const response=await dao.getAll();
-    const addresses=response[0].collection_address;
-    for(let i=0;i<addresses.length;i++)
+    const manager=new CollectionAddressManager();
+    collectionAddresses= await manager.getAll();
+    for(let i=0;i<collectionAddresses.length;i++)
     {
-        let t=addresses[i];
-        let collectionAddress=new CollectionAddress(t.country,t.city,t.line1,
-            t.line2,t.zipCode);
-        if(!isRepeatedAddress(collectionAddress,collectionAddresses))
-        {
-            putInSelect(collectionAddress);
-            collectionAddresses.push(collectionAddress);
-        }
+        putInSelect(collectionAddresses[i]);
     }
-    $(".collection-address-number").append(collectionAddresses.length.toString());
-}
-
-function isRepeatedAddress(address, arr)
-{
-    for(let i=0;i<arr.length;i++)
-    {
-        if(address.equals(arr[i]))
-            return true;
-    }
-    return false;
+    $(".collection-address-number").text(collectionAddresses.length.toString());
 }
 
 function putInSelect(collectionAddress)
@@ -76,23 +48,14 @@ function putInSelect(collectionAddress)
         collectionAddress.line1+"</option>");
 }
 
-const deliveryAddresses=[];
+let deliveryAddresses=[];
 
 async function getAllDeliveryAddresses()
 {
-    const dao=new DeliveryAddressDAO();
-    const response=await dao.getAll();
-    const addresses=response[0].delivery_address;
-    for(let i=0;i<addresses.length;i++)
-    {
-        let t=addresses[i];
-        let deliveryAddress=new DeliveryAddress(t.country,t.city,t.line1,t.line2,t.zipCode,t.description);
-        if(!isRepeatedAddress(deliveryAddress,deliveryAddresses))
-        {
-            putInSelectDelivery(deliveryAddress);
-            deliveryAddresses.push(deliveryAddress);
-        }
-    }
+    const manager=new DeliveryAddressManager();
+    deliveryAddresses=await manager.getAll();
+    for(let i=0;i<deliveryAddresses.length;i++)
+        putInSelectDelivery(deliveryAddresses[i]);
     $(".delivery-address-number").append(deliveryAddresses.length.toString());
 }
 

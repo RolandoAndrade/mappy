@@ -5,6 +5,7 @@ var copyModal;
 var copyMakeACollectionOrder;
 var copyPackageForm;
 $(document).ready(function(){
+	$('.loading').show();
 	$('.btn-sideBar-SubMenu').on('click', function(){
 		var SubMenu=$(this).next('ul');
 		var iconBtn=$(this).children('.zmdi-caret-down');
@@ -86,7 +87,7 @@ $(document).ready(function(){
 
 });
 (function($){
-	$('.loading').show();
+
     $(window).on("load",async function(){
         $(".dashboard-sideBar-ct").mCustomScrollbar({
         	theme:"light-thin",
