@@ -11,6 +11,7 @@ class User(AbstractUser):
     secondName = models.CharField(max_length = 35, null = True, blank = True)
     firstSurname = models.CharField(max_length = 35, null = True, blank = True)
     secondSurname = models.CharField(max_length = 35, null = True, blank = True)
+    enabled = models.BooleanField(default = True)
     image = models.TextField(null = True, blank = True)
 
     def __str__(self):

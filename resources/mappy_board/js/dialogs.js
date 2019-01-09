@@ -64,8 +64,11 @@ var exitWindow=new SwalModal(
 	'#F44336',
 	'Sí, ¡quiero salir!',
 	'No, cancelar!',
-    function () {
-			window.location="api/v/logout";
+    async function ()
+    {
+        $(".loading").show();
+        await new AuthManager().logout();
+        $(".loading").hide();
 	}
 );
 
