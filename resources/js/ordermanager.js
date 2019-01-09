@@ -49,8 +49,19 @@ class OrderManager
     constructor()
     {
         this.myOrders=[];
-    }
+        this.manager=new CollectionOrderManager();
 
+    }
+    async start()
+    {
+        this.myOrders=await this.manager.getAll();
+        if(!this.hasOrders())
+        {
+            emptyCollectionOrder.show();
+        }
+        this.showCollectionOrders();
+        $(".collection-order-number").text(orderManager.myOrders.length.toString())
+    }
     addOrder(order)
     {
         const parser=new ParserFromJsonToObject();

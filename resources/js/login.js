@@ -1,56 +1,58 @@
-var attempts = [];
+let attempts = [];
+
+function getRepsOf(email)
+{
+	let count=0;
+	for(let i=0;i<attempts.length;i++)
+		if(attempts[i]===email)
+			count++;
+	return count;
+}
+
 
 async function login ()
 {
-	var email=document.getElementById('email');
-	var password=document.getElementById('password');
-	var dao=new UserDAO();
-	var error=document.getElementById("invalid-feedback");
-	error.style.display="none";
-	email.style.borderColor="#28a745";
-	password.style.borderColor="#28a745";
-	var key=await dao.login(new Guess(email.value,password.value));
-	if(key.key===undefined)
+	let email=$('#email');
+	let password=$('#password');
+	const manager=new AuthManager();
+	let error=$("#invalid-feedback");
+
+	error.hide();
+	email.css("border-color","#28a745");
+	password.css("border-color","#28a745");
+
+	let key=await manager.login(email.val(),password.val());
+
+	if(key instanceof MyError)
 	{
-	    if(key.non_field_errors!=undefined)
-	    {   error.innerHTML = key.non_field_errors;
-	        error.style.display="inline";
-	        email.style.borderColor="#dc3545";
-	        password.style.borderColor="#dc3545";
-	        attempts.push(email.value);
-	    }
+		let reps=getRepsOf(email.val());
+	    error.text(reps<5?key.getMessage():'La cuenta ha sido desactivada.');
+	    error.show();
+	    email.css("border-color","#dc3545");
+	    password.css("border-color","#dc3545");
+	    attempts.push(email.val());
+	    if(reps===5)
+		{
+			await manager.disable(email.val());
+		}
 	}
 	else
 	{
-	    var count=0;
-	    for(var i=0;i<attempts.length;i++)
-	        if(attempts[i]==email.value)
-	            count++;
-	    console.log(count);
-	    if(count<5)
-	        window.location="../"
-	    else
-	        window.location="../api/disable"
+		window.location="../"
 	}
-	console.log(attempts);
-
-
-
 }
 
-	$(".my-login-validation").submit(function()
-	 {
-		var form = $(this);
-		event.preventDefault();
-        event.stopPropagation();
-        if (form[0].checkValidity() === false)
-        {
-
-        }
-        else
-        {
-            login();
-        }
-
-		form.addClass('was-validated');
-	});
+$(".my-login-validation").submit(function()
+{
+	let form = $(this);
+	event.preventDefault();
+	event.stopPropagation();
+	if (form[0].checkValidity() === false)
+	{
+	}
+	else
+	{
+		login();
+	}
+	form.addClass('was-validated');
+});

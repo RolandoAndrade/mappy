@@ -13,7 +13,7 @@ def logout(request):
 
 def disable(request):
     if not isinstance(request.user, AnonymousUser):
-        request.user.is_active = False
+        request.user.enabled = False
         request.user.save()
         auth_logout(request)
         return render(request, 'accountdisabled.html')

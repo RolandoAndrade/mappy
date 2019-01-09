@@ -15,7 +15,8 @@ class UserSerializer(ModelSerializer):
     class Meta:
         model = User
         fields = (
-            'user_id', 'email', 'password', 'birthDate', 'firstName', 'secondName', 'firstSurname', 'secondSurname',)
+            'user_id', 'email', 'password', 'birthDate', 'firstName', 'secondName',
+            'firstSurname', 'secondSurname')
 
 
 class RegistrationSerializer(ModelSerializer):
@@ -54,3 +55,9 @@ class ProfileSerializer(ModelSerializer):
     class Meta:
         model = User
         fields = ('image',)
+
+
+class DisableSerializer(ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('enabled',)
