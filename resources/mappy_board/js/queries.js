@@ -33,18 +33,18 @@ async function getAllCollectionAddresses()
     collectionAddresses= await manager.getAll();
     for(let i=0;i<collectionAddresses.length;i++)
     {
-        putInSelect(collectionAddresses[i]);
+        putInSelect(collectionAddresses[i],i);
     }
     $(".collection-address-number").text(collectionAddresses.length.toString());
 }
 
-function putInSelect(collectionAddress)
+function putInSelect(collectionAddress, i)
 {
     $("#select-modal-c").append(
-        "<option value='"+collectionAddresses.length+"'>"+
+        "<option value='"+i+"'>"+
         collectionAddress.line1+"</option>");
     $("#select-create-c").append(
-        "<option value='"+collectionAddresses.length+"'>"+
+        "<option value='"+i+"'>"+
         collectionAddress.line1+"</option>");
 }
 
@@ -55,15 +55,15 @@ async function getAllDeliveryAddresses()
     const manager=new DeliveryAddressManager();
     deliveryAddresses=await manager.getAll();
     for(let i=0;i<deliveryAddresses.length;i++)
-        putInSelectDelivery(deliveryAddresses[i]);
+        putInSelectDelivery(deliveryAddresses[i],i);
     $(".delivery-address-number").append(deliveryAddresses.length.toString());
 }
 
 
-function putInSelectDelivery(deliveryAddress)
+function putInSelectDelivery(deliveryAddress,i)
 {
     $("#select-modal-d").append(
-        "<option value='"+deliveryAddresses.length+"'>"+
+        "<option value='"+i+"'>"+
         deliveryAddress.line1+"</option>");
     $("#select-create-d").append(
         "<option value='"+deliveryAddresses.length+"'>"+
