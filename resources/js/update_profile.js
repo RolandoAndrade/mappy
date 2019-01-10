@@ -1,5 +1,26 @@
+function isValidToUpdate(field)
+{
+    if(field.val().trim().length===0)
+    {
+        field.css("border-color","red");
+        new ErrorDialog("Tienes algunos campos vacíos").show();
+        return false;
+    }
+    field.css("border-color","orange");
+    return true;
+}
+function areAllFieldsValid()
+{
+    return isValidToUpdate($("#user_first_name"))&&
+        isValidToUpdate($("#user_first_surname"))
+}
+
 async function updateProfileData()
 {
+    if (!areAllFieldsValid())
+    {
+        return;
+    }
     const firstName=$("#user_first_name").val();
     const secondName=$("#user_second_name").val();
     const firstSurname=$("#user_first_surname").val();

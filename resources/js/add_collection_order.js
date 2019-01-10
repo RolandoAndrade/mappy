@@ -85,8 +85,8 @@ async function sendOrderForm(form)
         else
         {
             viewsManager.changeToMap();
-            $(".create-form").replaceWith(copyMakeACollectionOrder);
-            copyMakeACollectionOrder=$(".create-form");
+            $("#formi").replaceWith(copyMakeACollectionOrder);
+            copyMakeACollectionOrder=$("#formi").clone();
             $(".scroll-create").empty();
             $(".create-container.OfPackage").replaceWith(copyPackageForm);
 	        copyPackageForm=$(".create-container.OfPackage").clone();
@@ -94,6 +94,8 @@ async function sendOrderForm(form)
             miniMap.clearMarkers();
         }
         packagesToSave=[];
+        await getAllDeliveryAddresses();
+        await getAllCollectionAddresses();
     }
     else
     {
