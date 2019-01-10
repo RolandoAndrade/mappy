@@ -96,13 +96,13 @@
 	<!----------------------------Make a collection order form------------------------------->
 
 	<div class="makeACollectionOrder">
-		<div class="create-form">
+		<div id="formi" class="create-form">
 			<div class="create-container">
-			<div class="title-section">
+			    <div class="title-section">
 				Dirección de recolección<br>
 				<i class="zmdi zmdi-map"></i>
 			</div>
-			<div class="content-create">
+			    <div class="content-create">
 				<div class="label-create">Escoger ya existente</div>
 				<select class="combo-box-create" name=""
 						id="select-create-c" onchange="fillCollectionAddressesBoxes('create')">
@@ -355,14 +355,13 @@
 				</div>
 				<div class="more-modal c" onclick="newForm('c')"><i class="zmdi zmdi-plus"></i></div>
 			</div>
-
-		</div>
+		    </div>
 			<div class="create-container">
-			<div class="title-section">
+			    <div class="title-section">
 				Dirección de envío<br>
 				<i class="zmdi zmdi-pin"></i>
 			</div>
-			<div class="content-create">
+			    <div class="content-create">
 				<div class="label-create">Escoger ya existente</div>
 				<select class="combo-box-create" name=""
 						id="select-create-d" onchange="fillDeliveryAddressesBoxes('create')">
@@ -617,7 +616,7 @@
 				</div>
 				<div class="more-modal d" onclick="newForm('d')"><i class="zmdi zmdi-plus"></i></div>
 			</div>
-		</div>
+		    </div>
 		</div>
 		<div class="create-container OfPackage">
 				<div class="title-section">
@@ -639,7 +638,6 @@
 				<div class="more-modal e" onclick="savePackageAndNewCreator()"><i class="zmdi zmdi-plus"></i></div>
 			</div>
 		</div>
-
 		<div id="mapMini" class="mapMini d-flex justify-content-center"></div>
 		<div class="carousel-create">
 			<div class="scroll-create">
@@ -663,14 +661,10 @@
 				</div>--->
 			</div>
 		</div>
-
-
-
-
 		<div class="check" onclick="sendOrderForm('create')">
-			<i class="zmdi zmdi-check"></i></div>
-		</div>
-	</div>
+			<i class="zmdi zmdi-check"></i>
+        </div>
+    </div>
 
 	<!----------------------------History------------------------------->
 
