@@ -24,11 +24,10 @@ var myWidget = cloudinary.createUploadWidget({
 
 });
 
-document.getElementById("upload_widget").addEventListener("click", function(){
-    myWidget.open();
-  }, false);
-
 $("#profile-image-card").on("click", function () {
+   myWidget.open();
+});
+$(".user-image.update").on("click", function () {
    myWidget.open();
 });
 
