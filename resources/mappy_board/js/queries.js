@@ -56,7 +56,7 @@ async function getAllDeliveryAddresses()
     deliveryAddresses=await manager.getAll();
     for(let i=0;i<deliveryAddresses.length;i++)
         putInSelectDelivery(deliveryAddresses[i],i);
-    $(".delivery-address-number").append(deliveryAddresses.length.toString());
+    $(".delivery-address-number").text(deliveryAddresses.length.toString());
 }
 
 

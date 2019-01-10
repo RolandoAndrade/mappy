@@ -118,6 +118,7 @@ class OrderManager
         myMap.clearMarkers();
         CollectionOrderCard.clear();
         this.showCollectionOrders();
+        $(".collection-order-number").text(orderManager.myOrders.length.toString());
     }
 
     createOrder(order)
