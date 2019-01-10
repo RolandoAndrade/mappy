@@ -116,3 +116,97 @@ class GetCollectionOrderTest(APITestCase):
         response = self.client.get(reverse('getAllCollectionOrders'))
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
+
+class CreateDeliveryAddress(APITestCase):
+    def setUp(self):
+        self.user = User.objects.create(email = "rolandoandradefernandez@gmail.com",
+                                        firstName = "Rolando",
+                                        secondName = "José",
+                                        firstSurname = "Andrade",
+                                        secondSurname = "Fernández",
+                                        password = 'Wer*Nicht#Kampt$Hat@Shon26728918Verloren')
+        self.client = APIClient()
+        self.client.force_authenticate(user = self.user)
+
+    def test_happy_way(self):
+        self.data = {'Country': "Venezuela",
+                     'City': "Caracas",
+                     'line1': "UCAB",
+                     'line2': "Moltalbán",
+                     'zipCode': "1041",
+                     'description': "Un lugar lleno de estudiantes",
+                     'latitude': 10.35,
+                     'longitude': -66.34
+                     }
+        response = self.client.post(reverse('createAnDeliveryAddress'), data = self.data)
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+
+    def test_max_length_of_35(self):
+        self.data = {'Country': "Loving can hurt, loving can hurt sometimes",
+                     'City': "But it is the only thing that I know oh",
+                     'line1': "When its gets hart, you know it really gets hart",
+                     'line2': "Sometimes, But its the only thing that make us feel",
+                     'zipCode': "aliveeee, so we keep this love in a photograph",
+                     'description': "we takes this memories for ourselves",
+                     'latitude': 10.35,
+                     'longitude': -66.34
+                     }
+        response = self.client.post(reverse('createAnDeliveryAddress'), data = self.data)
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_max_length_of_135(self):
+        self.data = {'Country': "Venezuela",
+                     'City': "Caracas",
+                     'line1': "Far far away",
+                     'line2': "And so close at time",
+                     'zipCode': "Undefined",
+                     'description': "So you can pick me, inside the pocket of your reap jeans, holding me closer till your eyes meet, you wont ever be alone.... Loving can heal, loving can melt your soul, but it is the only thing that I know...",
+                     'latitude': 10.35,
+                     'longitude': -66.34
+                     }
+        response = self.client.post(reverse('createAnDeliveryAddress'), data = self.data)
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_big_float_real(self):
+        self.data = {'Country': "Venezuela",
+                     'City': "Caracas",
+                     'line1': "Far far away",
+                     'line2': "And so close at time",
+                     'zipCode': "Undefined",
+                     'description': None,
+                     'latitude': 132445455454.25,
+                     'longitude': 132445455454.25
+                     }
+        response = self.client.post(reverse('createAnDeliveryAddress'), data = self.data)
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_big_float_decimal(self):
+        self.data = {'Country': "Venezuela",
+                     'City': "Caracas",
+                     'line1': "Far far away",
+                     'line2': "And so close at time",
+                     'zipCode': "Undefined",
+                     'description': None,
+                     'latitude': 3.1415926535897932384626433832795028841971693993,
+                     'longitude': 3.1415926535897932384626433832795028841971693993
+                     }
+        response = self.client.post(reverse('createAnDeliveryAddress'), data = self.data)
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_all_field_are_none(self):
+        self.data = {'Country': None,
+                     'City': None,
+                     'line1': None,
+                     'line2': None,
+                     'zipCode': None,
+                     'description': None,
+                     'latitude': None,
+                     'longitude': None
+                     }
+        response = self.client.post(reverse('createAnDeliveryAddress'), data = self.data)
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+
+    def test_empty_request(self):
+        self.data = {}
+        response = self.client.post(reverse('createAnDeliveryAddress'), data = self.data)
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
