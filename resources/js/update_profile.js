@@ -12,9 +12,7 @@ function isValidToUpdate(field)
 function areAllFieldsValid()
 {
     return isValidToUpdate($("#user_first_name"))&&
-        isValidToUpdate($("#user_second_name"))&&
-        isValidToUpdate($("#user_first_surname"))&&
-        isValidToUpdate($("#user_second_surname"));
+        isValidToUpdate($("#user_first_surname"))
 }
 
 async function updateProfileData()

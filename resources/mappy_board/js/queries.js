@@ -29,6 +29,10 @@ async function getAllCollectionOrders()
 let collectionAddresses=[];
 async function getAllCollectionAddresses()
 {
+    $("#select-modal-c").empty();
+    $("#select-create-c").empty();
+    $("#select-modal-c").append("<option value='null'>Selecciona una dirección</option>");
+    $("#select-create-c").append("<option value='null'>Selecciona una dirección</option>");
     const manager=new CollectionAddressManager();
     collectionAddresses= await manager.getAll();
     for(let i=0;i<collectionAddresses.length;i++)
@@ -52,6 +56,10 @@ let deliveryAddresses=[];
 
 async function getAllDeliveryAddresses()
 {
+    $("#select-modal-d").empty();
+    $("#select-create-d").empty();
+    $("#select-modal-d").append("<option value='null'>Selecciona una dirección</option>");
+    $("#select-create-d").append("<option value='null'>Selecciona una dirección</option>");
     const manager=new DeliveryAddressManager();
     deliveryAddresses=await manager.getAll();
     for(let i=0;i<deliveryAddresses.length;i++)
@@ -66,7 +74,7 @@ function putInSelectDelivery(deliveryAddress,i)
         "<option value='"+i+"'>"+
         deliveryAddress.line1+"</option>");
     $("#select-create-d").append(
-        "<option value='"+deliveryAddresses.length+"'>"+
+        "<option value='"+i+"'>"+
         deliveryAddress.line1+"</option>");
 }
 
@@ -94,6 +102,7 @@ function fillCollectionAddressesBoxes(form)
 function fillDeliveryAddressesBoxes(form)
 {
     let index= $("#select-"+form+"-d").val();
+    console.log(index);
     if(index!="null")
     {
         $("#"+form+"_d_city").val(deliveryAddresses[index].city);

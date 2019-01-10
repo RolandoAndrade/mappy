@@ -65,7 +65,7 @@ $(document).ready(function(){
 
 	$('.makeACollectionOrder').css("visibility","visible");
 
-	copyMakeACollectionOrder=$('.makeACollectionOrder').clone();
+	copyMakeACollectionOrder=$('#formi').clone();
 	copyPackageForm=$(".create-container.OfPackage").clone();
 
 	viewsManager=new ViewsManager($('.navbar-text'), $('#mapMain'),
@@ -113,7 +113,7 @@ $(document).ready(function(){
 		await getAllDeliveryAddresses();
 		await getAllCollectionOrders();
 		copyModal=$('.modal-screen').clone();
-		copyMakeACollectionOrder=$('.create-form').clone();
+		copyMakeACollectionOrder=$('#formi').clone();
 		copyMakeACollectionOrder.css("visibility","visible");
 		$('.loading').hide();
 
