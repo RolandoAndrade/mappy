@@ -3,7 +3,7 @@ from .views import DeliveryAddressCreate, DeliveryAddressRetrieve, DeliveryAddre
 from django.urls import path
 
 urlpatterns = [
-    path('create', DeliveryAddressCreate.as_view()),
+    path('create', DeliveryAddressCreate.as_view(), name="createAnDeliveryAddress"),
     path('view', DeliveryAddressRetrieve.as_view()),
     path('delete/<pk>', DeliveryAddressRemove.as_view()),
     path('getAll', RetrieveDeliveryAddresses.as_view()),
