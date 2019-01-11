@@ -42,10 +42,10 @@ Instalar los requisitos en la computadora o en el entorno virtual. Para ello en 
   pip3 install -r requirements.txt
 ```
 
-Luego es necesario agregar las tablas a la base de datos.
+Luego es necesario actualizar los esquemas creados para las tablas.
 
 ```bash
-  python3 manage.py migrate
+  python3 manage.py runmigrations
 ```
 
 Finalmente para correr la prueba:
