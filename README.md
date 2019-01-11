@@ -2,7 +2,7 @@
 
 **Requisitos para hacer las pruebas**
 
-- Tener Python instalado.
+- Tener Python 3 y pip3 instalado.
 
 - Tener un entorno virtual activado (opcional).
 
@@ -39,19 +39,19 @@ Hay que considerar que el usuario debe tener la autorización para crear base de
 Instalar los requisitos en la computadora o en el entorno virtual. Para ello en el directorio principal del proyecto:
 
 ```bash
-  pip install -r requirements.txt
+  pip3 install -r requirements.txt
 ```
 
 Luego es necesario agregar las tablas a la base de datos.
 
 ```bash
-  python manage.py migrate
+  python3 manage.py migrate
 ```
 
 Finalmente para correr la prueba:
 
 ```bash
-  python manage.py test
+  python3 manage.py test
 ```
 
 Una vez iniciadas las pruebas, se creará una base de datos temporal con la estructura de la base de datos establecida en configuraciones. Al finalizar, se hará un tearDown de todo el proceso dejando sin rastro alguno las operaciones realizadas.
