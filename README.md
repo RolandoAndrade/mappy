@@ -45,7 +45,7 @@ Instalar los requisitos en la computadora o en el entorno virtual. Para ello en 
 Luego es necesario actualizar los esquemas creados para las tablas.
 
 ```bash
-  python3 manage.py runmigrations
+  python3 manage.py makemigrations
 ```
 
 Finalmente para correr la prueba:
