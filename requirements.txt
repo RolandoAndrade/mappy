@@ -16,7 +16,7 @@ django-ipware==2.1.0
 django-lockout==0.1.1
 django-measurement==3.1.1
 django-rest-auth==0.9.3
-djangorestframework==3.9.0
+djangorestframework==3.9.1
 gunicorn==19.9.0
 idna==2.7
 isort==4.3.4
